@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-16T04:30:08+00:00",
-  "scope": "near",
+  "generated_at": "2026-11-16T11:29:57+00:00",
+  "scope": "full",
   "group": "ІПЗ-26-3",
   "current_week": 11,
   "week_source": "site",
@@ -12,7 +12,7 @@
       "count": 2,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T04:30:07+00:00",
+      "fetched_at": "2026-11-16T11:29:44+00:00",
       "source_file": "schedule_cache/week_11/day_1.html",
       "lessons": [
         {
@@ -62,7 +62,7 @@
       "count": 8,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T04:30:08+00:00",
+      "fetched_at": "2026-11-16T11:29:45+00:00",
       "source_file": "schedule_cache/week_11/day_2.html",
       "lessons": [
         {
@@ -196,7 +196,7 @@
       "count": 1,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T01:00:14+00:00",
+      "fetched_at": "2026-11-16T11:29:46+00:00",
       "source_file": "schedule_cache/week_11/day_3.html",
       "lessons": [
         {
@@ -227,7 +227,7 @@
       "count": 4,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T01:00:15+00:00",
+      "fetched_at": "2026-11-16T11:29:47+00:00",
       "source_file": "schedule_cache/week_11/day_4.html",
       "lessons": [
         {
@@ -295,7 +295,7 @@
       "count": 3,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T01:00:16+00:00",
+      "fetched_at": "2026-11-16T11:29:48+00:00",
       "source_file": "schedule_cache/week_11/day_5.html",
       "lessons": [
         {
@@ -375,7 +375,7 @@
       "count": 4,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T01:00:16+00:00",
+      "fetched_at": "2026-11-16T11:29:49+00:00",
       "source_file": "schedule_cache/week_12/day_1.html",
       "lessons": [
         {
@@ -443,7 +443,7 @@
       "count": 3,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T01:00:17+00:00",
+      "fetched_at": "2026-11-16T11:29:50+00:00",
       "source_file": "schedule_cache/week_12/day_2.html",
       "lessons": [
         {
@@ -497,7 +497,7 @@
       "count": 4,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T01:00:19+00:00",
+      "fetched_at": "2026-11-16T11:29:51+00:00",
       "source_file": "schedule_cache/week_12/day_3.html",
       "lessons": [
         {
@@ -565,7 +565,7 @@
       "count": 2,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T01:00:19+00:00",
+      "fetched_at": "2026-11-16T11:29:52+00:00",
       "source_file": "schedule_cache/week_12/day_4.html",
       "lessons": [
         {
@@ -605,7 +605,7 @@
       "count": 3,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T01:00:20+00:00",
+      "fetched_at": "2026-11-16T11:29:53+00:00",
       "source_file": "schedule_cache/week_12/day_5.html",
       "lessons": [
         {
@@ -670,7 +670,7 @@
       "count": 2,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T01:00:21+00:00",
+      "fetched_at": "2026-11-16T11:29:54+00:00",
       "source_file": "schedule_cache/week_13/day_1.html",
       "lessons": [
         {
@@ -710,7 +710,7 @@
       "count": 8,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T01:00:22+00:00",
+      "fetched_at": "2026-11-16T11:29:54+00:00",
       "source_file": "schedule_cache/week_13/day_2.html",
       "lessons": [
         {
@@ -834,7 +834,7 @@
       "count": 1,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T01:00:23+00:00",
+      "fetched_at": "2026-11-16T11:29:55+00:00",
       "source_file": "schedule_cache/week_13/day_3.html",
       "lessons": [
         {
@@ -860,7 +860,7 @@
       "count": 4,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T01:00:24+00:00",
+      "fetched_at": "2026-11-16T11:29:56+00:00",
       "source_file": "schedule_cache/week_13/day_4.html",
       "lessons": [
         {
@@ -928,7 +928,7 @@
       "count": 3,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T01:00:25+00:00",
+      "fetched_at": "2026-11-16T11:29:57+00:00",
       "source_file": "schedule_cache/week_13/day_5.html",
       "lessons": [
         {
