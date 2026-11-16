@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-16T11:24:22+00:00",
-  "scope": "full",
+  "generated_at": "2026-11-16T04:30:08+00:00",
+  "scope": "near",
   "group": "ІПЗ-26-3",
   "current_week": 11,
   "week_source": "site",
@@ -12,7 +12,7 @@
       "count": 2,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T11:24:08+00:00",
+      "fetched_at": "2026-11-16T04:30:07+00:00",
       "source_file": "schedule_cache/week_11/day_1.html",
       "lessons": [
         {
@@ -62,7 +62,7 @@
       "count": 8,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T11:24:10+00:00",
+      "fetched_at": "2026-11-16T04:30:08+00:00",
       "source_file": "schedule_cache/week_11/day_2.html",
       "lessons": [
         {
@@ -196,7 +196,7 @@
       "count": 1,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T11:24:11+00:00",
+      "fetched_at": "2026-11-16T01:00:14+00:00",
       "source_file": "schedule_cache/week_11/day_3.html",
       "lessons": [
         {
@@ -227,7 +227,7 @@
       "count": 4,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T11:24:12+00:00",
+      "fetched_at": "2026-11-16T01:00:15+00:00",
       "source_file": "schedule_cache/week_11/day_4.html",
       "lessons": [
         {
@@ -295,7 +295,7 @@
       "count": 3,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T11:24:12+00:00",
+      "fetched_at": "2026-11-16T01:00:16+00:00",
       "source_file": "schedule_cache/week_11/day_5.html",
       "lessons": [
         {
@@ -373,9 +373,9 @@
       "day": 1,
       "date": "2026-11-23",
       "count": 4,
-      "changed": true,
+      "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T11:24:13+00:00",
+      "fetched_at": "2026-11-16T01:00:16+00:00",
       "source_file": "schedule_cache/week_12/day_1.html",
       "lessons": [
         {
@@ -441,9 +441,9 @@
       "day": 2,
       "date": "2026-11-24",
       "count": 3,
-      "changed": true,
+      "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T11:24:14+00:00",
+      "fetched_at": "2026-11-16T01:00:17+00:00",
       "source_file": "schedule_cache/week_12/day_2.html",
       "lessons": [
         {
@@ -495,9 +495,9 @@
       "day": 3,
       "date": "2026-11-25",
       "count": 4,
-      "changed": true,
+      "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T11:24:15+00:00",
+      "fetched_at": "2026-11-16T01:00:19+00:00",
       "source_file": "schedule_cache/week_12/day_3.html",
       "lessons": [
         {
@@ -563,9 +563,9 @@
       "day": 4,
       "date": "2026-11-26",
       "count": 2,
-      "changed": true,
+      "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T11:24:15+00:00",
+      "fetched_at": "2026-11-16T01:00:19+00:00",
       "source_file": "schedule_cache/week_12/day_4.html",
       "lessons": [
         {
@@ -603,9 +603,9 @@
       "day": 5,
       "date": "2026-11-27",
       "count": 3,
-      "changed": true,
+      "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T11:24:16+00:00",
+      "fetched_at": "2026-11-16T01:00:20+00:00",
       "source_file": "schedule_cache/week_12/day_5.html",
       "lessons": [
         {
@@ -668,9 +668,9 @@
       "day": 1,
       "date": "2026-11-30",
       "count": 2,
-      "changed": true,
+      "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T11:24:17+00:00",
+      "fetched_at": "2026-11-16T01:00:21+00:00",
       "source_file": "schedule_cache/week_13/day_1.html",
       "lessons": [
         {
@@ -708,9 +708,9 @@
       "day": 2,
       "date": "2026-12-01",
       "count": 8,
-      "changed": true,
+      "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T11:24:19+00:00",
+      "fetched_at": "2026-11-16T01:00:22+00:00",
       "source_file": "schedule_cache/week_13/day_2.html",
       "lessons": [
         {
@@ -832,9 +832,9 @@
       "day": 3,
       "date": "2026-12-02",
       "count": 1,
-      "changed": true,
+      "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T11:24:19+00:00",
+      "fetched_at": "2026-11-16T01:00:23+00:00",
       "source_file": "schedule_cache/week_13/day_3.html",
       "lessons": [
         {
@@ -858,9 +858,9 @@
       "day": 4,
       "date": "2026-12-03",
       "count": 4,
-      "changed": true,
+      "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T11:24:20+00:00",
+      "fetched_at": "2026-11-16T01:00:24+00:00",
       "source_file": "schedule_cache/week_13/day_4.html",
       "lessons": [
         {
@@ -926,9 +926,9 @@
       "day": 5,
       "date": "2026-12-04",
       "count": 3,
-      "changed": true,
+      "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T11:24:21+00:00",
+      "fetched_at": "2026-11-16T01:00:25+00:00",
       "source_file": "schedule_cache/week_13/day_5.html",
       "lessons": [
         {
