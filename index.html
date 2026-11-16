@@ -130,6 +130,8 @@ button{ font-family:inherit; }
 .banner-ic{ font-size:17px; line-height:1.3; flex:none; }
 .banner-tx b{ display:block; font-size:14px; font-weight:700; margin-bottom:2px; }
 .banner-tx span{ display:block; font-size:13px; color:var(--text-dim); line-height:1.4; }
+.banner-tx a.banner-link{ display:inline-block; margin-top:6px; color:var(--bc); font-size:13px; font-weight:700; text-decoration:none; }
+.banner-tx a.banner-link:active{ opacity:0.6; }
 
 .empty{ display:flex; flex-direction:column; align-items:center; text-align:center; padding:56px 24px; gap:10px; }
 .empty .em{ font-size:56px; margin-bottom:6px; }
@@ -506,6 +508,7 @@ const REPO_URL = `https://github.com/${GH_REPO}/blob/${GH_BRANCH}/${GH_FILE}`;
 
 const REFRESH_MS     = 5 * 60 * 1000;          // як часто перевіряти репозиторій
 const STALE_AFTER_MS = 12 * 60 * 60 * 1000;    // файл старший за це — "застарів"
+const STATUS_URL     = "https://romashkaa.github.io/status/#services";   // сторінка стану сервісів
 const FETCH_TIMEOUT  = 10000;                  // таймаут запиту, мс
 const WINDOW_MIN     = 30;                     // перерва довша за це = "вікно"
 const SHOW_DEBUG     = /[?&]debug\b/.test(location.search) || location.hash === "#debug";
@@ -811,7 +814,7 @@ function getStatus(){
   } else if(out.stale){
     level = "warn"; pill = "Застаріло · " + ago(age);
     out.banners.push({ level: "warn", ic: "⏳", t: "Розклад може бути застарілим",
-      s: `Файл востаннє оновлено ${fmtDT(gen)} (${ago(age)}). Схоже, автоматичне оновлення не працює.` });
+      s: `Файл востаннє оновлено ${fmtDT(gen)} (${ago(age)}). Схоже, автоматичне оновлення не працює.<a class="banner-link" href="${STATUS_URL}" target="_blank" rel="noopener noreferrer">Перевірити стан сервісів ↗</a>` });
   } else {
     pill = "Оновлено " + ago(age);
   }
@@ -1200,7 +1203,7 @@ function renderSettings(){
   const row = (ic, lab, val) => `<div class="detail-row"><div class="detail-row-icon">${ic}</div><div class="detail-row-text"><div class="detail-row-label">${lab}</div><div class="detail-row-value">${val}</div></div></div>`;
   const stLabel = !DB.ok ? "Немає даних" : s.stale ? "Застарілі" : net.error ? "Офлайн" : "Актуальні";
   const rows = DB.ok ? [
-    row(s.level === "ok" ? "🟢" : "🟠", "Стан даних", esc(stLabel)),
+    row(s.level === "ok" ? "🟢" : "🟠", "Стан даних", esc(stLabel) + (s.stale ? ` · <a class="set-link" href="${STATUS_URL}" target="_blank" rel="noopener noreferrer">стан сервісів ↗</a>` : "")),
     row("🕑", "Файл згенеровано", known ? esc(fmtDT(gen)) + " · " + esc(ago(Date.now() - gen)) : "невідомо"),
     row("🔄", "Остання перевірка", net.checkedMs ? esc(fmtDT(net.checkedMs)) + (net.fromCache ? " (не вдалася — збережена копія)" : "") : "ще не виконувалась"),
     row("🎓", "Група", esc(DB.group || "—")),
