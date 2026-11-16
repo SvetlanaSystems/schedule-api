@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-16T15:47:54+00:00",
+  "generated_at": "2026-11-16T21:31:10+00:00",
   "scope": "full",
   "group": "ІПЗ-26-3",
   "current_week": 11,
@@ -12,7 +12,7 @@
       "count": 2,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T15:47:40+00:00",
+      "fetched_at": "2026-11-16T21:30:56+00:00",
       "source_file": "schedule_cache/week_11/day_1.html",
       "lessons": [
         {
@@ -60,9 +60,9 @@
       "day": 2,
       "date": "2026-11-17",
       "count": 8,
-      "changed": false,
+      "changed": true,
       "error": null,
-      "fetched_at": "2026-11-16T15:47:41+00:00",
+      "fetched_at": "2026-11-16T21:30:57+00:00",
       "source_file": "schedule_cache/week_11/day_2.html",
       "lessons": [
         {
@@ -73,7 +73,7 @@
           "subject": "Хмарні офісні пакети",
           "type": "lab",
           "type_label": "Лабораторна",
-          "room": "333-a",
+          "room": "333-a / У7",
           "subgroup": 1,
           "groups": "ІПЗ-26-3 (підгр. 1)",
           "teacher": "Варганова Діна Олександрівна",
@@ -87,7 +87,7 @@
           "subject": "Хмарні офісні пакети",
           "type": "lab",
           "type_label": "Лабораторна",
-          "room": "ОЦ 102",
+          "room": "ОЦ 102 / У8",
           "subgroup": 2,
           "groups": "ІПЗ-26-3 (підгр. 2)",
           "teacher": "Дмитренко Ірина Анатоліївна",
@@ -101,7 +101,7 @@
           "subject": "Хмарні офісні пакети",
           "type": "lab",
           "type_label": "Лабораторна",
-          "room": "333-a",
+          "room": "333-a / У8",
           "subgroup": 1,
           "groups": "ІПЗ-26-3 (підгр. 1)",
           "teacher": "Варганова Діна Олександрівна",
@@ -115,7 +115,7 @@
           "subject": "Хмарні офісні пакети",
           "type": "lab",
           "type_label": "Лабораторна",
-          "room": "ОЦ 102",
+          "room": "ОЦ 102 / У7",
           "subgroup": 2,
           "groups": "ІПЗ-26-3 (підгр. 2)",
           "teacher": "Дмитренко Ірина Анатоліївна",
@@ -129,7 +129,7 @@
           "subject": "Архітектура комп'ютера",
           "type": "lab",
           "type_label": "Лабораторна",
-          "room": "3003",
+          "room": "3003 / У6",
           "subgroup": 1,
           "groups": "ІПЗ-26-3 (підгр. 1)",
           "teacher": "Локтікова Тамара Миколаївна",
@@ -143,7 +143,7 @@
           "subject": "Основи програмування",
           "type": "lab",
           "type_label": "Лабораторна",
-          "room": "ОЦ 102",
+          "room": "ОЦ 102 / У7",
           "subgroup": 2,
           "groups": "ІПЗ-26-3 (підгр. 2)",
           "teacher": "Чижмотря Олексій Володимирович",
@@ -162,7 +162,7 @@
           "subject": "Архітектура комп'ютера",
           "type": "lab",
           "type_label": "Лабораторна",
-          "room": "3003",
+          "room": "3003 / У16",
           "subgroup": 1,
           "groups": "ІПЗ-26-3 (підгр. 1)",
           "teacher": "Локтікова Тамара Миколаївна",
@@ -176,7 +176,7 @@
           "subject": "Основи програмування",
           "type": "lab",
           "type_label": "Лабораторна",
-          "room": "ОЦ 102",
+          "room": "ОЦ 102 / У16",
           "subgroup": 2,
           "groups": "ІПЗ-26-3 (підгр. 2)",
           "teacher": "Чижмотря Олексій Володимирович",
@@ -196,7 +196,7 @@
       "count": 1,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T15:47:42+00:00",
+      "fetched_at": "2026-11-16T21:30:58+00:00",
       "source_file": "schedule_cache/week_11/day_3.html",
       "lessons": [
         {
@@ -231,7 +231,7 @@
       "count": 4,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T15:47:42+00:00",
+      "fetched_at": "2026-11-16T21:30:59+00:00",
       "source_file": "schedule_cache/week_11/day_4.html",
       "lessons": [
         {
@@ -299,7 +299,7 @@
       "count": 3,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T15:47:43+00:00",
+      "fetched_at": "2026-11-16T21:31:00+00:00",
       "source_file": "schedule_cache/week_11/day_5.html",
       "lessons": [
         {
@@ -379,7 +379,7 @@
       "count": 4,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T15:47:44+00:00",
+      "fetched_at": "2026-11-16T21:31:01+00:00",
       "source_file": "schedule_cache/week_12/day_1.html",
       "lessons": [
         {
@@ -447,7 +447,7 @@
       "count": 3,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T15:47:45+00:00",
+      "fetched_at": "2026-11-16T21:31:02+00:00",
       "source_file": "schedule_cache/week_12/day_2.html",
       "lessons": [
         {
@@ -510,7 +510,7 @@
       "count": 4,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T15:47:46+00:00",
+      "fetched_at": "2026-11-16T21:31:03+00:00",
       "source_file": "schedule_cache/week_12/day_3.html",
       "lessons": [
         {
@@ -578,7 +578,7 @@
       "count": 2,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T15:47:47+00:00",
+      "fetched_at": "2026-11-16T21:31:04+00:00",
       "source_file": "schedule_cache/week_12/day_4.html",
       "lessons": [
         {
@@ -618,7 +618,7 @@
       "count": 3,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T15:47:48+00:00",
+      "fetched_at": "2026-11-16T21:31:05+00:00",
       "source_file": "schedule_cache/week_12/day_5.html",
       "lessons": [
         {
@@ -683,7 +683,7 @@
       "count": 2,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T15:47:49+00:00",
+      "fetched_at": "2026-11-16T21:31:06+00:00",
       "source_file": "schedule_cache/week_13/day_1.html",
       "lessons": [
         {
@@ -721,9 +721,9 @@
       "day": 2,
       "date": "2026-12-01",
       "count": 8,
-      "changed": false,
+      "changed": true,
       "error": null,
-      "fetched_at": "2026-11-16T15:47:50+00:00",
+      "fetched_at": "2026-11-16T21:31:07+00:00",
       "source_file": "schedule_cache/week_13/day_2.html",
       "lessons": [
         {
@@ -734,7 +734,7 @@
           "subject": "Хмарні офісні пакети",
           "type": "lab",
           "type_label": "Лабораторна",
-          "room": "333-a",
+          "room": "333-a / У7",
           "subgroup": 1,
           "groups": "ІПЗ-26-3 (підгр. 1)",
           "teacher": "Варганова Діна Олександрівна",
@@ -748,7 +748,7 @@
           "subject": "Хмарні офісні пакети",
           "type": "lab",
           "type_label": "Лабораторна",
-          "room": "ОЦ 102",
+          "room": "ОЦ 102 / У8",
           "subgroup": 2,
           "groups": "ІПЗ-26-3 (підгр. 2)",
           "teacher": "Дмитренко Ірина Анатоліївна",
@@ -762,7 +762,7 @@
           "subject": "Хмарні офісні пакети",
           "type": "lab",
           "type_label": "Лабораторна",
-          "room": "333-a",
+          "room": "333-a / У8",
           "subgroup": 1,
           "groups": "ІПЗ-26-3 (підгр. 1)",
           "teacher": "Варганова Діна Олександрівна",
@@ -776,7 +776,7 @@
           "subject": "Хмарні офісні пакети",
           "type": "lab",
           "type_label": "Лабораторна",
-          "room": "ОЦ 102",
+          "room": "ОЦ 102 / У7",
           "subgroup": 2,
           "groups": "ІПЗ-26-3 (підгр. 2)",
           "teacher": "Дмитренко Ірина Анатоліївна",
@@ -790,7 +790,7 @@
           "subject": "Архітектура комп'ютера",
           "type": "lab",
           "type_label": "Лабораторна",
-          "room": "3003",
+          "room": "3003 / У6",
           "subgroup": 1,
           "groups": "ІПЗ-26-3 (підгр. 1)",
           "teacher": "Локтікова Тамара Миколаївна",
@@ -804,7 +804,7 @@
           "subject": "Основи програмування",
           "type": "lab",
           "type_label": "Лабораторна",
-          "room": "ОЦ 102",
+          "room": "ОЦ 102 / У7",
           "subgroup": 2,
           "groups": "ІПЗ-26-3 (підгр. 2)",
           "teacher": "Чижмотря Олексій Володимирович",
@@ -818,7 +818,7 @@
           "subject": "Архітектура комп'ютера",
           "type": "lab",
           "type_label": "Лабораторна",
-          "room": "3003",
+          "room": "3003 / У16",
           "subgroup": 1,
           "groups": "ІПЗ-26-3 (підгр. 1)",
           "teacher": "Локтікова Тамара Миколаївна",
@@ -832,7 +832,7 @@
           "subject": "Основи програмування",
           "type": "lab",
           "type_label": "Лабораторна",
-          "room": "ОЦ 102",
+          "room": "ОЦ 102 / У16",
           "subgroup": 2,
           "groups": "ІПЗ-26-3 (підгр. 2)",
           "teacher": "Чижмотря Олексій Володимирович",
@@ -847,7 +847,7 @@
       "count": 1,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T15:47:51+00:00",
+      "fetched_at": "2026-11-16T21:31:07+00:00",
       "source_file": "schedule_cache/week_13/day_3.html",
       "lessons": [
         {
@@ -873,7 +873,7 @@
       "count": 4,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T15:47:52+00:00",
+      "fetched_at": "2026-11-16T21:31:09+00:00",
       "source_file": "schedule_cache/week_13/day_4.html",
       "lessons": [
         {
@@ -941,7 +941,7 @@
       "count": 3,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T15:47:53+00:00",
+      "fetched_at": "2026-11-16T21:31:09+00:00",
       "source_file": "schedule_cache/week_13/day_5.html",
       "lessons": [
         {
