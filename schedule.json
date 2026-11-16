@@ -1,0 +1,990 @@
+{
+  "generated_at": "2026-11-16T11:24:22+00:00",
+  "scope": "full",
+  "group": "ІПЗ-26-3",
+  "current_week": 11,
+  "week_source": "site",
+  "days": [
+    {
+      "week": 11,
+      "day": 1,
+      "date": "2026-11-16",
+      "count": 2,
+      "changed": false,
+      "error": null,
+      "fetched_at": "2026-11-16T11:24:08+00:00",
+      "source_file": "schedule_cache/week_11/day_1.html",
+      "lessons": [
+        {
+          "id": 5483,
+          "number": 5,
+          "start": "15:00",
+          "end": "16:20",
+          "subject": "Основи програмування",
+          "type": "lab",
+          "type_label": "Лабораторна",
+          "room": "ОЦ 101-с / У6",
+          "subgroup": 2,
+          "groups": "ІПЗ-26-3 (підгр. 2)",
+          "teacher": "Чижмотря Олексій Володимирович",
+          "links": [
+            {
+              "label": "Освітній портал (Moodle) - лабораторна робота № 17",
+              "url": "https://learn.ztu.edu.ua/course/view.php?id=8112"
+            }
+          ]
+        },
+        {
+          "id": 5602,
+          "number": 6,
+          "start": "16:30",
+          "end": "17:50",
+          "subject": "Основи програмування",
+          "type": "lab",
+          "type_label": "Лабораторна",
+          "room": "ОЦ 101-с / У12",
+          "subgroup": 2,
+          "groups": "ІПЗ-26-3 (підгр. 2)",
+          "teacher": "Чижмотря Олексій Володимирович",
+          "links": [
+            {
+              "label": "Освітній портал (Moodle) - лабораторна робота № 17",
+              "url": "https://learn.ztu.edu.ua/course/view.php?id=8112"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "day": 2,
+      "date": "2026-11-17",
+      "count": 8,
+      "changed": false,
+      "error": null,
+      "fetched_at": "2026-11-16T11:24:10+00:00",
+      "source_file": "schedule_cache/week_11/day_2.html",
+      "lessons": [
+        {
+          "id": 1658,
+          "number": 1,
+          "start": "08:30",
+          "end": "09:50",
+          "subject": "Хмарні офісні пакети",
+          "type": "lab",
+          "type_label": "Лабораторна",
+          "room": "333-a",
+          "subgroup": 1,
+          "groups": "ІПЗ-26-3 (підгр. 1)",
+          "teacher": "Варганова Діна Олександрівна",
+          "links": []
+        },
+        {
+          "id": 1659,
+          "number": 1,
+          "start": "08:30",
+          "end": "09:50",
+          "subject": "Хмарні офісні пакети",
+          "type": "lab",
+          "type_label": "Лабораторна",
+          "room": "ОЦ 102",
+          "subgroup": 2,
+          "groups": "ІПЗ-26-3 (підгр. 2)",
+          "teacher": "Дмитренко Ірина Анатоліївна",
+          "links": []
+        },
+        {
+          "id": 1746,
+          "number": 2,
+          "start": "10:00",
+          "end": "11:20",
+          "subject": "Хмарні офісні пакети",
+          "type": "lab",
+          "type_label": "Лабораторна",
+          "room": "333-a",
+          "subgroup": 1,
+          "groups": "ІПЗ-26-3 (підгр. 1)",
+          "teacher": "Варганова Діна Олександрівна",
+          "links": []
+        },
+        {
+          "id": 1747,
+          "number": 2,
+          "start": "10:00",
+          "end": "11:20",
+          "subject": "Хмарні офісні пакети",
+          "type": "lab",
+          "type_label": "Лабораторна",
+          "room": "ОЦ 102",
+          "subgroup": 2,
+          "groups": "ІПЗ-26-3 (підгр. 2)",
+          "teacher": "Дмитренко Ірина Анатоліївна",
+          "links": []
+        },
+        {
+          "id": 2879,
+          "number": 3,
+          "start": "11:40",
+          "end": "13:00",
+          "subject": "Архітектура комп'ютера",
+          "type": "lab",
+          "type_label": "Лабораторна",
+          "room": "3003",
+          "subgroup": 1,
+          "groups": "ІПЗ-26-3 (підгр. 1)",
+          "teacher": "Локтікова Тамара Миколаївна",
+          "links": []
+        },
+        {
+          "id": 2176,
+          "number": 3,
+          "start": "11:40",
+          "end": "13:00",
+          "subject": "Основи програмування",
+          "type": "lab",
+          "type_label": "Лабораторна",
+          "room": "ОЦ 102",
+          "subgroup": 2,
+          "groups": "ІПЗ-26-3 (підгр. 2)",
+          "teacher": "Чижмотря Олексій Володимирович",
+          "links": [
+            {
+              "label": "Освітній портал (Moodle) - лабораторна робота № 17",
+              "url": "https://learn.ztu.edu.ua/course/view.php?id=8112"
+            }
+          ]
+        },
+        {
+          "id": 2990,
+          "number": 4,
+          "start": "13:30",
+          "end": "14:50",
+          "subject": "Архітектура комп'ютера",
+          "type": "lab",
+          "type_label": "Лабораторна",
+          "room": "3003",
+          "subgroup": 1,
+          "groups": "ІПЗ-26-3 (підгр. 1)",
+          "teacher": "Локтікова Тамара Миколаївна",
+          "links": []
+        },
+        {
+          "id": 2056,
+          "number": 4,
+          "start": "13:30",
+          "end": "14:50",
+          "subject": "Основи програмування",
+          "type": "lab",
+          "type_label": "Лабораторна",
+          "room": "ОЦ 102",
+          "subgroup": 2,
+          "groups": "ІПЗ-26-3 (підгр. 2)",
+          "teacher": "Чижмотря Олексій Володимирович",
+          "links": [
+            {
+              "label": "Освітній портал (Moodle) - лабораторна робота № 17",
+              "url": "https://learn.ztu.edu.ua/course/view.php?id=8112"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "day": 3,
+      "date": "2026-11-18",
+      "count": 1,
+      "changed": false,
+      "error": null,
+      "fetched_at": "2026-11-16T11:24:11+00:00",
+      "source_file": "schedule_cache/week_11/day_3.html",
+      "lessons": [
+        {
+          "id": 5776,
+          "number": 6,
+          "start": "16:30",
+          "end": "17:50",
+          "subject": "Іноземна мова",
+          "type": "practical",
+          "type_label": "Практичне",
+          "room": "225 (ліцей)",
+          "subgroup": null,
+          "groups": "ІПЗ-26-3",
+          "teacher": "Суховецька Світлана Володимирівна",
+          "links": [
+            {
+              "label": "Task",
+              "url": "https://learn.ztu.edu.ua/mod/folder/view.php?id=253932"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "day": 4,
+      "date": "2026-11-19",
+      "count": 4,
+      "changed": false,
+      "error": null,
+      "fetched_at": "2026-11-16T11:24:12+00:00",
+      "source_file": "schedule_cache/week_11/day_4.html",
+      "lessons": [
+        {
+          "id": 2880,
+          "number": 2,
+          "start": "10:00",
+          "end": "11:20",
+          "subject": "Архітектура комп'ютера",
+          "type": "lab",
+          "type_label": "Лабораторна",
+          "room": "ОЦ 107-а",
+          "subgroup": 2,
+          "groups": "ІПЗ-26-3 (підгр. 2)",
+          "teacher": "Кушнір Надія Олександрівна",
+          "links": []
+        },
+        {
+          "id": 2991,
+          "number": 3,
+          "start": "11:40",
+          "end": "13:00",
+          "subject": "Архітектура комп'ютера",
+          "type": "lab",
+          "type_label": "Лабораторна",
+          "room": "ОЦ 107-а",
+          "subgroup": 2,
+          "groups": "ІПЗ-26-3 (підгр. 2)",
+          "teacher": "Кушнір Надія Олександрівна",
+          "links": []
+        },
+        {
+          "id": 2397,
+          "number": 4,
+          "start": "13:30",
+          "end": "14:50",
+          "subject": "Фізичне виховання",
+          "type": "practical",
+          "type_label": "Практичне",
+          "room": "Спортзал (4)",
+          "subgroup": null,
+          "groups": "ІПЗ-26-3",
+          "teacher": "Скок Павло Павлович",
+          "links": []
+        },
+        {
+          "id": 1289,
+          "number": 5,
+          "start": "15:00",
+          "end": "16:20",
+          "subject": "Українська мова, професійне та академічне письмо",
+          "type": "practical",
+          "type_label": "Практичне",
+          "room": "319",
+          "subgroup": null,
+          "groups": "ІПЗ-26-3",
+          "teacher": "Панченко Наталія Анатоліївна",
+          "links": []
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "day": 5,
+      "date": "2026-11-20",
+      "count": 3,
+      "changed": false,
+      "error": null,
+      "fetched_at": "2026-11-16T11:24:12+00:00",
+      "source_file": "schedule_cache/week_11/day_5.html",
+      "lessons": [
+        {
+          "id": 3837,
+          "number": 4,
+          "start": "13:30",
+          "end": "14:50",
+          "subject": "Математичний аналіз",
+          "type": "practical",
+          "type_label": "Практичне",
+          "room": "315",
+          "subgroup": null,
+          "groups": "ІПЗ-26-3",
+          "teacher": "Шпаківський Віталій Станіславович",
+          "links": [
+            {
+              "label": "Moodle",
+              "url": "https://learn.ztu.edu.ua/pluginfile.php/497945/mod_resource/content/2/%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D1%87%D0%BD%D0%B5_%D0%B7%D0%B0%D0%BD%D1%8F%D1%82%D1%82%D1%8F_5.pdf"
+            }
+          ]
+        },
+        {
+          "id": 3448,
+          "number": 5,
+          "start": "15:00",
+          "end": "16:20",
+          "subject": "Основи програмування",
+          "type": "lab",
+          "type_label": "Лабораторна",
+          "room": "ОЦ 101-с",
+          "subgroup": 1,
+          "groups": "ІПЗ-26-3 (підгр. 1)",
+          "teacher": "Чижмотря Олексій Володимирович",
+          "links": [
+            {
+              "label": "Освітній портал (Moodle) - лабораторна робота № 17",
+              "url": "https://learn.ztu.edu.ua/course/view.php?id=8112"
+            }
+          ]
+        },
+        {
+          "id": 3552,
+          "number": 6,
+          "start": "16:30",
+          "end": "17:50",
+          "subject": "Основи програмування",
+          "type": "lab",
+          "type_label": "Лабораторна",
+          "room": "ОЦ 101-с",
+          "subgroup": 1,
+          "groups": "ІПЗ-26-3 (підгр. 1)",
+          "teacher": "Чижмотря Олексій Володимирович",
+          "links": [
+            {
+              "label": "Освітній портал (Moodle) - лабораторна робота № 17",
+              "url": "https://learn.ztu.edu.ua/course/view.php?id=8112"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "week": 11,
+      "day": 6,
+      "date": "2026-11-21",
+      "count": 0,
+      "changed": false,
+      "error": null,
+      "fetched_at": null,
+      "source_file": null,
+      "lessons": []
+    },
+    {
+      "week": 12,
+      "day": 1,
+      "date": "2026-11-23",
+      "count": 4,
+      "changed": true,
+      "error": null,
+      "fetched_at": "2026-11-16T11:24:13+00:00",
+      "source_file": "schedule_cache/week_12/day_1.html",
+      "lessons": [
+        {
+          "id": 4430,
+          "number": 1,
+          "start": "08:30",
+          "end": "09:50",
+          "subject": "Фізичне виховання",
+          "type": "practical",
+          "type_label": "Практичне",
+          "room": "Спортзал (3)",
+          "subgroup": null,
+          "groups": "ІПЗ-26-3",
+          "teacher": "Скок Павло Павлович",
+          "links": []
+        },
+        {
+          "id": 4458,
+          "number": 2,
+          "start": "10:00",
+          "end": "11:20",
+          "subject": "Основи програмування",
+          "type": "lecture",
+          "type_label": "Лекція",
+          "room": "316",
+          "subgroup": null,
+          "groups": "ВТ-26-1, ІПЗ-26-1, ІПЗ-26-2, ІПЗ-26-3, ІПЗ-26-4",
+          "teacher": "Вакалюк Тетяна Анатоліївна",
+          "links": []
+        },
+        {
+          "id": 4573,
+          "number": 3,
+          "start": "11:40",
+          "end": "13:00",
+          "subject": "Хмарні офісні пакети",
+          "type": "lecture",
+          "type_label": "Лекція",
+          "room": "316",
+          "subgroup": null,
+          "groups": "ВТ-26-1, ІПЗ-26-1, ІПЗ-26-2, ІПЗ-26-3, ІПЗ-26-4",
+          "teacher": "Вакалюк Тетяна Анатоліївна",
+          "links": []
+        },
+        {
+          "id": 4688,
+          "number": 4,
+          "start": "13:30",
+          "end": "14:50",
+          "subject": "Математичний аналіз",
+          "type": "lecture",
+          "type_label": "Лекція",
+          "room": "316",
+          "subgroup": null,
+          "groups": "ВТ-26-1, ІПЗ-26-1, ІПЗ-26-2, ІПЗ-26-3, ІПЗ-26-4",
+          "teacher": "Шпаківський Віталій Станіславович",
+          "links": []
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "day": 2,
+      "date": "2026-11-24",
+      "count": 3,
+      "changed": true,
+      "error": null,
+      "fetched_at": "2026-11-16T11:24:14+00:00",
+      "source_file": "schedule_cache/week_12/day_2.html",
+      "lessons": [
+        {
+          "id": 2780,
+          "number": 5,
+          "start": "15:00",
+          "end": "16:20",
+          "subject": "Іноземна мова",
+          "type": "practical",
+          "type_label": "Практичне",
+          "room": "414",
+          "subgroup": null,
+          "groups": "ІПЗ-26-3",
+          "teacher": "Суховецька Світлана Володимирівна",
+          "links": []
+        },
+        {
+          "id": 5401,
+          "number": 6,
+          "start": "16:30",
+          "end": "17:50",
+          "subject": "Лінійна алгебра та аналітична геометрія",
+          "type": "practical",
+          "type_label": "Практичне",
+          "room": "4001",
+          "subgroup": null,
+          "groups": "ІПЗ-26-3",
+          "teacher": "Шпаківський Віталій Станіславович",
+          "links": []
+        },
+        {
+          "id": 5440,
+          "number": 7,
+          "start": "18:00",
+          "end": "19:20",
+          "subject": "Розвиток комунікаційних навичок та групова динаміка",
+          "type": "practical",
+          "type_label": "Практичне",
+          "room": "426",
+          "subgroup": null,
+          "groups": "ІПЗ-26-3",
+          "teacher": "Венгловська Юлія Володимирівна",
+          "links": []
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "day": 3,
+      "date": "2026-11-25",
+      "count": 4,
+      "changed": true,
+      "error": null,
+      "fetched_at": "2026-11-16T11:24:15+00:00",
+      "source_file": "schedule_cache/week_12/day_3.html",
+      "lessons": [
+        {
+          "id": 7207,
+          "number": 4,
+          "start": "13:30",
+          "end": "14:50",
+          "subject": "Українська мова, професійне та академічне письмо",
+          "type": "practical",
+          "type_label": "Практичне",
+          "room": "428",
+          "subgroup": null,
+          "groups": "ІПЗ-26-3",
+          "teacher": "Панченко Наталія Анатоліївна",
+          "links": []
+        },
+        {
+          "id": 5295,
+          "number": 5,
+          "start": "15:00",
+          "end": "16:20",
+          "subject": "Архітектура комп'ютера",
+          "type": "lecture",
+          "type_label": "Лекція",
+          "room": "401",
+          "subgroup": null,
+          "groups": "ВТ-26-1, ІПЗ-26-1, ІПЗ-26-2, ІПЗ-26-3, ІПЗ-26-4",
+          "teacher": "Локтікова Тамара Миколаївна",
+          "links": []
+        },
+        {
+          "id": 5483,
+          "number": 6,
+          "start": "16:30",
+          "end": "17:50",
+          "subject": "Основи програмування",
+          "type": "lab",
+          "type_label": "Лабораторна",
+          "room": "ОЦ 101-с",
+          "subgroup": 2,
+          "groups": "ІПЗ-26-3 (підгр. 2)",
+          "teacher": "Чижмотря Олексій Володимирович",
+          "links": []
+        },
+        {
+          "id": 5602,
+          "number": 7,
+          "start": "18:00",
+          "end": "19:20",
+          "subject": "Основи програмування",
+          "type": "lab",
+          "type_label": "Лабораторна",
+          "room": "ОЦ 101-с",
+          "subgroup": 2,
+          "groups": "ІПЗ-26-3 (підгр. 2)",
+          "teacher": "Чижмотря Олексій Володимирович",
+          "links": []
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "day": 4,
+      "date": "2026-11-26",
+      "count": 2,
+      "changed": true,
+      "error": null,
+      "fetched_at": "2026-11-16T11:24:15+00:00",
+      "source_file": "schedule_cache/week_12/day_4.html",
+      "lessons": [
+        {
+          "id": 6706,
+          "number": 6,
+          "start": "16:30",
+          "end": "17:50",
+          "subject": "Лінійна алгебра та аналітична геометрія",
+          "type": "practical",
+          "type_label": "Практичне",
+          "room": "432",
+          "subgroup": null,
+          "groups": "ІПЗ-26-3",
+          "teacher": "Шпаківський Віталій Станіславович",
+          "links": []
+        },
+        {
+          "id": 6738,
+          "number": 7,
+          "start": "18:00",
+          "end": "19:20",
+          "subject": "Розвиток комунікаційних навичок та групова динаміка",
+          "type": "practical",
+          "type_label": "Практичне",
+          "room": "3001",
+          "subgroup": null,
+          "groups": "ІПЗ-26-3",
+          "teacher": "Венгловська Юлія Володимирівна",
+          "links": []
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "day": 5,
+      "date": "2026-11-27",
+      "count": 3,
+      "changed": true,
+      "error": null,
+      "fetched_at": "2026-11-16T11:24:16+00:00",
+      "source_file": "schedule_cache/week_12/day_5.html",
+      "lessons": [
+        {
+          "id": 6820,
+          "number": 1,
+          "start": "08:30",
+          "end": "09:50",
+          "subject": "Основи програмування",
+          "type": "lab",
+          "type_label": "Лабораторна",
+          "room": "2003",
+          "subgroup": 1,
+          "groups": "ІПЗ-26-3 (підгр. 1)",
+          "teacher": "Чижмотря Олексій Володимирович",
+          "links": []
+        },
+        {
+          "id": 6937,
+          "number": 2,
+          "start": "10:00",
+          "end": "11:20",
+          "subject": "Основи програмування",
+          "type": "lab",
+          "type_label": "Лабораторна",
+          "room": "2003",
+          "subgroup": 1,
+          "groups": "ІПЗ-26-3 (підгр. 1)",
+          "teacher": "Чижмотря Олексій Володимирович",
+          "links": []
+        },
+        {
+          "id": 7063,
+          "number": 3,
+          "start": "11:40",
+          "end": "13:00",
+          "subject": "Українська мова, професійне та академічне письмо",
+          "type": "practical",
+          "type_label": "Практичне",
+          "room": "315",
+          "subgroup": null,
+          "groups": "ІПЗ-26-3",
+          "teacher": "Панченко Наталія Анатоліївна",
+          "links": []
+        }
+      ]
+    },
+    {
+      "week": 12,
+      "day": 6,
+      "date": "2026-11-28",
+      "count": 0,
+      "changed": false,
+      "error": null,
+      "fetched_at": null,
+      "source_file": null,
+      "lessons": []
+    },
+    {
+      "week": 13,
+      "day": 1,
+      "date": "2026-11-30",
+      "count": 2,
+      "changed": true,
+      "error": null,
+      "fetched_at": "2026-11-16T11:24:17+00:00",
+      "source_file": "schedule_cache/week_13/day_1.html",
+      "lessons": [
+        {
+          "id": 5483,
+          "number": 5,
+          "start": "15:00",
+          "end": "16:20",
+          "subject": "Основи програмування",
+          "type": "lab",
+          "type_label": "Лабораторна",
+          "room": "ОЦ 101-с / У6",
+          "subgroup": 2,
+          "groups": "ІПЗ-26-3 (підгр. 2)",
+          "teacher": "Чижмотря Олексій Володимирович",
+          "links": []
+        },
+        {
+          "id": 5602,
+          "number": 6,
+          "start": "16:30",
+          "end": "17:50",
+          "subject": "Основи програмування",
+          "type": "lab",
+          "type_label": "Лабораторна",
+          "room": "ОЦ 101-с / У12",
+          "subgroup": 2,
+          "groups": "ІПЗ-26-3 (підгр. 2)",
+          "teacher": "Чижмотря Олексій Володимирович",
+          "links": []
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "day": 2,
+      "date": "2026-12-01",
+      "count": 8,
+      "changed": true,
+      "error": null,
+      "fetched_at": "2026-11-16T11:24:19+00:00",
+      "source_file": "schedule_cache/week_13/day_2.html",
+      "lessons": [
+        {
+          "id": 1658,
+          "number": 1,
+          "start": "08:30",
+          "end": "09:50",
+          "subject": "Хмарні офісні пакети",
+          "type": "lab",
+          "type_label": "Лабораторна",
+          "room": "333-a",
+          "subgroup": 1,
+          "groups": "ІПЗ-26-3 (підгр. 1)",
+          "teacher": "Варганова Діна Олександрівна",
+          "links": []
+        },
+        {
+          "id": 1659,
+          "number": 1,
+          "start": "08:30",
+          "end": "09:50",
+          "subject": "Хмарні офісні пакети",
+          "type": "lab",
+          "type_label": "Лабораторна",
+          "room": "ОЦ 102",
+          "subgroup": 2,
+          "groups": "ІПЗ-26-3 (підгр. 2)",
+          "teacher": "Дмитренко Ірина Анатоліївна",
+          "links": []
+        },
+        {
+          "id": 1746,
+          "number": 2,
+          "start": "10:00",
+          "end": "11:20",
+          "subject": "Хмарні офісні пакети",
+          "type": "lab",
+          "type_label": "Лабораторна",
+          "room": "333-a",
+          "subgroup": 1,
+          "groups": "ІПЗ-26-3 (підгр. 1)",
+          "teacher": "Варганова Діна Олександрівна",
+          "links": []
+        },
+        {
+          "id": 1747,
+          "number": 2,
+          "start": "10:00",
+          "end": "11:20",
+          "subject": "Хмарні офісні пакети",
+          "type": "lab",
+          "type_label": "Лабораторна",
+          "room": "ОЦ 102",
+          "subgroup": 2,
+          "groups": "ІПЗ-26-3 (підгр. 2)",
+          "teacher": "Дмитренко Ірина Анатоліївна",
+          "links": []
+        },
+        {
+          "id": 2879,
+          "number": 3,
+          "start": "11:40",
+          "end": "13:00",
+          "subject": "Архітектура комп'ютера",
+          "type": "lab",
+          "type_label": "Лабораторна",
+          "room": "3003",
+          "subgroup": 1,
+          "groups": "ІПЗ-26-3 (підгр. 1)",
+          "teacher": "Локтікова Тамара Миколаївна",
+          "links": []
+        },
+        {
+          "id": 2176,
+          "number": 3,
+          "start": "11:40",
+          "end": "13:00",
+          "subject": "Основи програмування",
+          "type": "lab",
+          "type_label": "Лабораторна",
+          "room": "ОЦ 102",
+          "subgroup": 2,
+          "groups": "ІПЗ-26-3 (підгр. 2)",
+          "teacher": "Чижмотря Олексій Володимирович",
+          "links": []
+        },
+        {
+          "id": 2990,
+          "number": 4,
+          "start": "13:30",
+          "end": "14:50",
+          "subject": "Архітектура комп'ютера",
+          "type": "lab",
+          "type_label": "Лабораторна",
+          "room": "3003",
+          "subgroup": 1,
+          "groups": "ІПЗ-26-3 (підгр. 1)",
+          "teacher": "Локтікова Тамара Миколаївна",
+          "links": []
+        },
+        {
+          "id": 2056,
+          "number": 4,
+          "start": "13:30",
+          "end": "14:50",
+          "subject": "Основи програмування",
+          "type": "lab",
+          "type_label": "Лабораторна",
+          "room": "ОЦ 102",
+          "subgroup": 2,
+          "groups": "ІПЗ-26-3 (підгр. 2)",
+          "teacher": "Чижмотря Олексій Володимирович",
+          "links": []
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "day": 3,
+      "date": "2026-12-02",
+      "count": 1,
+      "changed": true,
+      "error": null,
+      "fetched_at": "2026-11-16T11:24:19+00:00",
+      "source_file": "schedule_cache/week_13/day_3.html",
+      "lessons": [
+        {
+          "id": 5776,
+          "number": 6,
+          "start": "16:30",
+          "end": "17:50",
+          "subject": "Іноземна мова",
+          "type": "practical",
+          "type_label": "Практичне",
+          "room": "225 (ліцей)",
+          "subgroup": null,
+          "groups": "ІПЗ-26-3",
+          "teacher": "Суховецька Світлана Володимирівна",
+          "links": []
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "day": 4,
+      "date": "2026-12-03",
+      "count": 4,
+      "changed": true,
+      "error": null,
+      "fetched_at": "2026-11-16T11:24:20+00:00",
+      "source_file": "schedule_cache/week_13/day_4.html",
+      "lessons": [
+        {
+          "id": 2880,
+          "number": 2,
+          "start": "10:00",
+          "end": "11:20",
+          "subject": "Архітектура комп'ютера",
+          "type": "lab",
+          "type_label": "Лабораторна",
+          "room": "ОЦ 107-а",
+          "subgroup": 2,
+          "groups": "ІПЗ-26-3 (підгр. 2)",
+          "teacher": "Кушнір Надія Олександрівна",
+          "links": []
+        },
+        {
+          "id": 2991,
+          "number": 3,
+          "start": "11:40",
+          "end": "13:00",
+          "subject": "Архітектура комп'ютера",
+          "type": "lab",
+          "type_label": "Лабораторна",
+          "room": "ОЦ 107-а",
+          "subgroup": 2,
+          "groups": "ІПЗ-26-3 (підгр. 2)",
+          "teacher": "Кушнір Надія Олександрівна",
+          "links": []
+        },
+        {
+          "id": 2397,
+          "number": 4,
+          "start": "13:30",
+          "end": "14:50",
+          "subject": "Фізичне виховання",
+          "type": "practical",
+          "type_label": "Практичне",
+          "room": "Спортзал (4)",
+          "subgroup": null,
+          "groups": "ІПЗ-26-3",
+          "teacher": "Скок Павло Павлович",
+          "links": []
+        },
+        {
+          "id": 1289,
+          "number": 5,
+          "start": "15:00",
+          "end": "16:20",
+          "subject": "Українська мова, професійне та академічне письмо",
+          "type": "practical",
+          "type_label": "Практичне",
+          "room": "319",
+          "subgroup": null,
+          "groups": "ІПЗ-26-3",
+          "teacher": "Панченко Наталія Анатоліївна",
+          "links": []
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "day": 5,
+      "date": "2026-12-04",
+      "count": 3,
+      "changed": true,
+      "error": null,
+      "fetched_at": "2026-11-16T11:24:21+00:00",
+      "source_file": "schedule_cache/week_13/day_5.html",
+      "lessons": [
+        {
+          "id": 3837,
+          "number": 4,
+          "start": "13:30",
+          "end": "14:50",
+          "subject": "Математичний аналіз",
+          "type": "practical",
+          "type_label": "Практичне",
+          "room": "315",
+          "subgroup": null,
+          "groups": "ІПЗ-26-3",
+          "teacher": "Шпаківський Віталій Станіславович",
+          "links": []
+        },
+        {
+          "id": 3448,
+          "number": 5,
+          "start": "15:00",
+          "end": "16:20",
+          "subject": "Основи програмування",
+          "type": "lab",
+          "type_label": "Лабораторна",
+          "room": "ОЦ 101-с",
+          "subgroup": 1,
+          "groups": "ІПЗ-26-3 (підгр. 1)",
+          "teacher": "Чижмотря Олексій Володимирович",
+          "links": []
+        },
+        {
+          "id": 3552,
+          "number": 6,
+          "start": "16:30",
+          "end": "17:50",
+          "subject": "Основи програмування",
+          "type": "lab",
+          "type_label": "Лабораторна",
+          "room": "ОЦ 101-с",
+          "subgroup": 1,
+          "groups": "ІПЗ-26-3 (підгр. 1)",
+          "teacher": "Чижмотря Олексій Володимирович",
+          "links": []
+        }
+      ]
+    },
+    {
+      "week": 13,
+      "day": 6,
+      "date": "2026-12-05",
+      "count": 0,
+      "changed": false,
+      "error": null,
+      "fetched_at": null,
+      "source_file": null,
+      "lessons": []
+    }
+  ]
+}
