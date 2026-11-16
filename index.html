@@ -3,7 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
-<meta name="theme-color" content="#000000">
+<meta name="theme-color" id="meta-theme" content="#000000">
+<meta name="color-scheme" content="dark light">
+<script>(function(){try{var p=localStorage.getItem("rozklad:theme")||"system";var l=p==="light"||(p==="system"&&window.matchMedia&&matchMedia("(prefers-color-scheme: light)").matches);document.documentElement.setAttribute("data-theme",l?"light":"dark");var m=document.getElementById("meta-theme");if(m)m.setAttribute("content",l?"#f5f5f7":"#000000");}catch(e){}})();</script>
 <title>Розклад</title>
 <style>
 
@@ -23,12 +25,70 @@
   --green:#30D158;
   --orange:#FF9F0A;
   --red:#FF453A;
+  --scrim:rgba(0,0,0,0.55);
+  --tabbar-bg:rgba(22,22,24,0.72);
+  --ind-bg:rgba(255,255,255,0.07);
+  --ind-b1:rgba(255,255,255,0.16);
+  --ind-b2:rgba(255,255,255,0.10);
+  --shadow:0 10px 30px rgba(0,0,0,0.5);
+  --fab-bg:rgba(28,28,30,0.85);
+  --seg-on:var(--surface-3);
+  --seg-bg:var(--surface-2);
+  --card-shadow:none;
+  --handle:var(--surface-3);
+  --ring-track:var(--surface-2);
+  --tp:100%;               /* наскільки "яскравий" кольір тексту предмета */
+  color-scheme:dark;
   --radius-xl:28px;
   --radius-lg:20px;
   --radius-md:14px;
   --safe-top: env(safe-area-inset-top, 0px);
   --safe-bottom: env(safe-area-inset-bottom, 0px);
 }
+
+:root[data-theme="light"]{
+  color-scheme:light;
+  --bg:#f5f5f7;
+  --surface:#ffffff;          /* плитки, шторки */
+  --surface-2:#f5f5f7;        /* блоки всередині шторок */
+  --surface-3:#e8e8ed;        /* чіпи, іконки */
+  --seg-bg:#e8e8ed;
+  --hairline: rgba(60,60,67,0.14);
+  --text:#1d1d1f;
+  --text-dim:#6e6e73;
+  --text-faint:#a1a1a6;
+  --accent:#0a84ff;
+  --green:#1a9d4a;
+  --orange:#c77700;
+  --red:#d70015;
+  --scrim:rgba(0,0,0,0.28);
+  --tabbar-bg:rgba(255,255,255,0.72);
+  --ind-bg:rgba(0,0,0,0.06);
+  --ind-b1:rgba(255,255,255,0.8);
+  --ind-b2:rgba(0,0,0,0.04);
+  --shadow:0 8px 28px rgba(0,0,0,0.14);
+  --card-shadow:0 1px 2px rgba(0,0,0,0.04);
+  --fab-bg:rgba(255,255,255,0.85);
+  --seg-on:#ffffff;
+  --ring-track:#e8e8ed;
+  --handle:#c7c7cc;
+  --tp:92%;
+}
+:root[data-theme="light"] .lesson-row:not(.current),
+:root[data-theme="light"] .next-card,
+:root[data-theme="light"] .week-row,
+:root[data-theme="light"] .subj,
+:root[data-theme="light"] .status-pill,
+:root[data-theme="light"] .icon-btn,
+:root[data-theme="light"] .nav-btn,
+:root[data-theme="light"] .chip-btn,
+:root[data-theme="light"] .hint{ box-shadow:var(--card-shadow); }
+:root[data-theme="light"] .lesson-row:not(.current){ border-color:var(--hairline); }
+:root[data-theme="light"] .lesson-row.past{ opacity:0.55; }
+:root[data-theme="light"] .seg button.on{ box-shadow:0 1px 3px rgba(0,0,0,0.16); }
+:root[data-theme="light"] .home-emoji{ filter: drop-shadow(0 6px 14px rgba(0,0,0,0.18)); }
+:root[data-theme="light"] .lesson-type-chip{ color:#fff; }
+:root[data-theme="light"] .lesson-row.past .lesson-type-chip{ background:#c7c7cc; color:#fff; }
 
 *{ box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
 [hidden]{ display:none !important; }
@@ -156,7 +216,7 @@ button{ font-family:inherit; }
 
 .ring-wrap{ position:relative; width:250px; height:250px; display:flex; align-items:center; justify-content:center; margin-bottom: 22px; }
 .ring-wrap svg{ position:absolute; inset:0; transform:rotate(-90deg); }
-.ring-track{ fill:none; stroke:var(--surface-2); stroke-width:10; }
+.ring-track{ fill:none; stroke:var(--ring-track); stroke-width:10; }
 .ring-progress{ fill:none; stroke-width:10; stroke-linecap:round; stroke: var(--ring-color, var(--accent)); transition: stroke-dashoffset 1s linear, stroke 0.6s ease; }
 .ring-center{ display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; }
 .ring-time{ font-size:48px; font-weight:700; letter-spacing:-0.02em; font-variant-numeric: tabular-nums; line-height:1; }
@@ -220,7 +280,7 @@ button{ font-family:inherit; }
 .lesson-main{ flex:1; min-width:0; display:flex; flex-direction:column; gap:3px; }
 .lesson-name{ font-size:16px; font-weight:600; line-height:1.25; }
 .lesson-row.past .lesson-name{ color:var(--text-dim); font-weight:500; }
-.lesson-row:not(.past):not(.current) .lesson-name{ color:var(--lc, var(--text)); }
+.lesson-row:not(.past):not(.current) .lesson-name{ color:color-mix(in srgb, var(--lc, var(--text)) var(--tp), #000); }
 .lesson-row.current .lesson-name{ color:var(--text); }
 .lesson-type{ font-size:12px; color:var(--text-dim); font-weight:600; }
 .lesson-teacher{ font-size:12px; color:var(--text-faint); font-weight:500; }
@@ -288,15 +348,40 @@ a.lk.pill .ico{ --s:24px; }
 .week-dots i{ width:8px; height:8px; border-radius:50%; background:var(--lc); display:block; }
 .week-chevron{ color:var(--text-faint); font-size:20px; flex-shrink:0; }
 .tag{ display:inline-block; font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:0.04em; padding:2px 6px; border-radius:6px; vertical-align:middle; margin-left:6px; }
-.tag.mine{ color:var(--green); background:rgba(48,209,88,0.16); }
+.tag.mine{ color:var(--green); background:color-mix(in srgb, var(--green) 16%, transparent); }
 .tag.other{ color:var(--text-dim); background:var(--surface-3); }
 .tag.chg{ color:var(--orange); background:rgba(255,159,10,0.16); }
+
+/* ============================================================
+   ВКЛАДКА "ПРЕДМЕТИ"
+   ============================================================ */
+.subj-list{ display:flex; flex-direction:column; gap:10px; max-width:460px; width:100%; margin:0 auto; }
+.subj{ background:var(--surface); border:1px solid var(--hairline); border-radius:var(--radius-lg); padding:14px 16px 15px; }
+.subj-head{ display:flex; align-items:center; gap:10px; }
+.subj-dot{ width:12px; height:12px; border-radius:50%; flex:none; background:var(--lc); }
+.subj-name{ font-size:17px; font-weight:700; line-height:1.25; min-width:0; overflow-wrap:anywhere; }
+.subj-pills{ display:flex; flex-wrap:wrap; gap:8px; margin-top:11px; }
+.sp{
+  --lc:#8E8E93; display:inline-flex; align-items:stretch; max-width:100%; border:none; padding:0; cursor:pointer; text-align:left;
+  border-radius:999px; overflow:hidden; background:var(--surface-3); color:var(--text); font-family:inherit;
+  transition: transform 0.15s ease;
+}
+.sp:active{ transform:scale(0.96); }
+.sp b{
+  display:flex; align-items:center; padding:6px 10px 6px 12px; font-size:12px; font-weight:800; letter-spacing:0.01em;
+  background: color-mix(in srgb, var(--lc) 20%, transparent); color: color-mix(in srgb, var(--lc) var(--tp), #000);
+}
+.sp span{ display:flex; align-items:center; padding:6px 12px 6px 10px; font-size:12.5px; font-weight:600; font-variant-numeric:tabular-nums; white-space:nowrap; }
+.sp.soon span{ color:var(--accent); font-weight:700; }
+.sp.none{ opacity:0.5; cursor:default; }
+.sp.none:active{ transform:none; }
+.sp.none span{ color:var(--text-dim); font-weight:500; }
 
 /* ============================================================
    НИЖНІ ШТОРКИ
    ============================================================ */
 .sheet-overlay{
-  position:fixed; inset:0; z-index:20; background: rgba(0,0,0,0.55); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  position:fixed; inset:0; z-index:20; background: var(--scrim); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
   opacity:0; pointer-events:none; transition: opacity 0.3s ease; display:flex; align-items:flex-end; justify-content:center;
 }
 .sheet-overlay.open{ opacity:1; pointer-events:auto; }
@@ -305,12 +390,29 @@ a.lk.pill .ico{ --s:24px; }
 #debug-overlay{ z-index:26; }
 .sheet{
   width:100%; max-width:520px; max-height:85vh; background: var(--surface);
-  border-radius: 28px 28px 0 0; padding: 10px 20px calc(24px + var(--safe-bottom)) 20px;
+  border-radius: 28px 28px 0 0; padding: 0 20px calc(24px + var(--safe-bottom)) 20px;
   transform: translateY(100%); transition: transform 0.36s cubic-bezier(.32,.72,0,1);
   overflow-y:auto; -webkit-overflow-scrolling:touch; border-top:1px solid var(--hairline);
+  overscroll-behavior: contain;
 }
 .sheet-overlay.open .sheet{ transform: translateY(0); }
-.sheet-handle{ width:36px; height:5px; border-radius:3px; background: var(--surface-3); margin: 6px auto 16px auto; }
+.sheet.dragging{ transition:none !important; }
+/* липка "шапка" шторки: велика зона для свайпу вниз + кнопка-хрестик */
+.sheet-grab{
+  position:sticky; top:0; z-index:5; height:54px; margin:0 -20px 4px; background:var(--surface);
+  display:flex; align-items:flex-start; justify-content:center;
+  cursor:grab; touch-action:none; -webkit-user-select:none; user-select:none;
+  border-radius:28px 28px 0 0;
+}
+.sheet-grab:active{ cursor:grabbing; }
+.sheet-handle{ margin-top:12px; width:40px; height:5px; border-radius:3px; background: var(--handle); pointer-events:none; }
+.sheet-x{
+  position:absolute; right:16px; top:14px; width:30px; height:30px; border-radius:50%; border:none; padding:0;
+  background:var(--surface-3); color:var(--text-dim); display:flex; align-items:center; justify-content:center; cursor:pointer;
+  touch-action:manipulation;
+}
+.sheet-x svg{ width:14px; height:14px; }
+.sheet-x:active{ transform:scale(0.9); }
 .sheet-title{ font-size:22px; font-weight:800; margin:0 0 4px 0; }
 .sheet-sub{ font-size:14px; color:var(--text-dim); margin:0 0 18px 0; }
 
@@ -342,14 +444,14 @@ a.lk.pill .ico{ --s:24px; }
 .lr-n{ font-size:12.5px; color:var(--text-dim); margin-top:4px; line-height:1.4; padding-left:8px; border-left:2px solid var(--surface-3); }
 .lr-go{ color:var(--text-faint); font-size:16px; flex:none; }
 
-.seg{ display:flex; background:var(--surface-2); border-radius:12px; padding:3px; gap:3px; }
+.seg{ display:flex; background:var(--seg-bg); border-radius:12px; padding:3px; gap:3px; }
 .seg button{ flex:1; border:none; background:transparent; color:var(--text-dim); font-size:14px; font-weight:700; padding:10px 6px; border-radius:9px; cursor:pointer; transition: background 0.2s ease, color 0.2s ease; }
-.seg button.on{ background:var(--surface-3); color:var(--text); }
-.hint .seg{ background:var(--surface-2); }
+.seg button.on{ background:var(--seg-on); color:var(--text); }
+.hint .seg{ background:var(--seg-bg); }
 .btn-row{ display:flex; gap:10px; margin-top:18px; }
 .btn-row .btn{ flex:1; }
 textarea.manual{ width:100%; min-height:110px; resize:vertical; background:var(--surface-2); color:var(--text); border:1px solid var(--hairline); border-radius:12px; padding:10px 12px; font:12px/1.4 ui-monospace,Menlo,Consolas,monospace; -webkit-user-select:text; user-select:text; }
-mark.gm{ background:rgba(48,209,88,0.18); color:var(--green); border-radius:6px; padding:1px 6px; font-weight:700; }
+mark.gm{ background:color-mix(in srgb, var(--green) 18%, transparent); color:var(--green); border-radius:6px; padding:1px 6px; font-weight:700; }
 .grps{ display:flex; flex-wrap:wrap; gap:6px 14px; margin-top:3px; }
 .grp{ display:inline-flex; align-items:center; gap:6px; font-size:15px; font-weight:600; }
 .sg{ font-size:11px; font-weight:700; padding:3px 8px; border-radius:999px; background:var(--surface-3); color:var(--text); white-space:nowrap; }
@@ -362,17 +464,17 @@ mark.gm{ background:rgba(48,209,88,0.18); color:var(--green); border-radius:6px;
 #tabbar-wrap{ position:absolute; left:0; right:0; bottom:0; z-index:10; display:flex; justify-content:center; padding: 0 20px calc(14px + var(--safe-bottom)) 20px; pointer-events:none; }
 #tabbar{
   position:relative; pointer-events:auto; display:flex; gap: 4px;
-  background: rgba(22,22,24,0.72); backdrop-filter: blur(20px) saturate(160%); -webkit-backdrop-filter: blur(20px) saturate(160%);
-  border: 1px solid var(--hairline); border-radius: 999px; padding: 5px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+  background: var(--tabbar-bg); backdrop-filter: blur(20px) saturate(160%); -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid var(--hairline); border-radius: 999px; padding: 5px; box-shadow: var(--shadow);
 }
 .tab-indicator{
   position:absolute; top:5px; bottom:5px; left:5px; width: 80px; border-radius:999px;
-  background: rgba(255,255,255,0.07); border-top:1px solid rgba(255,255,255,0.16); border-bottom:1px solid rgba(255,255,255,0.10);
+  background: var(--ind-bg); border-top:1px solid var(--ind-b1); border-bottom:1px solid var(--ind-b2);
   transition: transform 0.34s cubic-bezier(.32,.72,0,1), width 0.34s cubic-bezier(.32,.72,0,1); z-index:0;
 }
 .tab-btn{
   position:relative; z-index:1; border:none; background:transparent; color:var(--text-dim);
-  font-size:14px; font-weight:700; padding: 11px 18px; border-radius:999px; cursor:pointer;
+  font-size:14px; font-weight:700; padding: 11px 14px; border-radius:999px; cursor:pointer;
   transition: color 0.25s ease; white-space:nowrap;
 }
 .tab-btn.active{ color:var(--text); }
@@ -385,7 +487,7 @@ mark.gm{ background:rgba(48,209,88,0.18); color:var(--green); border-radius:6px;
    ============================================================ */
 #debug-fab{
   position:fixed; z-index:30; right: 14px; bottom: calc(96px + var(--safe-bottom));
-  width:44px; height:44px; border-radius:50%; background: rgba(28,28,30,0.85); border:1px solid var(--hairline);
+  width:44px; height:44px; border-radius:50%; background: var(--fab-bg); border:1px solid var(--hairline);
   backdrop-filter: blur(10px); display:flex; align-items:center; justify-content:center; font-size:19px; color: var(--text-dim);
   cursor:pointer; box-shadow:0 6px 18px rgba(0,0,0,0.5); transition: transform 0.15s ease, color 0.2s ease, border-color 0.2s ease;
 }
@@ -402,7 +504,7 @@ mark.gm{ background:rgba(48,209,88,0.18); color:var(--green); border-radius:6px;
   border-radius:12px; padding:12px 4px; -moz-appearance:textfield; -webkit-user-select:text; user-select:text;
 }
 .debug-time-input::-webkit-outer-spin-button, .debug-time-input::-webkit-inner-spin-button{ -webkit-appearance:none; margin:0; }
-input[type="date"].debug-time-input{ font-size:18px; color-scheme:dark; }
+input[type="date"].debug-time-input{ font-size:18px; }
 .debug-colon{ font-size:20px; font-weight:800; color:var(--text-dim); }
 
 </style>
@@ -424,6 +526,7 @@ input[type="date"].debug-time-input{ font-size:18px; color-scheme:dark; }
     <section class="panel" id="panel-now"></section>
     <section class="panel" id="panel-day"></section>
     <section class="panel" id="panel-week"></section>
+    <section class="panel" id="panel-subjects"></section>
   </div>
 
   <div id="tabbar-wrap">
@@ -432,6 +535,7 @@ input[type="date"].debug-time-input{ font-size:18px; color-scheme:dark; }
       <button class="tab-btn" data-tab="now">Зараз</button>
       <button class="tab-btn" data-tab="day">День</button>
       <button class="tab-btn" data-tab="week">Тиждень</button>
+      <button class="tab-btn" data-tab="subjects">Предмети</button>
     </div>
   </div>
 </div>
@@ -439,7 +543,7 @@ input[type="date"].debug-time-input{ font-size:18px; color-scheme:dark; }
 <!-- Шторка: повний розклад дня (з вкладки "Тиждень") -->
 <div class="sheet-overlay" id="modal-overlay">
   <div class="sheet" id="modal-sheet">
-    <div class="sheet-handle"></div>
+    <div class="sheet-grab"><div class="sheet-handle"></div><button class="sheet-x" type="button" data-act="close-sheet" aria-label="Закрити"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
     <h2 class="sheet-title" id="sheet-title">—</h2>
     <p class="sheet-sub" id="sheet-sub">—</p>
     <div id="sheet-list"></div>
@@ -449,7 +553,7 @@ input[type="date"].debug-time-input{ font-size:18px; color-scheme:dark; }
 <!-- Шторка: деталі конкретної пари -->
 <div class="sheet-overlay" id="detail-overlay">
   <div class="sheet" id="detail-sheet">
-    <div class="sheet-handle"></div>
+    <div class="sheet-grab"><div class="sheet-handle"></div><button class="sheet-x" type="button" data-act="close-sheet" aria-label="Закрити"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
     <div id="detail-content"></div>
   </div>
 </div>
@@ -457,7 +561,7 @@ input[type="date"].debug-time-input{ font-size:18px; color-scheme:dark; }
 <!-- Шторка: налаштування і стан даних -->
 <div class="sheet-overlay" id="settings-overlay">
   <div class="sheet" id="settings-sheet">
-    <div class="sheet-handle"></div>
+    <div class="sheet-grab"><div class="sheet-handle"></div><button class="sheet-x" type="button" data-act="close-sheet" aria-label="Закрити"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
     <div id="settings-content"></div>
   </div>
 </div>
@@ -466,7 +570,7 @@ input[type="date"].debug-time-input{ font-size:18px; color-scheme:dark; }
 <div id="debug-fab" title="Дебаг: підмінити час" hidden>🐞</div>
 <div class="sheet-overlay" id="debug-overlay">
   <div class="sheet" id="debug-sheet">
-    <div class="sheet-handle"></div>
+    <div class="sheet-grab"><div class="sheet-handle"></div><button class="sheet-x" type="button" data-act="close-sheet" aria-label="Закрити"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" aria-hidden="true"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
     <h2 class="debug-title">Дебаг часу <span class="pill" id="debug-pill" style="display:none;">Активно</span></h2>
     <p class="debug-status" id="debug-status">Зараз показується реальний час.</p>
 
@@ -510,6 +614,7 @@ const REFRESH_MS     = 5 * 60 * 1000;          // як часто перевір
 const STALE_AFTER_MS = 12 * 60 * 60 * 1000;    // файл старший за це — "застарів"
 const STATUS_URL     = "https://romashkaa.github.io/status/#services";   // сторінка стану сервісів
 const FETCH_TIMEOUT  = 10000;                  // таймаут запиту, мс
+const BREAK_SHOW_MIN  = 20;                     // коротші перерви в списках не показуємо
 const WINDOW_MIN     = 30;                     // перерва довша за це = "вікно"
 const SHOW_DEBUG     = /[?&]debug\b/.test(location.search) || location.hash === "#debug";
 
@@ -519,10 +624,26 @@ const TZ = (function(){
   catch(e){ return "Europe/Kiev"; }
 })();
 
-const K = { cache: "rozklad:cache:" + GH_REPO + "/" + GH_FILE, sub: "rozklad:subgroup", manual: "rozklad:manual:" + GH_REPO + "/" + GH_FILE };
+const K = { theme: "rozklad:theme", cache: "rozklad:cache:" + GH_REPO + "/" + GH_FILE, sub: "rozklad:subgroup", manual: "rozklad:manual:" + GH_REPO + "/" + GH_FILE };
 let manualMode = (function(){ try { return localStorage.getItem(K.manual) === "1"; } catch(e){ return false; } })();
 
-const PALETTE = ["#FF453A","#64D2FF","#FF9F0A","#FFD60A","#AC8E68","#BF5AF2","#5E5CE6","#40C8E0","#32D74B","#FF6B35","#A8E063","#FF375F","#66D4CF","#C69C6D"];
+/* ---------- тема: системна / світла / темна ---------- */
+let themePref = (function(){ try { const v = localStorage.getItem(K.theme); return v === "light" || v === "dark" ? v : "system"; } catch(e){ return "system"; } })();
+const themeMQ = window.matchMedia ? matchMedia("(prefers-color-scheme: light)") : null;
+function applyTheme(){
+  const light = themePref === "light" || (themePref === "system" && themeMQ && themeMQ.matches);
+  document.documentElement.setAttribute("data-theme", light ? "light" : "dark");
+  const m = document.getElementById("meta-theme"); if(m) m.setAttribute("content", light ? "#f5f5f7" : "#000000");
+}
+applyTheme();
+if(themeMQ){ const onMQ = () => { if(themePref === "system"){ applyTheme(); if(typeof fullRender === "function") fullRender(); } }; themeMQ.addEventListener ? themeMQ.addEventListener("change", onMQ) : themeMQ.addListener(onMQ); }
+
+// Кожен предмет має свій унікальний відтінок; у світлій темі той самий відтінок, але глибший.
+const PAL = [["#FF453A", "#E5352B"], ["#64D2FF", "#1E9AD6"], ["#FFD60A", "#D99A00"], ["#BF5AF2", "#A23FD6"], ["#30D158", "#22A24A"], ["#FF6B9D", "#E8467C"], ["#5E5CE6", "#5856D6"], ["#FF9F0A", "#EA8000"], ["#B6DC3A", "#8DAA10"], ["#E85DD6", "#C73BB5"], ["#0A84FF", "#0070E0"], ["#B58E63", "#96704A"], ["#9AA5B8", "#6C7890"], ["#FF7A59", "#E5532D"]];
+const PALETTE = PAL.map(x => x[0]);
+// Світла тема: ті самі відтінки, але трохи глибші (див. PAL)
+const LIGHT_OF = {}; PAL.forEach(x => { LIGHT_OF[x[0]] = x[1]; });
+function themed(c){ return document.documentElement.getAttribute("data-theme") === "light" ? (LIGHT_OF[c] || c) : c; }
 const DOW_NAME  = ["Неділя","Понеділок","Вівторок","Середа","Четвер","П’ятниця","Субота"];
 const DOW_SHORT = ["Нд","Пн","Вт","Ср","Чт","Пт","Сб"];
 
@@ -637,7 +758,7 @@ function buildDB(j){
     generatedMs: Date.parse(j.generated_at)
   };
 }
-function colorOf(name){ return (DB.colors && DB.colors[name]) || "#8E8E93"; }
+function colorOf(name){ return themed((DB.colors && DB.colors[name]) || "#8E8E93"); }
 function visible(day){
   if(!day) return [];
   if(pref !== "1" && pref !== "2") return day.lessons;
@@ -904,7 +1025,7 @@ function renderLessonList(date, isToday, nowMin){
     s.lessons.forEach(l => { html += lessonRow(date, l, state); });
     if(i < slots.length - 1){
       const gap = slots[i + 1].sM - s.eM;
-      html += `<div class="break-row"><div class="break-line"></div><span>${gap > WINDOW_MIN ? "вікно" : "перерва"} ${fmtDur(gap)}</span><div class="break-line"></div></div>`;
+      if(gap >= BREAK_SHOW_MIN) html += `<div class="break-row"><div class="break-line"></div><span>${gap > WINDOW_MIN ? "вікно" : "перерва"} ${fmtDur(gap)}</span><div class="break-line"></div></div>`;
     }
   });
   return html + `</div>`;
@@ -940,7 +1061,7 @@ function openLessonDetail(date, key){
   const fetched = day.fetched_at ? Date.parse(day.fetched_at) : NaN;
   $("detail-content").innerHTML = `
     <div class="detail-head"><div class="detail-dot" style="background:${c}"></div><div class="detail-subject">${esc(l.subject)}</div></div>
-    <div class="detail-type-badge" style="color:${c}; background:${hexToRgba(c, 0.15)};">${esc(t.label)}</div>
+    <div class="detail-type-badge" style="color:color-mix(in srgb, ${c} var(--tp), #000); background:${hexToRgba(c, 0.15)};">${esc(t.label)}</div>
     <div class="detail-rows">
       ${row("📅", "День", esc(cap(fmtDate(date, { weekday: "long", day: "numeric", month: "long" }))) + (day.week != null ? ` · тиждень ${esc(day.week)}` : ""))}
       ${row("🕐", "Час", `${esc(l.start)}–${esc(l.end)}` + (l.number != null ? ` · ${esc(l.number)}-та пара` : ""))}
@@ -1019,10 +1140,10 @@ function renderNow(st, p){
       curRows = `<div class="sec-label">Зараз</div><div class="lesson-list">` + cur.lessons.map(l => lessonRow(p.date, l, "current")).join("") + `</div>`;
     } else if(st.mode === "break"){
       const isWin = st.gap > WINDOW_MIN;
-      ringColor = isWin ? "#64D2FF" : "#30D158"; caption = isWin ? "До кінця вікна" : "До кінця перерви"; headline = isWin ? "Вікно" : "Перерва";
+      ringColor = themed(isWin ? "#64D2FF" : "#30D158"); caption = isWin ? "До кінця вікна" : "До кінця перерви"; headline = isWin ? "Вікно" : "Перерва";
       nextSlot = slots[st.si + 1]; nextLabel = "Наступна пара";
     } else {
-      ringColor = "#5E5CE6"; caption = "До початку пар"; headline = "Пари ще не почались"; progress = 1; dim = true;
+      ringColor = themed("#5E5CE6"); caption = "До початку пар"; headline = "Пари ще не почались"; progress = 1; dim = true;
       nextSlot = slots[0]; nextLabel = "Перша пара";
     }
     gc = ringColor;
@@ -1077,6 +1198,11 @@ function segHtml(){
   return `<div class="seg">${opt("all", "Усі")}${opt("1", "Підгрупа 1")}${opt("2", "Підгрупа 2")}</div>`;
 }
 
+function themeSegHtml(){
+  const opt = (v, t) => `<button type="button" data-act="theme" data-v="${v}" class="${themePref === v ? "on" : ""}">${t}</button>`;
+  return `<div class="seg">${opt("system", "Системна")}${opt("light", "Світла")}${opt("dark", "Темна")}</div>`;
+}
+
 function patchNow(st){
   const t = $("ring-time");
   if(!t || st.secondsLeft == null) return;
@@ -1121,6 +1247,46 @@ function dayNav(n){
   if(dowOf(d) === 0) d = addDays(d, n);        // неділі пропускаємо
   viewDate = d === p.date ? null : d;
   lastMinKey = ""; tick();
+}
+
+/* ============================================================
+   ВКЛАДКА "ПРЕДМЕТИ": коли наступна лекція / практична / лаба
+   ============================================================ */
+const TYPE_ORDER = { lecture: 0, practical: 1, lab: 2 };
+function renderSubjects(p){
+  const panel = $("panel-subjects");
+  if(!DB.ok){ setHtml(panel, stateMessage("nodata")); return; }
+  const nowMin = p.h * 60 + p.mi, tomorrow = addDays(p.date, 1);
+  const subj = new Map();                                     // предмет -> (тип -> { info, next })
+  DB.dates.forEach(date => {
+    visible(DB.byDate[date]).forEach(l => {
+      const t = String(l.type || "").toLowerCase() || typeInfo(l).label;
+      if(!subj.has(l.subject)) subj.set(l.subject, new Map());
+      const types = subj.get(l.subject);
+      if(!types.has(t)) types.set(t, { l, info: typeInfo(l), next: null });
+      const e = types.get(t);
+      const upcoming = date > p.date || (date === p.date && MIN(l.end) > nowMin);
+      if(upcoming && !e.next) e.next = { date, l };
+    });
+  });
+  // найближче заняття предмета (дата + час початку); предмети без майбутніх занять — в кінці
+  const soonest = n => { let best = "~"; subj.get(n).forEach(e => { if(e.next){ const k = e.next.date + " " + e.next.l.start; if(k < best) best = k; } }); return best; };
+  const names = Array.from(subj.keys()).sort((a, b) => { const x = soonest(a), y = soonest(b); return x < y ? -1 : x > y ? 1 : a.localeCompare(b, "uk"); });
+  const cards = names.map(n => {
+    const types = Array.from(subj.get(n).entries()).sort((a, b) => (TYPE_ORDER[a[0]] ?? 9) - (TYPE_ORDER[b[0]] ?? 9));
+    const pills = types.map(([k, e]) => {
+      if(!e.next) return `<span class="sp none"><b>${esc(e.info.label)}</b><span>немає</span></span>`;
+      const { date, l } = e.next;
+      const day = date === p.date ? "Сьогодні" : date === tomorrow ? "Завтра" : DOW_SHORT[dowOf(date)] + ", " + fmtDate(date, { day: "numeric", month: "short" });
+      return `<button type="button" class="sp ${date === p.date || date === tomorrow ? "soon" : ""}" data-date="${date}" data-lid="${esc(l._k)}"><b>${esc(e.info.label)}</b><span>${esc(day)} · ${esc(l.start)}</span></button>`;
+    }).join("");
+    return `<div class="subj" style="--lc:${colorOf(n)}"><div class="subj-head"><i class="subj-dot"></i><div class="subj-name">${esc(n)}</div></div><div class="subj-pills">${pills}</div></div>`;
+  }).join("");
+  const header = `
+    <div class="page-header">
+      <p class="page-eyebrow">${esc(DB.group || "Навчальний рік")} · спочатку найближчі</p><h1 class="page-title">Предмети</h1>
+    </div>`;
+  setHtml(panel, header + bannersHtml() + `<div class="subj-list">${cards || `<div class="empty"><h3>Немає предметів</h3></div>`}</div>`);
 }
 
 /* ============================================================
@@ -1213,6 +1379,9 @@ function renderSettings(){
   $("settings-content").innerHTML = `
     <h2 class="sheet-title">Налаштування</h2>
     <p class="sheet-sub">Підгрупа та стан даних розкладу</p>
+    <div class="detail-section-label">Тема</div>
+    ${themeSegHtml()}
+    <p class="set-note">«Системна» підлаштовується під тему пристрою автоматично.</p>
     <div class="detail-section-label">Підгрупа</div>
     ${segHtml()}
     <p class="set-note">Лабораторні проходять по підгрупах. «Усі» показує обидві підгрупи одразу.</p>
@@ -1284,7 +1453,7 @@ function tick(){
   const mk = p.date + "T" + p.h + ":" + p.mi;
   if(mk !== lastMinKey){
     lastMinKey = mk;
-    renderDay(p); renderWeek(p); renderChrome();
+    renderDay(p); renderWeek(p); renderSubjects(p); renderChrome();
     if($("modal-overlay").classList.contains("open")) renderModal(p);
     if($("settings-overlay").classList.contains("open") && document.activeElement !== $("manual-json")) renderSettings();
   }
@@ -1312,6 +1481,8 @@ function handleAct(el){
       } catch(e){ msg.textContent = "Помилка: " + (e && e.message || "некоректний JSON"); }
       break; }
     case "manual-clear": manualMode = false; lsSet(K.manual, "0"); renderSettings(); loadData(); break;
+    case "theme": themePref = el.dataset.v; lsSet(K.theme, themePref); applyTheme(); fullRender(); renderSettings(); break;
+    case "close-sheet": { const ov = el.closest(".sheet-overlay"); if(ov) ov.classList.remove("open"); break; }
     case "open-settings": openSettings(); break;
     case "close-settings": closeSettings(); break;
   }
@@ -1337,6 +1508,37 @@ document.addEventListener("keydown", e => {
   else if($("settings-overlay").classList.contains("open")) closeSettings();
   else closeModal();
 });
+
+// свайп вниз за "ручку" (верхню смужку) закриває шторку
+(function(){
+  let sheet = null, ov = null, y0 = 0, dy = 0, t0 = 0, pid = null;
+  document.addEventListener("pointerdown", e => {
+    const grab = e.target instanceof Element ? e.target.closest(".sheet-grab") : null;
+    if(!grab || e.target.closest(".sheet-x")) return;
+    if(e.pointerType === "mouse" && e.button !== 0) return;
+    sheet = grab.closest(".sheet"); ov = sheet.parentElement;
+    y0 = e.clientY; dy = 0; t0 = performance.now(); pid = e.pointerId;
+    try { grab.setPointerCapture(pid); } catch(_){}
+    sheet.classList.add("dragging");
+  });
+  document.addEventListener("pointermove", e => {
+    if(!sheet || e.pointerId !== pid) return;
+    dy = Math.max(0, e.clientY - y0);
+    sheet.style.transform = `translateY(${dy}px)`;
+    ov.style.opacity = String(1 - Math.min(0.7, dy / (sheet.offsetHeight || 400)));
+  });
+  function end(e, cancelled){
+    if(!sheet || e.pointerId !== pid) return;
+    const dt = Math.max(1, performance.now() - t0), v = dy / dt;     // px/мс
+    const close = !cancelled && (dy > Math.min(110, sheet.offsetHeight * 0.3) || (v > 0.6 && dy > 24));
+    const sh = sheet, o = ov; sheet = ov = null; pid = null;
+    sh.classList.remove("dragging");
+    if(close) o.classList.remove("open");
+    sh.style.transform = ""; o.style.opacity = "";
+  }
+  document.addEventListener("pointerup", e => end(e, false));
+  document.addEventListener("pointercancel", e => end(e, true));
+})();
 
 // свайп по вкладці "День": вліво = наступний день, вправо = попередній
 (function(){
@@ -1393,6 +1595,6 @@ function initDebugPanel(){
   });
 }
 </script>
-<!-- Cloudflare Web Analytics --><script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a02f59a5c2334af5a016f3cdc8b855b5"}'></script><!-- End Cloudflare Web Analytics -->
+<script type='module' src='https://static.cloudflareinsights.com/beacon.min.js' data-cf-beacon='{"token": "a02f59a5c2334af5a016f3cdc8b855b5"}'></script>
 </body>
 </html>
