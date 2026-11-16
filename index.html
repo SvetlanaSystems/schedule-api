@@ -1,0 +1,1394 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#000000">
+<title>Розклад</title>
+<style>
+
+/* ============================================================
+   ДИЗАЙН-ТОКЕНИ
+   ============================================================ */
+:root{
+  --bg:#000000;
+  --surface:#161618;
+  --surface-2:#1f1f22;
+  --surface-3:#28282b;
+  --hairline: rgba(255,255,255,0.08);
+  --text:#f5f5f7;
+  --text-dim:#8a8a8e;
+  --text-faint:#59595c;
+  --accent:#0a84ff;
+  --green:#30D158;
+  --orange:#FF9F0A;
+  --red:#FF453A;
+  --radius-xl:28px;
+  --radius-lg:20px;
+  --radius-md:14px;
+  --safe-top: env(safe-area-inset-top, 0px);
+  --safe-bottom: env(safe-area-inset-bottom, 0px);
+}
+
+*{ box-sizing:border-box; -webkit-tap-highlight-color: transparent; }
+[hidden]{ display:none !important; }
+html,body{
+  margin:0; padding:0; height:100%;
+  background: var(--bg);
+  color: var(--text);
+  font-family: -apple-system, BlinkMacSystemFont, "SF Pro Display", "SF Pro Text", "Helvetica Neue", Roboto, sans-serif;
+  overflow:hidden;
+  -webkit-user-select:none; user-select:none;
+}
+button{ font-family:inherit; }
+@media (prefers-reduced-motion: reduce){
+  *{ animation-duration:0.01ms !important; transition-duration:0.01ms !important; }
+}
+
+#app{
+  position:relative;
+  height:100vh; height:100dvh;
+  width:100%;
+  display:flex; flex-direction:column;
+  padding-top: calc(var(--safe-top) + 8px);
+}
+
+#glow{
+  position:fixed; inset:0; z-index:0; pointer-events:none;
+  background: radial-gradient(ellipse 60% 40% at 50% 0%, var(--glow-color, rgba(10,132,255,0.10)), transparent 60%);
+  transition: background 0.8s ease;
+}
+
+/* ============================================================
+   ВЕРХНЯ ПАНЕЛЬ: статус оновлення + налаштування
+   ============================================================ */
+#topbar{
+  position:relative; z-index:3; flex:none;
+  display:flex; align-items:center; justify-content:space-between; gap:10px;
+  padding: 2px 20px 0 20px; min-height:40px;
+}
+.status-pill{
+  --sc: var(--text-dim);
+  display:inline-flex; align-items:center; gap:8px; min-width:0; max-width:calc(100% - 50px);
+  padding:8px 13px; border-radius:999px; background:var(--surface); border:1px solid var(--hairline);
+  color:var(--text-dim); font-size:12.5px; font-weight:700; cursor:pointer; white-space:nowrap;
+}
+.status-pill .st-text{ overflow:hidden; text-overflow:ellipsis; }
+.status-pill .sd{ width:8px; height:8px; border-radius:50%; background:var(--sc); flex:none; box-shadow:0 0 0 3px color-mix(in srgb, var(--sc) 20%, transparent); }
+.status-pill[data-l="ok"]{ --sc: var(--green); }
+.status-pill[data-l="warn"]{ --sc: var(--orange); color:var(--orange); }
+.status-pill[data-l="err"]{ --sc: var(--red); color:var(--red); }
+.status-pill[data-l="load"] .sd{ animation: pulseDot 1.2s ease-in-out infinite; }
+@keyframes pulseDot{ 50%{ opacity:0.3; } }
+.icon-btn{
+  width:38px; height:38px; flex:none; border-radius:50%; background:var(--surface); border:1px solid var(--hairline);
+  color:var(--text-dim); display:flex; align-items:center; justify-content:center; cursor:pointer;
+}
+.icon-btn svg{ width:19px; height:19px; }
+.icon-btn:active{ transform:scale(0.92); }
+
+/* ============================================================
+   ВКЛАДКИ / ПАНЕЛІ
+   ============================================================ */
+#content{ position:relative; z-index:1; flex:1; min-height:0; overflow:hidden; }
+.panel{
+  position:absolute; inset:0;
+  overflow-y:auto; -webkit-overflow-scrolling:touch;
+  padding: 6px 20px calc(110px + var(--safe-bottom)) 20px;
+  opacity:0; transform: translateY(10px) scale(0.99); pointer-events:none;
+  transition: opacity 0.32s cubic-bezier(.4,0,.2,1), transform 0.32s cubic-bezier(.4,0,.2,1);
+}
+.panel.active{ opacity:1; transform: translateY(0) scale(1); pointer-events:auto; }
+.panel::-webkit-scrollbar{ display:none; }
+
+.col{ width:100%; max-width:460px; margin:0 auto; }
+.page-header{ padding: 10px 2px 18px 2px; max-width:460px; margin:0 auto; }
+.head-row{ display:flex; align-items:flex-end; justify-content:space-between; gap:10px; }
+.page-eyebrow{ font-size:13px; font-weight:600; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.04em; margin:0 0 2px 0; }
+.page-title{ font-size:34px; font-weight:800; letter-spacing:-0.02em; margin:0; }
+.day-nav{ display:flex; gap:8px; align-items:center; padding-bottom:6px; flex:none; }
+.nav-btn{
+  width:38px; height:38px; border-radius:50%; border:1px solid var(--hairline); background:var(--surface); color:var(--text);
+  font-size:22px; line-height:1; cursor:pointer; display:flex; align-items:center; justify-content:center; padding:0 0 2px 0;
+}
+.nav-btn:active{ transform:scale(0.92); }
+.nav-btn:disabled{ opacity:0.3; pointer-events:none; }
+.chip-btn{ border:1px solid var(--hairline); background:var(--surface); color:var(--accent); font-size:13px; font-weight:700; padding:9px 13px; border-radius:999px; cursor:pointer; }
+
+/* ============================================================
+   БАНЕРИ СТАНУ ДАНИХ
+   ============================================================ */
+.banners{ display:flex; flex-direction:column; gap:10px; max-width:460px; width:100%; margin:0 auto 14px; }
+.banner{
+  --bc: var(--accent);
+  display:flex; gap:12px; align-items:flex-start; padding:12px 14px; border-radius:var(--radius-md);
+  background: color-mix(in srgb, var(--bc) 13%, var(--surface));
+  border:1px solid color-mix(in srgb, var(--bc) 38%, transparent);
+}
+.banner.warn{ --bc: var(--orange); }
+.banner.err{ --bc: var(--red); }
+.banner-ic{ font-size:17px; line-height:1.3; flex:none; }
+.banner-tx b{ display:block; font-size:14px; font-weight:700; margin-bottom:2px; }
+.banner-tx span{ display:block; font-size:13px; color:var(--text-dim); line-height:1.4; }
+
+.empty{ display:flex; flex-direction:column; align-items:center; text-align:center; padding:56px 24px; gap:10px; }
+.empty .em{ font-size:56px; margin-bottom:6px; }
+.empty h3{ margin:0; font-size:21px; font-weight:800; }
+.empty p{ margin:0; color:var(--text-dim); font-size:14px; max-width:320px; line-height:1.45; }
+.btn{ border:none; border-radius:14px; padding:13px 20px; font-size:15px; font-weight:700; cursor:pointer; transition: transform 0.15s ease; }
+.btn:active{ transform:scale(0.96); }
+.btn.primary{ background:var(--accent); color:#fff; }
+.btn.ghost{ background:var(--surface-2); color:var(--text); border:1px solid var(--hairline); }
+.btn.danger{ background:rgba(255,69,58,0.15); color:var(--red); border:1px solid rgba(255,69,58,0.35); }
+.skeleton{ width:100%; max-width:460px; margin:0 auto; display:flex; flex-direction:column; gap:8px; }
+.skeleton i{ display:block; height:64px; border-radius:var(--radius-md); background:var(--surface); animation: pulseDot 1.3s ease-in-out infinite; }
+.foot{ max-width:460px; margin:18px auto 0; text-align:center; font-size:12px; color:var(--text-faint); line-height:1.5; }
+
+/* ============================================================
+   ВКЛАДКА "ЗАРАЗ"
+   ============================================================ */
+.now-wrap{ display:flex; flex-direction:column; align-items:center; padding-top: 14px; }
+.now-date{ color:var(--text-dim); font-size:15px; font-weight:600; margin-bottom: 26px; text-align:center; }
+.now-date b{ color:var(--text); font-weight:700; }
+.now-date .link{ text-decoration:underline; text-underline-offset:2px; cursor:pointer; }
+
+.ring-wrap{ position:relative; width:250px; height:250px; display:flex; align-items:center; justify-content:center; margin-bottom: 22px; }
+.ring-wrap svg{ position:absolute; inset:0; transform:rotate(-90deg); }
+.ring-track{ fill:none; stroke:var(--surface-2); stroke-width:10; }
+.ring-progress{ fill:none; stroke-width:10; stroke-linecap:round; stroke: var(--ring-color, var(--accent)); transition: stroke-dashoffset 1s linear, stroke 0.6s ease; }
+.ring-center{ display:flex; flex-direction:column; align-items:center; justify-content:center; text-align:center; }
+.ring-time{ font-size:48px; font-weight:700; letter-spacing:-0.02em; font-variant-numeric: tabular-nums; line-height:1; }
+.ring-caption{ margin-top:8px; font-size:13px; font-weight:600; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.05em; }
+
+.next-card{
+  width:100%; max-width:420px; display:flex; align-items:center; gap:12px;
+  background:var(--surface); border:1px solid var(--hairline); border-radius: var(--radius-lg);
+  padding:14px 18px; margin-top:8px; cursor:pointer;
+  transition: background 0.15s ease, transform 0.15s ease;
+}
+.next-card.static{ cursor:default; }
+.next-card:not(.static):active{ transform: scale(0.98); background:var(--surface-2); }
+.next-dot{ width:12px; height:12px; border-radius:50%; flex-shrink:0; }
+.next-info{ display:flex; flex-direction:column; gap:2px; min-width:0; flex:1; }
+.next-label{ font-size:12px; color:var(--text-dim); font-weight:600; text-transform:uppercase; letter-spacing:0.04em; }
+.next-subject{ font-size:17px; font-weight:700; }
+.next-meta{ font-size:12px; color:var(--text-faint); font-weight:600; }
+.next-time{ font-size:14px; color:var(--text-dim); font-weight:600; font-variant-numeric: tabular-nums; flex-shrink:0; }
+.next-chevron{ color:var(--text-faint); font-size:20px; flex-shrink:0; }
+
+.home-wrap{ display:flex; flex-direction:column; align-items:center; padding-top: 26px; }
+.home-emoji{ font-size:74px; margin-bottom:14px; animation: bob 2.6s ease-in-out infinite; filter: drop-shadow(0 6px 16px rgba(0,0,0,0.5)); }
+@keyframes bob{ 0%,100%{ transform: translateY(0) rotate(-3deg); } 50%{ transform: translateY(-10px) rotate(3deg); } }
+.home-title{ font-size:22px; font-weight:800; margin:0 0 6px 0; text-align:center; }
+.home-sub{ font-size:15px; color:var(--text-dim); margin:0 0 26px 0; text-align:center; max-width:320px; }
+.sec-label{ align-self:flex-start; width:100%; max-width:460px; font-size:13px; font-weight:700; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.05em; margin: 12px 0 10px 2px; }
+
+.hint{ width:100%; max-width:420px; margin-top:22px; padding:16px; border-radius:var(--radius-lg); background:var(--surface); border:1px dashed var(--hairline); }
+.hint-t{ font-size:15px; font-weight:700; }
+.hint-s{ font-size:13px; color:var(--text-dim); margin:3px 0 12px; }
+
+/* ============================================================
+   СПИСОК ПАР
+   ============================================================ */
+.lesson-list{ display:flex; flex-direction:column; width:100%; max-width:460px; gap:2px; margin:0 auto; }
+.lesson-row{
+  position:relative; display:flex; align-items:flex-start; gap:14px;
+  background:var(--surface); padding:13px 16px; border-radius: var(--radius-md);
+  border:1px solid transparent; cursor:pointer;
+  transition: background 0.3s ease, border-color 0.3s ease, opacity 0.3s ease, transform 0.15s ease;
+}
+.lesson-row:active{ transform: scale(0.98); }
+.lesson-row + .lesson-row{ margin-top:6px; }
+.break-row + .lesson-row{ margin-top:0; }
+.lesson-row.past{ opacity:0.42; }
+.lesson-row.current{
+  border-color: color-mix(in srgb, var(--lc,#0a84ff) 55%, transparent);
+  background: color-mix(in srgb, var(--lc,#0a84ff) 14%, var(--surface));
+  animation: pulseCard 2.8s ease-in-out infinite;
+}
+@keyframes pulseCard{
+  0%,100%{ box-shadow: 0 0 0 0 color-mix(in srgb, var(--lc,#0a84ff) 0%, transparent); }
+  50%{ box-shadow: 0 0 18px 1px color-mix(in srgb, var(--lc,#0a84ff) 30%, transparent); }
+}
+.lesson-time{ display:flex; flex-direction:column; align-items:flex-end; width:46px; flex-shrink:0; font-variant-numeric: tabular-nums; padding-top:1px; }
+.lesson-time .t1{ font-size:14px; font-weight:700; color:var(--text); }
+.lesson-time .t2{ font-size:11px; color:var(--text-faint); margin-top:1px; }
+.lesson-row.past .lesson-time .t1{ color:var(--text-dim); }
+
+.lesson-main{ flex:1; min-width:0; display:flex; flex-direction:column; gap:3px; }
+.lesson-name{ font-size:16px; font-weight:600; line-height:1.25; }
+.lesson-row.past .lesson-name{ color:var(--text-dim); font-weight:500; }
+.lesson-row:not(.past):not(.current) .lesson-name{ color:var(--lc, var(--text)); }
+.lesson-row.current .lesson-name{ color:var(--text); }
+.lesson-type{ font-size:12px; color:var(--text-dim); font-weight:600; }
+.lesson-teacher{ font-size:12px; color:var(--text-faint); font-weight:500; }
+.lesson-links{ display:flex; flex-wrap:wrap; gap:8px; margin-top:6px; }
+
+.lesson-type-chip{
+  font-size:11px; font-weight:800; flex-shrink:0;
+  min-width:22px; height:22px; padding:0 5px; border-radius:8px; margin-top:1px;
+  display:flex; align-items:center; justify-content:center;
+  color:#000; background: var(--lc,#8E8E93);
+}
+.lesson-row.past .lesson-type-chip{ background: var(--text-faint); color:#111; }
+
+.lesson-badge{
+  font-size:11px; font-weight:700; text-transform:uppercase; letter-spacing:0.04em;
+  color: var(--lc,#0a84ff); background: color-mix(in srgb, var(--lc,#0a84ff) 20%, transparent);
+  padding:4px 8px; border-radius:8px; flex-shrink:0; margin-top:1px;
+}
+.lesson-chevron{ color:var(--text-faint); font-size:17px; flex-shrink:0; margin-top:1px; }
+
+.break-row{ display:flex; align-items:center; gap:10px; padding: 6px 16px 6px 16px; font-size:12px; color:var(--text-faint); font-weight:600; }
+.break-line{ flex:1; height:1px; background:var(--hairline); }
+
+/* ============================================================
+   ІКОНКИ ПОСИЛАНЬ
+   ============================================================ */
+.ico{
+  --s:28px;
+  width:var(--s); height:var(--s); border-radius:calc(var(--s) * 0.3); flex:none; overflow:hidden;
+  display:inline-flex; align-items:center; justify-content:center; background:var(--surface-3); color:#fff;
+}
+.ico svg{ width:62%; height:62%; }
+.ico.fav{ background:#fff; }
+.ico.fav img{ width:72%; height:72%; object-fit:contain; display:block; }
+.ico.ico-bul{ background:transparent; color:var(--text-dim); font-size:calc(var(--s) * 0.8); line-height:1; }
+.ico-meet{ background:#00A86B; } .ico-moodle{ background:#F98012; } .ico-zoom{ background:#2D8CFF; }
+.ico-teams{ background:#5B5FC7; } .ico-telegram{ background:#29A9EB; } .ico-youtube{ background:#FF0033; } .ico-gdrive{ background:#1FA463; }
+a.lk{ display:inline-flex; border-radius:9px; }
+a.lk:active{ transform:scale(0.9); }
+a.lk.pill{
+  align-items:center; gap:6px; padding:3px 10px 3px 3px; background:var(--surface-3); color:var(--text); text-decoration:none;
+  font-size:12px; font-weight:700; border-radius:999px;
+}
+.lesson-row.current a.lk.pill{ background: color-mix(in srgb, var(--lc,#0a84ff) 22%, var(--surface-3)); }
+a.lk.pill .ico{ --s:24px; }
+.lesson-row.past .ico{ filter:grayscale(1); opacity:0.7; }
+
+/* ============================================================
+   ВКЛАДКА "ТИЖДЕНЬ"
+   ============================================================ */
+.week-list{ display:flex; flex-direction:column; gap:10px; max-width:460px; width:100%; margin:0 auto; }
+.week-row{
+  display:flex; align-items:center; gap:14px; background:var(--surface); border:1px solid var(--hairline);
+  border-radius: var(--radius-lg); padding:16px 18px; transition: transform 0.15s ease, background 0.15s ease; cursor:pointer;
+}
+.week-row:active{ transform: scale(0.97); background:var(--surface-2); }
+.week-row.is-today{ border-color: color-mix(in srgb, var(--accent) 50%, transparent); }
+.week-row.is-empty{ opacity:0.6; }
+.week-day-badge{ width:46px; height:46px; border-radius:14px; display:flex; align-items:center; justify-content:center; font-size:15px; font-weight:800; flex-shrink:0; background: var(--surface-3); color:var(--text); }
+.week-row.is-today .week-day-badge{ background: var(--accent); color:#fff; }
+.week-info{ display:flex; flex-direction:column; gap:2px; min-width:0; flex:1; }
+.week-day-name{ font-size:17px; font-weight:700; }
+.week-day-meta{ font-size:13px; color:var(--text-dim); font-weight:500; }
+.week-dots{ display:flex; gap:5px; margin-top:6px; flex-wrap:wrap; }
+.week-dots i{ width:8px; height:8px; border-radius:50%; background:var(--lc); display:block; }
+.week-chevron{ color:var(--text-faint); font-size:20px; flex-shrink:0; }
+.tag{ display:inline-block; font-size:10px; font-weight:800; text-transform:uppercase; letter-spacing:0.04em; padding:2px 6px; border-radius:6px; vertical-align:middle; margin-left:6px; }
+.tag.mine{ color:var(--green); background:rgba(48,209,88,0.16); }
+.tag.other{ color:var(--text-dim); background:var(--surface-3); }
+.tag.chg{ color:var(--orange); background:rgba(255,159,10,0.16); }
+
+/* ============================================================
+   НИЖНІ ШТОРКИ
+   ============================================================ */
+.sheet-overlay{
+  position:fixed; inset:0; z-index:20; background: rgba(0,0,0,0.55); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px);
+  opacity:0; pointer-events:none; transition: opacity 0.3s ease; display:flex; align-items:flex-end; justify-content:center;
+}
+.sheet-overlay.open{ opacity:1; pointer-events:auto; }
+#detail-overlay{ z-index:22; }
+#settings-overlay{ z-index:24; }
+#debug-overlay{ z-index:26; }
+.sheet{
+  width:100%; max-width:520px; max-height:85vh; background: var(--surface);
+  border-radius: 28px 28px 0 0; padding: 10px 20px calc(24px + var(--safe-bottom)) 20px;
+  transform: translateY(100%); transition: transform 0.36s cubic-bezier(.32,.72,0,1);
+  overflow-y:auto; -webkit-overflow-scrolling:touch; border-top:1px solid var(--hairline);
+}
+.sheet-overlay.open .sheet{ transform: translateY(0); }
+.sheet-handle{ width:36px; height:5px; border-radius:3px; background: var(--surface-3); margin: 6px auto 16px auto; }
+.sheet-title{ font-size:22px; font-weight:800; margin:0 0 4px 0; }
+.sheet-sub{ font-size:14px; color:var(--text-dim); margin:0 0 18px 0; }
+
+.detail-head{ display:flex; align-items:center; gap:12px; margin-bottom:6px; }
+.detail-dot{ width:16px; height:16px; border-radius:50%; flex-shrink:0; }
+.detail-subject{ font-size:22px; font-weight:800; line-height:1.2; }
+.detail-type-badge{
+  display:inline-flex; align-items:center; gap:6px; font-size:12px; font-weight:700;
+  text-transform:uppercase; letter-spacing:0.04em; padding:5px 10px; border-radius:10px;
+  margin: 6px 6px 20px 0;
+}
+.detail-rows{ display:flex; flex-direction:column; gap:0; margin-bottom: 18px; border-radius:var(--radius-lg); overflow:hidden; background:var(--surface-2); }
+.detail-row{ display:flex; align-items:center; gap:12px; padding:13px 16px; border-bottom:1px solid var(--hairline); }
+.detail-row:last-child{ border-bottom:none; }
+.detail-row-icon{ width:30px; height:30px; border-radius:9px; background:var(--surface-3); display:flex; align-items:center; justify-content:center; font-size:15px; flex-shrink:0; }
+.detail-row-text{ display:flex; flex-direction:column; gap:1px; min-width:0; }
+.detail-row-label{ font-size:11px; color:var(--text-dim); font-weight:700; text-transform:uppercase; letter-spacing:0.04em; }
+.detail-row-value{ font-size:15px; font-weight:600; color:var(--text); overflow-wrap:anywhere; }
+.detail-section-label{ font-size:13px; font-weight:700; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.05em; margin: 4px 0 10px 2px; }
+.teacher-card{ background:var(--surface-2); border-radius:var(--radius-lg); padding:16px; margin-bottom:18px; font-size:16px; font-weight:700; }
+.links-card{ background:var(--surface-2); border-radius:var(--radius-lg); padding:4px 16px; margin-bottom:18px; }
+.link-row{ display:flex; align-items:center; gap:12px; padding:12px 0; text-decoration:none; color:var(--text); }
+.link-row + .link-row{ border-top:1px solid var(--hairline); }
+.link-row .ico{ --s:38px; }
+.link-row.other{ opacity:0.55; }
+.lr-body{ min-width:0; flex:1; }
+.lr-t{ font-size:15px; font-weight:600; overflow-wrap:anywhere; line-height:1.3; }
+.lr-s{ font-size:12px; color:var(--text-dim); margin-top:2px; }
+.lr-n{ font-size:12.5px; color:var(--text-dim); margin-top:4px; line-height:1.4; padding-left:8px; border-left:2px solid var(--surface-3); }
+.lr-go{ color:var(--text-faint); font-size:16px; flex:none; }
+
+.seg{ display:flex; background:var(--surface-2); border-radius:12px; padding:3px; gap:3px; }
+.seg button{ flex:1; border:none; background:transparent; color:var(--text-dim); font-size:14px; font-weight:700; padding:10px 6px; border-radius:9px; cursor:pointer; transition: background 0.2s ease, color 0.2s ease; }
+.seg button.on{ background:var(--surface-3); color:var(--text); }
+.hint .seg{ background:var(--surface-2); }
+.btn-row{ display:flex; gap:10px; margin-top:18px; }
+.btn-row .btn{ flex:1; }
+textarea.manual{ width:100%; min-height:110px; resize:vertical; background:var(--surface-2); color:var(--text); border:1px solid var(--hairline); border-radius:12px; padding:10px 12px; font:12px/1.4 ui-monospace,Menlo,Consolas,monospace; -webkit-user-select:text; user-select:text; }
+mark.gm{ background:rgba(48,209,88,0.18); color:var(--green); border-radius:6px; padding:1px 6px; font-weight:700; }
+.grps{ display:flex; flex-wrap:wrap; gap:6px 14px; margin-top:3px; }
+.grp{ display:inline-flex; align-items:center; gap:6px; font-size:15px; font-weight:600; }
+.sg{ font-size:11px; font-weight:700; padding:3px 8px; border-radius:999px; background:var(--surface-3); color:var(--text); white-space:nowrap; }
+.set-note{ font-size:12px; color:var(--text-faint); margin:8px 2px 18px; line-height:1.45; }
+.set-link{ color:var(--accent); text-decoration:none; font-weight:600; }
+
+/* ============================================================
+   НИЖНЯ ПАНЕЛЬ ВКЛАДОК
+   ============================================================ */
+#tabbar-wrap{ position:absolute; left:0; right:0; bottom:0; z-index:10; display:flex; justify-content:center; padding: 0 20px calc(14px + var(--safe-bottom)) 20px; pointer-events:none; }
+#tabbar{
+  position:relative; pointer-events:auto; display:flex; gap: 4px;
+  background: rgba(22,22,24,0.72); backdrop-filter: blur(20px) saturate(160%); -webkit-backdrop-filter: blur(20px) saturate(160%);
+  border: 1px solid var(--hairline); border-radius: 999px; padding: 5px; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+.tab-indicator{
+  position:absolute; top:5px; bottom:5px; left:5px; width: 80px; border-radius:999px;
+  background: rgba(255,255,255,0.07); border-top:1px solid rgba(255,255,255,0.16); border-bottom:1px solid rgba(255,255,255,0.10);
+  transition: transform 0.34s cubic-bezier(.32,.72,0,1), width 0.34s cubic-bezier(.32,.72,0,1); z-index:0;
+}
+.tab-btn{
+  position:relative; z-index:1; border:none; background:transparent; color:var(--text-dim);
+  font-size:14px; font-weight:700; padding: 11px 18px; border-radius:999px; cursor:pointer;
+  transition: color 0.25s ease; white-space:nowrap;
+}
+.tab-btn.active{ color:var(--text); }
+
+#app{ animation: appIn 0.5s ease both; }
+@keyframes appIn{ from{ opacity:0; transform: translateY(6px);} to{opacity:1; transform:translateY(0);} }
+
+/* ============================================================
+   DEBUG UI (показується лише з ?debug у посиланні)
+   ============================================================ */
+#debug-fab{
+  position:fixed; z-index:30; right: 14px; bottom: calc(96px + var(--safe-bottom));
+  width:44px; height:44px; border-radius:50%; background: rgba(28,28,30,0.85); border:1px solid var(--hairline);
+  backdrop-filter: blur(10px); display:flex; align-items:center; justify-content:center; font-size:19px; color: var(--text-dim);
+  cursor:pointer; box-shadow:0 6px 18px rgba(0,0,0,0.5); transition: transform 0.15s ease, color 0.2s ease, border-color 0.2s ease;
+}
+#debug-fab:active{ transform:scale(0.92); }
+#debug-fab.on{ color:#FF453A; border-color:rgba(255,69,58,0.5); }
+.debug-title{ font-size:20px; font-weight:800; margin:6px 0 4px 0; display:flex; align-items:center; gap:8px; }
+.debug-title span.pill{ font-size:11px; font-weight:700; padding:3px 8px; border-radius:8px; background:rgba(255,69,58,0.18); color:#FF453A; text-transform:uppercase; letter-spacing:0.04em; }
+.debug-status{ font-size:13px; color:var(--text-dim); margin:0 0 18px 0; }
+.debug-label{ font-size:12px; font-weight:700; color:var(--text-dim); text-transform:uppercase; letter-spacing:0.04em; margin:14px 0 8px 2px; }
+.debug-time-row{ display:flex; align-items:center; gap:8px; }
+.debug-time-input{
+  flex:1; min-width:0; background:var(--surface-2); border:1px solid var(--hairline); color:var(--text);
+  font-family:inherit; font-variant-numeric: tabular-nums; font-size:22px; font-weight:700; text-align:center;
+  border-radius:12px; padding:12px 4px; -moz-appearance:textfield; -webkit-user-select:text; user-select:text;
+}
+.debug-time-input::-webkit-outer-spin-button, .debug-time-input::-webkit-inner-spin-button{ -webkit-appearance:none; margin:0; }
+input[type="date"].debug-time-input{ font-size:18px; color-scheme:dark; }
+.debug-colon{ font-size:20px; font-weight:800; color:var(--text-dim); }
+
+</style>
+</head>
+<body>
+
+<div id="glow"></div>
+<div id="app">
+  <div id="topbar">
+    <button class="status-pill" id="status-pill" data-l="load" data-act="open-settings" type="button">
+      <span class="sd"></span><span class="st-text" id="status-text">Завантаження…</span>
+    </button>
+    <button class="icon-btn" data-act="open-settings" type="button" aria-label="Налаштування і дані">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.7 1.7 0 0 0 .3 1.8l.1.1a2 2 0 1 1-2.8 2.8l-.1-.1a1.7 1.7 0 0 0-1.8-.3 1.7 1.7 0 0 0-1 1.5V21a2 2 0 1 1-4 0v-.1a1.7 1.7 0 0 0-1.1-1.5 1.7 1.7 0 0 0-1.8.3l-.1.1a2 2 0 1 1-2.8-2.8l.1-.1a1.7 1.7 0 0 0 .3-1.8 1.7 1.7 0 0 0-1.5-1H3a2 2 0 1 1 0-4h.1a1.7 1.7 0 0 0 1.5-1.1 1.7 1.7 0 0 0-.3-1.8l-.1-.1a2 2 0 1 1 2.8-2.8l.1.1a1.7 1.7 0 0 0 1.8.3H9a1.7 1.7 0 0 0 1-1.5V3a2 2 0 1 1 4 0v.1a1.7 1.7 0 0 0 1 1.5 1.7 1.7 0 0 0 1.8-.3l.1-.1a2 2 0 1 1 2.8 2.8l-.1.1a1.7 1.7 0 0 0-.3 1.8V9a1.7 1.7 0 0 0 1.5 1H21a2 2 0 1 1 0 4h-.1a1.7 1.7 0 0 0-1.5 1z"/></svg>
+    </button>
+  </div>
+
+  <div id="content">
+    <section class="panel" id="panel-now"></section>
+    <section class="panel" id="panel-day"></section>
+    <section class="panel" id="panel-week"></section>
+  </div>
+
+  <div id="tabbar-wrap">
+    <div id="tabbar">
+      <div class="tab-indicator" id="tab-indicator"></div>
+      <button class="tab-btn" data-tab="now">Зараз</button>
+      <button class="tab-btn" data-tab="day">День</button>
+      <button class="tab-btn" data-tab="week">Тиждень</button>
+    </div>
+  </div>
+</div>
+
+<!-- Шторка: повний розклад дня (з вкладки "Тиждень") -->
+<div class="sheet-overlay" id="modal-overlay">
+  <div class="sheet" id="modal-sheet">
+    <div class="sheet-handle"></div>
+    <h2 class="sheet-title" id="sheet-title">—</h2>
+    <p class="sheet-sub" id="sheet-sub">—</p>
+    <div id="sheet-list"></div>
+  </div>
+</div>
+
+<!-- Шторка: деталі конкретної пари -->
+<div class="sheet-overlay" id="detail-overlay">
+  <div class="sheet" id="detail-sheet">
+    <div class="sheet-handle"></div>
+    <div id="detail-content"></div>
+  </div>
+</div>
+
+<!-- Шторка: налаштування і стан даних -->
+<div class="sheet-overlay" id="settings-overlay">
+  <div class="sheet" id="settings-sheet">
+    <div class="sheet-handle"></div>
+    <div id="settings-content"></div>
+  </div>
+</div>
+
+<!-- ===================== DEBUG ===================== -->
+<div id="debug-fab" title="Дебаг: підмінити час" hidden>🐞</div>
+<div class="sheet-overlay" id="debug-overlay">
+  <div class="sheet" id="debug-sheet">
+    <div class="sheet-handle"></div>
+    <h2 class="debug-title">Дебаг часу <span class="pill" id="debug-pill" style="display:none;">Активно</span></h2>
+    <p class="debug-status" id="debug-status">Зараз показується реальний час.</p>
+
+    <div class="debug-label">Дата</div>
+    <input class="debug-time-input" id="dbg-date" type="date">
+
+    <div class="debug-label">Час за Києвом (гг:хх:сс)</div>
+    <div class="debug-time-row">
+      <input class="debug-time-input" id="dbg-h" type="number" min="0" max="23" value="9">
+      <span class="debug-colon">:</span>
+      <input class="debug-time-input" id="dbg-m" type="number" min="0" max="59" value="0">
+      <span class="debug-colon">:</span>
+      <input class="debug-time-input" id="dbg-s" type="number" min="0" max="59" value="0">
+    </div>
+
+    <div class="btn-row">
+      <button class="btn primary" id="dbg-start" type="button">Запустити ▸</button>
+      <button class="btn danger" id="dbg-reset" type="button">Реальний час</button>
+    </div>
+    <div class="btn-row">
+      <button class="btn ghost" id="dbg-close" type="button">Закрити</button>
+    </div>
+  </div>
+</div>
+
+<script>
+"use strict";
+
+/* ============================================================
+   0. НАЛАШТУВАННЯ
+   ============================================================ */
+const GH_REPO   = "SvetlanaSystems/schedule-api";
+const GH_BRANCH = "main";
+const GH_FILE   = "schedule.json";
+
+const API_URL  = `https://api.github.com/repos/${GH_REPO}/contents/${GH_FILE}?ref=${GH_BRANCH}`;
+const RAW_URL  = `https://raw.githubusercontent.com/${GH_REPO}/${GH_BRANCH}/${GH_FILE}`;
+const REPO_URL = `https://github.com/${GH_REPO}/blob/${GH_BRANCH}/${GH_FILE}`;
+
+const REFRESH_MS     = 5 * 60 * 1000;          // як часто перевіряти репозиторій
+const STALE_AFTER_MS = 12 * 60 * 60 * 1000;    // файл старший за це — "застарів"
+const FETCH_TIMEOUT  = 10000;                  // таймаут запиту, мс
+const WINDOW_MIN     = 30;                     // перерва довша за це = "вікно"
+const SHOW_DEBUG     = /[?&]debug\b/.test(location.search) || location.hash === "#debug";
+
+// Розклад задано за київським часом — незалежно від часового поясу пристрою.
+const TZ = (function(){
+  try { new Intl.DateTimeFormat("en", { timeZone: "Europe/Kyiv" }); return "Europe/Kyiv"; }
+  catch(e){ return "Europe/Kiev"; }
+})();
+
+const K = { cache: "rozklad:cache:" + GH_REPO + "/" + GH_FILE, sub: "rozklad:subgroup", manual: "rozklad:manual:" + GH_REPO + "/" + GH_FILE };
+let manualMode = (function(){ try { return localStorage.getItem(K.manual) === "1"; } catch(e){ return false; } })();
+
+const PALETTE = ["#FF453A","#64D2FF","#FF9F0A","#FFD60A","#AC8E68","#BF5AF2","#5E5CE6","#40C8E0","#32D74B","#FF6B35","#A8E063","#FF375F","#66D4CF","#C69C6D"];
+const DOW_NAME  = ["Неділя","Понеділок","Вівторок","Середа","Четвер","П’ятниця","Субота"];
+const DOW_SHORT = ["Нд","Пн","Вт","Ср","Чт","Пт","Сб"];
+
+/* ============================================================
+   1. ХЕЛПЕРИ
+   ============================================================ */
+const $ = id => document.getElementById(id);
+function esc(s){ return String(s == null ? "" : s).replace(/[&<>"']/g, c => ({ "&":"&amp;", "<":"&lt;", ">":"&gt;", '"':"&quot;", "'":"&#39;" }[c])); }
+function cap(s){ return s ? s.charAt(0).toUpperCase() + s.slice(1) : s; }
+function clamp(v, a, b){ return Math.min(b, Math.max(a, isNaN(v) ? a : v)); }
+function pad2(n){ return String(n).padStart(2, "0"); }
+function lsGet(k){ try { return localStorage.getItem(k); } catch(e){ return null; } }
+function lsSet(k, v){ try { localStorage.setItem(k, v); } catch(e){} }
+function setHtml(el, html){ if(el._h !== html){ el.innerHTML = html; el._h = html; } }
+function MIN(hhmm){ const m = /^(\d{1,2}):(\d{2})/.exec(hhmm || ""); return m ? (+m[1]) * 60 + (+m[2]) : 0; }
+function hash(s){ let h = 5381; for(let i = 0; i < s.length; i++) h = ((h << 5) + h + s.charCodeAt(i)) >>> 0; return h; }
+function plural(n, f){ const a = Math.abs(n) % 100, b = a % 10; return (a > 10 && a < 20) ? f[2] : b === 1 ? f[0] : (b >= 2 && b <= 4) ? f[1] : f[2]; }
+function fmtDur(min){ min = Math.round(min); if(min < 60) return min + " хв"; const h = Math.floor(min / 60), m = min % 60; return h + " год" + (m ? " " + m + " хв" : ""); }
+function fmtCountdown(sec){
+  sec = Math.max(0, Math.round(sec));
+  const h = Math.floor(sec / 3600), m = Math.floor((sec % 3600) / 60), s = sec % 60;
+  return h > 0 ? `${h}:${pad2(m)}:${pad2(s)}` : `${pad2(m)}:${pad2(s)}`;
+}
+function ago(ms){
+  const s = Math.max(0, Math.round(ms / 1000));
+  if(s < 60) return "щойно";
+  const m = Math.floor(s / 60); if(m < 60) return m + " хв тому";
+  const h = Math.floor(m / 60); if(h < 48) return h + " год тому";
+  return Math.floor(h / 24) + " дн. тому";
+}
+function hexToRgba(hex, a){ const h = hex.replace("#", ""); return `rgba(${parseInt(h.substr(0,2),16)},${parseInt(h.substr(2,2),16)},${parseInt(h.substr(4,2),16)},${a})`; }
+function shortTeacher(name){
+  const p = String(name || "").trim().split(/\s+/);
+  if(p.length < 2) return p[0] || "";
+  return p[0] + " " + p.slice(1).map(x => x.charAt(0).toUpperCase() + ".").join(" ");
+}
+
+/* --- Час (завжди за київським поясом) --- */
+const kyivFmt = new Intl.DateTimeFormat("en-GB", { timeZone: TZ, year:"numeric", month:"2-digit", day:"2-digit", hour:"2-digit", minute:"2-digit", second:"2-digit", hourCycle:"h23", weekday:"short" });
+function kyivParts(ms){
+  const p = {};
+  kyivFmt.formatToParts(new Date(ms)).forEach(x => { p[x.type] = x.value; });
+  const h = (+p.hour) % 24, mi = +p.minute, s = +p.second;
+  return { date: `${p.year}-${p.month}-${p.day}`, h, mi, s, minutes: h * 60 + mi + s / 60 };
+}
+function offsetAt(ms){
+  const p = kyivParts(ms), a = p.date.split("-").map(Number);
+  return Date.UTC(a[0], a[1] - 1, a[2], p.h, p.mi, p.s) - Math.floor(ms / 1000) * 1000;
+}
+function kyivToEpoch(date, h, mi, s){
+  const a = date.split("-").map(Number), guess = Date.UTC(a[0], a[1] - 1, a[2], h, mi, s);
+  let t = guess - offsetAt(guess); const o2 = offsetAt(t);
+  if(guess - o2 !== t) t = guess - o2;
+  return t;
+}
+let debugOffsetMs = null;
+function nowMs(){ return Date.now() + (debugOffsetMs || 0); }
+
+function dUTC(str){ const a = str.split("-").map(Number); return new Date(Date.UTC(a[0], a[1] - 1, a[2], 12)); }
+function dowOf(str){ return dUTC(str).getUTCDay(); }
+function addDays(str, n){ const d = dUTC(str); d.setUTCDate(d.getUTCDate() + n); return d.toISOString().slice(0, 10); }
+function fmtDate(str, opts){ return dUTC(str).toLocaleDateString("uk-UA", Object.assign({ timeZone: "UTC" }, opts)); }
+function fmtDT(ms){ return new Date(ms).toLocaleString("uk-UA", { timeZone: TZ, day:"numeric", month:"short", hour:"2-digit", minute:"2-digit" }); }
+
+/* ============================================================
+   2. ДАНІ: нормалізація JSON, кольори предметів
+   ============================================================ */
+let DB = { ok: false, version: 0 };
+const net = { loading: false, error: null, checkedMs: null, fromCache: false };
+let pref = lsGet(K.sub);                       // null | "all" | "1" | "2"
+if(pref !== "all" && pref !== "1" && pref !== "2") pref = null;
+
+function assignColors(names){
+  names.sort((a, b) => a.localeCompare(b, "uk"));
+  const used = new Set(), out = {};
+  names.forEach(n => {
+    let i = hash(n) % PALETTE.length;
+    if(used.size >= PALETTE.length) used.clear();
+    while(used.has(i)) i = (i + 1) % PALETTE.length;
+    used.add(i); out[n] = PALETTE[i];
+  });
+  return out;
+}
+
+function buildDB(j){
+  if(!j || typeof j !== "object" || !Array.isArray(j.days)) throw new Error("невірний формат файлу");
+  const byDate = {}, dates = [], weekMap = {}, names = new Set();
+  j.days.forEach(d => {
+    if(!d || typeof d.date !== "string") return;
+    const lessons = (Array.isArray(d.lessons) ? d.lessons : []).map((l, i) => {
+      const o = Object.assign({}, l);
+      o._k = d.date + "#" + i;
+      o.subject = String(l.subject || "Без назви").trim();
+      o.start = String(l.start || "00:00"); o.end = String(l.end || "00:00");
+      o.links = Array.isArray(l.links) ? l.links : [];
+      names.add(o.subject);
+      return o;
+    });
+    lessons.sort((a, b) => MIN(a.start) - MIN(b.start) || (a.number || 0) - (b.number || 0) || (a.subgroup || 0) - (b.subgroup || 0));
+    const day = Object.assign({}, d, { lessons });
+    byDate[d.date] = day; dates.push(d.date);
+    const w = d.week != null ? d.week : 0;
+    (weekMap[w] = weekMap[w] || []).push(day);
+  });
+  dates.sort();
+  Object.keys(weekMap).forEach(w => weekMap[w].sort((a, b) => a.date < b.date ? -1 : 1));
+  return {
+    ok: true, version: (DB.version || 0) + 1, byDate, dates, weeks: weekMap,
+    weekNums: Object.keys(weekMap).map(Number).sort((a, b) => a - b),
+    colors: assignColors(Array.from(names)),
+    group: j.group || "", currentWeek: j.current_week, weekSource: j.week_source, scope: j.scope,
+    generatedMs: Date.parse(j.generated_at)
+  };
+}
+function colorOf(name){ return (DB.colors && DB.colors[name]) || "#8E8E93"; }
+function visible(day){
+  if(!day) return [];
+  if(pref !== "1" && pref !== "2") return day.lessons;
+  return day.lessons.filter(l => l.subgroup == null || String(l.subgroup) === pref);
+}
+function slotsOf(lessons){
+  const map = new Map();
+  lessons.forEach(l => {
+    const k = l.start + "-" + l.end;
+    if(!map.has(k)) map.set(k, { start: l.start, end: l.end, sM: MIN(l.start), eM: MIN(l.end), lessons: [] });
+    map.get(k).lessons.push(l);
+  });
+  return Array.from(map.values()).sort((a, b) => a.sM - b.sM);
+}
+function nextLessonDate(date){
+  for(let i = 0; i < DB.dates.length; i++){
+    const d = DB.dates[i];
+    if(d > date && visible(DB.byDate[d]).length) return d;
+  }
+  return null;
+}
+function typeInfo(l){
+  const t = String(l.type || "").toLowerCase(), label = l.type_label || l.type || "Заняття";
+  const chip = t === "lecture" ? "Л" : t === "practical" ? "П" : t === "lab" ? "Лб" : (label.charAt(0).toUpperCase() || "•");
+  return { chip, label };
+}
+
+/* ============================================================
+   3. ПОСИЛАННЯ І ІКОНКИ
+      Ланцюжок стабільності для іконки посилання:
+      1) вбудована SVG-іконка відомого сервісу (Meet, Moodle, Zoom…) — працює офлайн
+      2) для решти сайтів: /favicon.ico самого сайту
+      3) → сервіс favicon від Google → від DuckDuckGo
+      4) → крапка "•" (як маркер списку)
+   ============================================================ */
+const SVG = {
+  meet:     '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M4 7.5A1.5 1.5 0 0 1 5.5 6h8A1.5 1.5 0 0 1 15 7.5v9a1.5 1.5 0 0 1-1.5 1.5h-8A1.5 1.5 0 0 1 4 16.5v-9zM16.5 10.6l3.6-2.5a.5.5 0 0 1 .8.4v7a.5.5 0 0 1-.8.4l-3.6-2.5v-2.8z"/></svg>',
+  moodle:   '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 4 1.5 9.5 12 15l8-4.2V16h2V9.5L12 4z"/><path d="M5.5 13v3.6c0 1.5 3 3.4 6.5 3.4s6.5-1.9 6.5-3.4V13L12 16.4 5.5 13z"/></svg>',
+  teams:    '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M5 6.5h14v3h-5.5V19h-3V9.5H5z"/></svg>',
+  telegram: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M21 3 3 10.5l5.5 2L10 19l3-3.5 4.5 3.5L21 3z"/></svg>',
+  youtube:  '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M9.5 7.5v9l7.5-4.5-7.5-4.5z"/></svg>',
+  gdrive:   '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round"><path d="M7 3h7l4 4v14H7z"/><path d="M14 3v4h4M10 12h5M10 16h5"/></svg>'
+};
+SVG.zoom = SVG.meet;
+
+// Назви груп бувають із пробілами, довгими тире, латинськими літерами замість кириличних (ІПЗ-26-3, ІП3 - 26 - 3, IПЗ 26-3…)
+const LET = "A-Za-zА-Яа-яІіЇїЄєҐґ";
+const GROUP_RE_SRC = "([" + LET + "][" + LET + "0-9]{1,4})[\\s\\-–—]*(\\d{2})[\\s\\-–—]*(\\d)(?!\\d)";
+const LAT2CYR = { A:"А", B:"В", C:"С", E:"Е", H:"Н", I:"І", K:"К", M:"М", O:"О", P:"Р", T:"Т", X:"Х", Y:"У", "3":"З", "0":"О" };
+function gKey(a, b, c){ return a.toUpperCase().replace(/[A-Z03]/g, ch => LAT2CYR[ch] || ch) + "-" + b + "-" + c; }
+function groupMatches(text){
+  const re = new RegExp(GROUP_RE_SRC, "gi"), out = []; let m;
+  while((m = re.exec(String(text || "")))) out.push({ i: m.index, len: m[0].length, key: gKey(m[1], m[2], m[3]) });
+  return out;
+}
+function myKey(){ const ms = groupMatches(DB.group || ""); return ms.length ? ms[0].key : ""; }
+// екранує текст і підсвічує в ньому мою групу
+function hlGroups(text){
+  text = String(text || ""); const mine = myKey(); let out = "", last = 0;
+  groupMatches(text).forEach(m => {
+    if(m.key !== mine) return;
+    out += esc(text.slice(last, m.i)) + '<mark class="gm">' + esc(text.substr(m.i, m.len)) + "</mark>"; last = m.i + m.len;
+  });
+  return out + esc(text.slice(last));
+}
+function sgText(nums){
+  const u = Array.from(new Set(nums.map(String))).sort();
+  if(u.length === 1) return u[0] + " підгрупа";
+  if(u.length === 2) return "обидві підгрупи";
+  return "підгрупи " + u.join(", ");
+}
+function splitGroups(str){
+  const parts = []; let d = 0, cur = "";
+  for(const ch of String(str || "")){
+    if(ch === "(") d++; else if(ch === ")") d = Math.max(0, d - 1);
+    if(ch === "," && d === 0){ parts.push(cur); cur = ""; } else cur += ch;
+  }
+  parts.push(cur);
+  return parts.map(x => x.trim()).filter(Boolean);
+}
+function groupsHtml(l){
+  const entries = splitGroups(l.groups).map(p => {
+    const m = /^(.*?)\s*\(([^)]*)\)\s*$/.exec(p), paren = m ? m[2].trim() : "";
+    return { name: (m ? m[1] : p).trim(), paren, nums: /підгр/i.test(paren) ? (paren.match(/\d/g) || []) : [] };
+  });
+  const many = entries.length > 1, mine = myKey();
+  return `<div class="grps">` + entries.map(e => {
+    const isMine = many && groupMatches(e.name).some(m => m.key === mine);
+    const pill = e.nums.length ? sgText(e.nums) : e.paren;
+    return `<span class="grp">${isMine ? `<mark class="gm">${esc(e.name)}</mark>` : esc(e.name)}${pill ? `<span class="sg">${esc(pill)}</span>` : ""}</span>`;
+  }).join("") + `</div>`;
+}
+function cleanLabel(s){
+  return String(s || "").replace(/^[\s=\-–—:|]+/, "").replace(/[\s=\-–—:|]+$/, "").replace(/\s+/g, " ").trim();
+}
+function safeDecode(s){ try { return decodeURIComponent(s); } catch(e){ return s; } }
+
+function parseLink(raw){
+  if(!raw || !raw.url) return null;
+  let u; try { u = new URL(raw.url); } catch(e){ return null; }
+  if(u.protocol !== "https:" && u.protocol !== "http:") return null;
+  const host = u.hostname.replace(/^www\./, "").toLowerCase(), path = safeDecode(u.pathname);
+  let kind = "web", name = host, sub = "";
+  if(host === "meet.google.com"){ kind = "meet"; name = "Google Meet"; }
+  else if(host === "learn.ztu.edu.ua" || /(^|\.)moodle\./.test(host)){
+    kind = "moodle"; name = "Moodle";
+    if(/\.pdf$/i.test(path)) sub = "PDF";
+    else if(/\/mod\/folder\//.test(path)) sub = "папка";
+    else if(/\/mod\/assign\//.test(path)) sub = "завдання";
+    else if(/\/course\/view/.test(path)) sub = "курс";
+  }
+  else if(/(^|\.)zoom\.us$/.test(host)){ kind = "zoom"; name = "Zoom"; }
+  else if(host === "teams.microsoft.com" || host === "teams.live.com"){ kind = "teams"; name = "Microsoft Teams"; }
+  else if(host === "t.me" || host === "telegram.me"){ kind = "telegram"; name = "Telegram"; }
+  else if(host === "youtube.com" || host === "m.youtube.com" || host === "youtu.be"){ kind = "youtube"; name = "YouTube"; }
+  else if(host === "docs.google.com" || host === "drive.google.com"){ kind = "gdrive"; name = host === "drive.google.com" ? "Google Drive" : "Google Docs"; }
+
+  const label = cleanLabel(raw.label);
+  const codes = groupMatches(label).map(m => m.key), mine = myKey();
+  const audience = !codes.length ? "any" : (mine && codes.indexOf(mine) >= 0 ? "mine" : "other");
+  return { url: u.href, host, kind, name, sub, label: label || name, note: cleanLabel(raw.note), audience };
+}
+function linksOf(l){
+  if(l._links && l._linksV === DB.version) return l._links;
+  const arr = l.links.map(parseLink).filter(Boolean);
+  const rank = { mine: 0, any: 1, other: 2 };
+  arr.forEach((k, i) => { k._i = i; });
+  arr.sort((a, b) => rank[a.audience] - rank[b.audience] || a._i - b._i);
+  l._links = arr; l._linksV = DB.version;
+  return arr;
+}
+function favUrls(host){
+  return [ "https://" + host + "/favicon.ico",
+           "https://www.google.com/s2/favicons?domain=" + encodeURIComponent(host) + "&sz=64",
+           "https://icons.duckduckgo.com/ip3/" + encodeURIComponent(host) + ".ico" ];
+}
+function iconHtml(k, size){
+  const st = size ? ` style="--s:${size}px"` : "";
+  if(SVG[k.kind]) return `<span class="ico ico-${k.kind}"${st}>${SVG[k.kind]}</span>`;
+  return `<span class="ico fav"${st}><img class="fav" src="${esc(favUrls(k.host)[0])}" data-h="${esc(k.host)}" data-i="0" alt="" referrerpolicy="no-referrer" loading="lazy"></span>`;
+}
+// помилка завантаження favicon → наступне джерело → крапка
+document.addEventListener("error", e => {
+  const t = e.target;
+  if(!(t instanceof HTMLImageElement) || !t.classList.contains("fav")) return;
+  const urls = favUrls(t.dataset.h), i = (+t.dataset.i) + 1;
+  if(i < urls.length){ t.dataset.i = i; t.src = urls[i]; }
+  else { const par = t.parentElement; if(par){ par.className = "ico ico-bul"; par.textContent = "•"; } }
+}, true);
+
+function quickLinksHtml(l){
+  const ks = linksOf(l).filter(k => k.audience !== "other");
+  if(!ks.length) return "";
+  return `<div class="lesson-links">` + ks.map(k =>
+    `<a class="lk" href="${esc(k.url)}" target="_blank" rel="noopener noreferrer" title="${esc(k.label)}" aria-label="${esc(k.label)}">${iconHtml(k)}</a>`
+  ).join("") + `</div>`;
+}
+
+/* ============================================================
+   4. СТАТУС ДАНИХ (оновлено / застаріло / помилка)
+   ============================================================ */
+function getStatus(){
+  const out = { level: "load", pill: "Завантаження…", banners: [], stale: false };
+  if(!DB.ok){
+    if(!net.loading){ out.level = "err"; out.pill = "Не вдалося завантажити"; }
+    return out;
+  }
+  const now = Date.now(), gen = DB.generatedMs, known = isFinite(gen), age = known ? now - gen : NaN;
+  out.stale = known && age > STALE_AFTER_MS;
+  let level = "ok", pill;
+  if(!known){
+    level = "warn"; pill = "Час оновлення невідомий";
+    out.banners.push({ level: "warn", ic: "❓", t: "Невідомо, коли оновлено розклад", s: "У файлі немає коректної мітки generated_at, тому перевірити актуальність не вийде." });
+  } else if(out.stale){
+    level = "warn"; pill = "Застаріло · " + ago(age);
+    out.banners.push({ level: "warn", ic: "⏳", t: "Розклад може бути застарілим",
+      s: `Файл востаннє оновлено ${fmtDT(gen)} (${ago(age)}). Схоже, автоматичне оновлення не працює.` });
+  } else {
+    pill = "Оновлено " + ago(age);
+  }
+  if(net.error){
+    level = "warn";
+    if(!out.stale) pill = "Офлайн · " + (known ? ago(age) : "збережена копія");
+    out.banners.unshift({ level: "warn", ic: "📡", t: "Не вдалося перевірити оновлення",
+      s: `Показано ${net.fromCache ? "збережену копію" : "останні отримані дані"}. Причина: ${esc(net.error)}.` });
+  }
+  if(manualMode && !net.error && known) pill = (out.stale ? "Застаріло" : "Вручну") + " · " + ago(age);
+  out.level = level; out.pill = pill;
+  return out;
+}
+function bannersHtml(extra){
+  const list = getStatus().banners.concat(extra || []);
+  if(!list.length) return "";
+  return `<div class="banners">` + list.map(b =>
+    `<div class="banner ${b.level || ""}"><div class="banner-ic">${b.ic || "ℹ️"}</div><div class="banner-tx"><b>${b.t}</b><span>${b.s}</span></div></div>`
+  ).join("") + `</div>`;
+}
+function dayBanners(day){
+  const out = [];
+  if(day && day.error) out.push({ level: "err", ic: "⚠️", t: "Помилка оновлення цього дня", s: esc(day.error) });
+  if(day && day.changed) out.push({ level: "info", ic: "🔔", t: "Розклад цього дня змінився", s: "Парсер зафіксував зміни порівняно з попередньою версією." });
+  return out;
+}
+function renderChrome(){
+  const s = getStatus(), pill = $("status-pill");
+  pill.dataset.l = s.level;
+  $("status-text").textContent = s.pill;
+}
+
+/* ============================================================
+   5. СТАН "ЗАРАЗ"
+   ============================================================ */
+function computeNow(p){
+  if(!DB.ok) return { mode: "nodata" };
+  const day = DB.byDate[p.date];
+  if(!day) return { mode: "outofrange", nextDate: nextLessonDate(p.date) };
+  const slots = slotsOf(visible(day));
+  if(!slots.length){
+    const dow = dowOf(p.date);
+    return { mode: (dow === 0 || dow === 6) ? "weekend" : "free", nextDate: nextLessonDate(p.date) };
+  }
+  const n = p.minutes, first = slots[0], last = slots[slots.length - 1];
+  if(n < first.sM) return { mode: "before", si: 0, slots, secondsLeft: (first.sM - n) * 60 };
+  if(n >= last.eM) return { mode: "after", nextDate: nextLessonDate(p.date) };
+  for(let i = 0; i < slots.length; i++){
+    const s = slots[i];
+    if(n >= s.sM && n < s.eM) return { mode: "lesson", si: i, slots, secondsLeft: (s.eM - n) * 60, progress: (n - s.sM) / (s.eM - s.sM) };
+    if(i < slots.length - 1){
+      const nx = slots[i + 1];
+      if(n >= s.eM && n < nx.sM) return { mode: "break", si: i, slots, gap: nx.sM - s.eM, secondsLeft: (nx.sM - n) * 60, progress: (n - s.eM) / (nx.sM - s.eM) };
+    }
+  }
+  return { mode: "after", nextDate: nextLessonDate(p.date) };
+}
+
+/* ============================================================
+   6. РЕНДЕР: рядки пар і списки
+   ============================================================ */
+function lessonRow(date, l, state){
+  const c = colorOf(l.subject), t = typeInfo(l);
+  const meta = [t.label, l.room, l.subgroup != null ? "підгр. " + l.subgroup : ""].filter(Boolean).map(esc).join(" · ");
+  return `
+    <div class="lesson-row ${state === "past" ? "past" : ""} ${state === "current" ? "current" : ""}" style="--lc:${c}" data-date="${date}" data-lid="${esc(l._k)}">
+      <div class="lesson-time"><span class="t1">${esc(l.start)}</span><span class="t2">${esc(l.end)}</span></div>
+      <div class="lesson-type-chip">${esc(t.chip)}</div>
+      <div class="lesson-main">
+        <div class="lesson-name">${esc(l.subject)}</div>
+        <div class="lesson-type">${meta}</div>
+        ${l.teacher ? `<div class="lesson-teacher">${esc(shortTeacher(l.teacher))}</div>` : ``}
+        ${quickLinksHtml(l)}
+      </div>
+      ${state === "current" ? `<div class="lesson-badge">Зараз</div>` : ``}
+      <div class="lesson-chevron">›</div>
+    </div>`;
+}
+
+function renderLessonList(date, isToday, nowMin){
+  const day = DB.byDate[date], slots = slotsOf(visible(day));
+  if(!slots.length) return `<p style="color:var(--text-dim);text-align:center;padding:30px 0;">Цього дня пар немає 🎉</p>`;
+  let html = `<div class="lesson-list">`;
+  slots.forEach((s, i) => {
+    let state = "future";
+    if(isToday){ if(nowMin >= s.eM) state = "past"; else if(nowMin >= s.sM) state = "current"; }
+    s.lessons.forEach(l => { html += lessonRow(date, l, state); });
+    if(i < slots.length - 1){
+      const gap = slots[i + 1].sM - s.eM;
+      html += `<div class="break-row"><div class="break-line"></div><span>${gap > WINDOW_MIN ? "вікно" : "перерва"} ${fmtDur(gap)}</span><div class="break-line"></div></div>`;
+    }
+  });
+  return html + `</div>`;
+}
+
+/* ============================================================
+   7. РЕНДЕР: шторка деталей пари
+   ============================================================ */
+function openLessonDetail(date, key){
+  const day = DB.byDate[date]; if(!day) return;
+  const l = day.lessons.find(x => x._k === key); if(!l) return;
+  const c = colorOf(l.subject), t = typeInfo(l), links = linksOf(l);
+  const row = (ic, lab, val) => `<div class="detail-row"><div class="detail-row-icon">${ic}</div><div class="detail-row-text"><div class="detail-row-label">${lab}</div><div class="detail-row-value">${val}</div></div></div>`;
+
+  let linksHtml = "";
+  if(links.length){
+    linksHtml = `<div class="detail-section-label">Посилання</div><div class="links-card">` + links.map(k => {
+      const subline = [k.name, k.sub].filter(Boolean).join(" · ");
+      const showSub = k.label.toLowerCase() === k.name.toLowerCase() ? (k.sub ? subline : k.host) : subline;
+      const tag = k.audience === "mine" ? `<span class="tag mine">твоя група</span>` : k.audience === "other" ? `<span class="tag other">інші групи</span>` : "";
+      return `<a class="link-row ${k.audience === "other" ? "other" : ""}" href="${esc(k.url)}" target="_blank" rel="noopener noreferrer">
+        ${iconHtml(k, 38)}
+        <div class="lr-body">
+          <div class="lr-t">${hlGroups(k.label)}${tag}</div>
+          <div class="lr-s">${esc(showSub)}</div>
+          ${k.note ? `<div class="lr-n">${hlGroups(k.note)}</div>` : ``}
+        </div>
+        <div class="lr-go">↗</div>
+      </a>`;
+    }).join("") + `</div>`;
+  }
+
+  const fetched = day.fetched_at ? Date.parse(day.fetched_at) : NaN;
+  $("detail-content").innerHTML = `
+    <div class="detail-head"><div class="detail-dot" style="background:${c}"></div><div class="detail-subject">${esc(l.subject)}</div></div>
+    <div class="detail-type-badge" style="color:${c}; background:${hexToRgba(c, 0.15)};">${esc(t.label)}</div>
+    <div class="detail-rows">
+      ${row("📅", "День", esc(cap(fmtDate(date, { weekday: "long", day: "numeric", month: "long" }))) + (day.week != null ? ` · тиждень ${esc(day.week)}` : ""))}
+      ${row("🕐", "Час", `${esc(l.start)}–${esc(l.end)}` + (l.number != null ? ` · ${esc(l.number)}-та пара` : ""))}
+      ${l.room ? row("📍", "Аудиторія", esc(l.room)) : ``}
+      ${l.groups ? row("👥", "Групи", groupsHtml(l)) : (l.subgroup != null ? row("👥", "Підгрупа", `<div class="grps"><span class="sg">${esc(sgText([l.subgroup]))}</span></div>`) : ``)}
+      ${l.teacher ? row("👤", "Викладач", esc(l.teacher)) : ``}
+    </div>
+    ${linksHtml}
+    <p class="foot" style="margin-top:0">${isFinite(fetched) ? "Дані дня оновлено " + fmtDT(fetched) + " · " + ago(Date.now() - fetched) : ""}</p>
+  `;
+  $("detail-overlay").classList.add("open");
+}
+function closeDetail(){ $("detail-overlay").classList.remove("open"); }
+
+/* ============================================================
+   8. РЕНДЕР: вкладка "Зараз"
+   ============================================================ */
+const RING_C = 2 * Math.PI * 112;
+let lastNowKey = "", lastMinKey = "";
+
+function stateMessage(kind){
+  if(kind === "nodata"){
+    if(net.loading) return `<div class="skeleton"><i></i><i></i><i></i></div>`;
+    return `<div class="empty"><div class="em">📡</div><h3>Не вдалося завантажити розклад</h3><p>${esc(net.error || "Невідома помилка")}. Перевір інтернет і спробуй ще раз.</p><button class="btn primary" data-act="refresh" type="button">Спробувати знову</button></div>`;
+  }
+  return "";
+}
+
+function homeHtml(o){
+  let list = "";
+  if(o.nextDate){
+    const tomorrow = addDays(o.today, 1) === o.nextDate;
+    list = `<div class="sec-label">${tomorrow ? "Завтра · " : ""}${esc(cap(fmtDate(o.nextDate, { weekday: "long", day: "numeric", month: "long" })))}</div>` + renderLessonList(o.nextDate, false, 0);
+  }
+  return `<div class="home-wrap">
+      <div class="now-date" style="margin-bottom:18px;">${esc(o.dateCap)}</div>
+      <div class="home-emoji">${o.emoji}</div>
+      <h2 class="home-title">${o.title}</h2>
+      <p class="home-sub">${o.sub}</p>
+      ${list}
+    </div>`;
+}
+
+function nextCardHtml(date, l, label){
+  const c = colorOf(l.subject), t = typeInfo(l);
+  const meta = [t.label, l.room, l.subgroup != null ? "підгр. " + l.subgroup : ""].filter(Boolean).map(esc).join(" · ");
+  return `<div class="next-card" data-date="${date}" data-lid="${esc(l._k)}">
+      <div class="next-dot" style="background:${c}"></div>
+      <div class="next-info">
+        <div class="next-label">${label}</div>
+        <div class="next-subject">${esc(l.subject)}</div>
+        <div class="next-meta">${meta}</div>
+        ${quickLinksHtml(l)}
+      </div>
+      <div class="next-time">${esc(l.start)}</div>
+      <div class="next-chevron">›</div>
+    </div>`;
+}
+
+function renderNow(st, p){
+  const panel = $("panel-now"), glow = $("glow");
+  const dateCap = cap(fmtDate(p.date, { weekday: "long", day: "numeric", month: "long" }));
+  const banners = bannersHtml();
+  let html = "", gc = "#0a84ff";
+
+  if(st.mode === "nodata"){
+    html = stateMessage("nodata");
+  } else if(st.mode === "lesson" || st.mode === "break" || st.mode === "before"){
+    const slots = st.slots, cur = slots[st.si];
+    let ringColor, caption, headline, headLesson = null, progress = st.progress, dim = false, nextSlot = null, nextLabel = "", curRows = "";
+    if(st.mode === "lesson"){
+      const names = Array.from(new Set(cur.lessons.map(l => l.subject)));
+      headline = names.join(" / "); headLesson = cur.lessons.length === 1 ? cur.lessons[0] : null;
+      ringColor = colorOf(cur.lessons[0].subject); caption = "До кінця пари";
+      nextSlot = slots[st.si + 1] || null; nextLabel = "Наступна пара";
+      curRows = `<div class="sec-label">Зараз</div><div class="lesson-list">` + cur.lessons.map(l => lessonRow(p.date, l, "current")).join("") + `</div>`;
+    } else if(st.mode === "break"){
+      const isWin = st.gap > WINDOW_MIN;
+      ringColor = isWin ? "#64D2FF" : "#30D158"; caption = isWin ? "До кінця вікна" : "До кінця перерви"; headline = isWin ? "Вікно" : "Перерва";
+      nextSlot = slots[st.si + 1]; nextLabel = "Наступна пара";
+    } else {
+      ringColor = "#5E5CE6"; caption = "До початку пар"; headline = "Пари ще не почались"; progress = 1; dim = true;
+      nextSlot = slots[0]; nextLabel = "Перша пара";
+    }
+    gc = ringColor;
+    const offset = RING_C * (1 - clamp(progress, 0, 1));
+    let nextHtml;
+    if(nextSlot){
+      nextHtml = nextSlot.lessons.map(l => nextCardHtml(p.date, l, nextLabel)).join("");
+    } else {
+      nextHtml = `<div class="next-card static"><div class="next-dot" style="background:#8E8E93"></div><div class="next-info"><div class="next-label">Остання пара сьогодні</div><div class="next-subject">Пари завершено 🎉</div></div></div>`;
+    }
+    const hint = (pref === null && visible(DB.byDate[p.date]).some(l => l.subgroup != null)) ? subgroupHint() : "";
+    html = `
+      <div class="now-wrap">
+        <div class="now-date">${esc(dateCap)} &middot; <b${headLesson ? ` class="link" data-date="${p.date}" data-lid="${esc(headLesson._k)}"` : ``}>${esc(headline)}</b></div>
+        <div class="ring-wrap">
+          <svg viewBox="0 0 250 250">
+            <circle class="ring-track" cx="125" cy="125" r="112"></circle>
+            <circle class="ring-progress" id="ring-progress" cx="125" cy="125" r="112" style="--ring-color:${ringColor}; stroke-dasharray:${RING_C}; stroke-dashoffset:${dim ? 0 : offset};"></circle>
+          </svg>
+          <div class="ring-center"><div class="ring-time" id="ring-time">${fmtCountdown(st.secondsLeft)}</div><div class="ring-caption">${caption}</div></div>
+        </div>
+        ${curRows}
+        ${curRows ? `<div class="sec-label" style="margin-top:18px">Далі</div>` : ``}
+        ${nextHtml}
+        ${hint}
+      </div>`;
+  } else {
+    const base = { dateCap, nextDate: st.nextDate, today: p.date };
+    if(st.mode === "after"){
+      gc = "#30D158";
+      html = homeHtml(Object.assign(base, { emoji: "🎒", title: "Пари на сьогодні закінчились!", sub: st.nextDate ? "Гарного відпочинку. Ось розклад на наступний день." : "Гарного відпочинку. У файлі поки немає наступних днів з парами." }));
+    } else if(st.mode === "weekend"){
+      gc = "#FFD60A";
+      html = homeHtml(Object.assign(base, { emoji: "🎉", title: "Вихідний, насолоджуйся!", sub: st.nextDate ? "Пар сьогодні немає. Ось розклад на наступний навчальний день." : "Пар сьогодні немає." }));
+    } else if(st.mode === "free"){
+      gc = "#FFD60A";
+      html = homeHtml(Object.assign(base, { emoji: "🎉", title: "Сьогодні пар немає", sub: pref === "1" || pref === "2" ? "Для обраної підгрупи пар сьогодні немає." : "У розкладі на сьогодні порожньо." }));
+    } else {
+      gc = "#FF9F0A";
+      html = homeHtml(Object.assign(base, { emoji: "🗓️", title: "Немає даних на сьогодні", sub: `У файлі розкладу немає цієї дати${DB.dates.length ? " (дані охоплюють " + esc(fmtDate(DB.dates[0], { day: "numeric", month: "short" })) + " – " + esc(fmtDate(DB.dates[DB.dates.length - 1], { day: "numeric", month: "short" })) + ")" : ""}. Можливо, оновлення давно не запускалось.` }));
+    }
+  }
+  glow.style.setProperty("--glow-color", hexToRgba(gc, 0.14));
+  setHtml(panel, banners + html);
+}
+
+function subgroupHint(){
+  return `<div class="hint"><div class="hint-t">Яка в тебе підгрупа?</div><div class="hint-s">Обери, щоб бачити лише свої пари — вибір збережеться.</div>${segHtml()}</div>`;
+}
+function segHtml(){
+  const opt = (v, t) => `<button type="button" data-act="sub" data-v="${v}" class="${pref === v ? "on" : ""}">${t}</button>`;
+  return `<div class="seg">${opt("all", "Усі")}${opt("1", "Підгрупа 1")}${opt("2", "Підгрупа 2")}</div>`;
+}
+
+function patchNow(st){
+  const t = $("ring-time");
+  if(!t || st.secondsLeft == null) return;
+  t.textContent = fmtCountdown(st.secondsLeft);
+  const r = $("ring-progress");
+  if(r && st.mode !== "before") r.style.strokeDashoffset = RING_C * (1 - clamp(st.progress, 0, 1));
+}
+
+/* ============================================================
+   9. РЕНДЕР: вкладка "День"
+   ============================================================ */
+let viewDate = null;                           // null = стежити за сьогоднішнім днем
+
+function renderDay(p){
+  const panel = $("panel-day");
+  if(!DB.ok){ setHtml(panel, stateMessage("nodata")); return; }
+  const date = viewDate || p.date, isToday = date === p.date, day = DB.byDate[date];
+  const dow = dowOf(date);
+  const eyebrow = (isToday ? "Сьогодні · " : "") + fmtDate(date, { day: "numeric", month: "long" }) + (day && day.week != null ? " · тиждень " + day.week : "");
+  const header = `
+    <div class="page-header head-row">
+      <div><p class="page-eyebrow">${esc(eyebrow)}</p><h1 class="page-title">${DOW_NAME[dow]}</h1></div>
+      <div class="day-nav">
+        ${isToday ? "" : `<button class="chip-btn" data-act="day-today" type="button">Сьогодні</button>`}
+        <button class="nav-btn" data-act="day-prev" type="button" aria-label="Попередній день">‹</button>
+        <button class="nav-btn" data-act="day-next" type="button" aria-label="Наступний день">›</button>
+      </div>
+    </div>`;
+  let body;
+  if(!day){
+    body = `<div class="empty"><div class="em">🗓️</div><h3>Немає даних на цю дату</h3><p>У файлі розкладу цієї дати нема${dow === 0 ? " (неділя — вихідний)" : ""}.</p></div>`;
+  } else {
+    const fetched = day.fetched_at ? Date.parse(day.fetched_at) : NaN;
+    body = renderLessonList(date, isToday, p.minutes) +
+      `<p class="foot">${isFinite(fetched) ? "Дані дня оновлено " + fmtDT(fetched) + " · " + ago(Date.now() - fetched) : "Парсер ще не завантажував цей день"}</p>`;
+  }
+  setHtml(panel, header + bannersHtml(dayBanners(day)) + body);
+}
+function dayNav(n){
+  const p = kyivParts(nowMs());
+  let d = addDays(viewDate || p.date, n);
+  if(dowOf(d) === 0) d = addDays(d, n);        // неділі пропускаємо
+  viewDate = d === p.date ? null : d;
+  lastMinKey = ""; tick();
+}
+
+/* ============================================================
+   10. РЕНДЕР: вкладка "Тиждень"
+   ============================================================ */
+let viewWeek = null;
+
+function activeWeek(p){
+  if(viewWeek != null && DB.weeks[viewWeek]) return viewWeek;
+  const d = DB.byDate[p.date];
+  if(d && d.week != null && DB.weeks[d.week]) return d.week;
+  if(DB.currentWeek != null && DB.weeks[DB.currentWeek]) return DB.currentWeek;
+  return DB.weekNums[DB.weekNums.length - 1];
+}
+function weekRange(days){
+  if(!days.length) return "";
+  const a = days[0].date, b = days[days.length - 1].date;
+  const A = dUTC(a), B = dUTC(b);
+  if(A.getUTCMonth() === B.getUTCMonth()) return A.getUTCDate() + "–" + fmtDate(b, { day: "numeric", month: "long" });
+  return fmtDate(a, { day: "numeric", month: "short" }) + " – " + fmtDate(b, { day: "numeric", month: "short" });
+}
+function renderWeek(p){
+  const panel = $("panel-week");
+  if(!DB.ok){ setHtml(panel, stateMessage("nodata")); return; }
+  const wk = activeWeek(p), days = DB.weeks[wk] || [], idx = DB.weekNums.indexOf(wk);
+  let rows = "";
+  days.forEach(day => {
+    const slots = slotsOf(visible(day));
+    if(!slots.length && dowOf(day.date) === 6) return;       // порожню суботу не показуємо
+    const isToday = day.date === p.date, dow = dowOf(day.date);
+    const dots = Array.from(new Set(slots.reduce((a, s) => a.concat(s.lessons.map(l => l.subject)), []))).map(n => `<i style="--lc:${colorOf(n)}"></i>`).join("");
+    rows += `
+      <div class="week-row ${isToday ? "is-today" : ""} ${slots.length ? "" : "is-empty"}" data-day="${day.date}">
+        <div class="week-day-badge">${DOW_SHORT[dow]}</div>
+        <div class="week-info">
+          <div class="week-day-name">${DOW_NAME[dow]}${isToday ? " · сьогодні" : ""}${day.changed ? `<span class="tag chg">змінено</span>` : ""}${day.error ? `<span class="tag chg">помилка</span>` : ""}</div>
+          <div class="week-day-meta">${esc(fmtDate(day.date, { day: "numeric", month: "long" }))} · ${slots.length ? `${slots.length} ${plural(slots.length, ["пара", "пари", "пар"])} · ${esc(slots[0].start)}–${esc(slots[slots.length - 1].end)}` : "пар немає"}</div>
+          ${dots ? `<div class="week-dots">${dots}</div>` : ``}
+        </div>
+        <div class="week-chevron">›</div>
+      </div>`;
+  });
+  const header = `
+    <div class="page-header head-row">
+      <div><p class="page-eyebrow">${esc(DB.group || "Навчальний тиждень")} · ${esc(weekRange(days))}</p><h1 class="page-title">Тиждень ${esc(wk)}</h1></div>
+      <div class="day-nav">
+        <button class="nav-btn" data-act="week-prev" type="button" aria-label="Попередній тиждень" ${idx <= 0 ? "disabled" : ""}>‹</button>
+        <button class="nav-btn" data-act="week-next" type="button" aria-label="Наступний тиждень" ${idx >= DB.weekNums.length - 1 ? "disabled" : ""}>›</button>
+      </div>
+    </div>`;
+  setHtml(panel, header + bannersHtml() + `<div class="week-list">${rows || `<div class="empty"><h3>Немає днів</h3></div>`}</div>`);
+}
+function weekNav(n){
+  const p = kyivParts(nowMs()), idx = DB.weekNums.indexOf(activeWeek(p)) + n;
+  if(idx < 0 || idx >= DB.weekNums.length) return;
+  viewWeek = DB.weekNums[idx];
+  lastMinKey = ""; tick();
+}
+
+/* ============================================================
+   11. МОДАЛКА ДНЯ (з вкладки "Тиждень")
+   ============================================================ */
+let modalDate = null;
+function renderModal(p){
+  const day = DB.byDate[modalDate]; if(!day) return;
+  const slots = slotsOf(visible(day)), dow = dowOf(modalDate);
+  $("sheet-title").textContent = DOW_NAME[dow];
+  $("sheet-sub").textContent = fmtDate(modalDate, { day: "numeric", month: "long" }) + (slots.length ? ` · ${slots.length} ${plural(slots.length, ["пара", "пари", "пар"])} · ${slots[0].start}–${slots[slots.length - 1].end}` : " · пар немає");
+  setHtml($("sheet-list"), (dayBanners(day).length ? `<div class="banners" style="margin:0 0 14px">${dayBanners(day).map(b => `<div class="banner ${b.level}"><div class="banner-ic">${b.ic}</div><div class="banner-tx"><b>${b.t}</b><span>${b.s}</span></div></div>`).join("")}</div>` : "") + renderLessonList(modalDate, modalDate === p.date, p.minutes));
+}
+function openDayModal(date){ modalDate = date; renderModal(kyivParts(nowMs())); $("modal-overlay").classList.add("open"); }
+function closeModal(){ $("modal-overlay").classList.remove("open"); }
+
+/* ============================================================
+   12. НАЛАШТУВАННЯ І СТАН ДАНИХ
+   ============================================================ */
+function renderSettings(){
+  const oldTa = $("manual-json"), keep = oldTa ? oldTa.value : "";
+  const s = getStatus(), gen = DB.generatedMs, known = DB.ok && isFinite(gen);
+  const row = (ic, lab, val) => `<div class="detail-row"><div class="detail-row-icon">${ic}</div><div class="detail-row-text"><div class="detail-row-label">${lab}</div><div class="detail-row-value">${val}</div></div></div>`;
+  const stLabel = !DB.ok ? "Немає даних" : s.stale ? "Застарілі" : net.error ? "Офлайн" : "Актуальні";
+  const rows = DB.ok ? [
+    row(s.level === "ok" ? "🟢" : "🟠", "Стан даних", esc(stLabel)),
+    row("🕑", "Файл згенеровано", known ? esc(fmtDT(gen)) + " · " + esc(ago(Date.now() - gen)) : "невідомо"),
+    row("🔄", "Остання перевірка", net.checkedMs ? esc(fmtDT(net.checkedMs)) + (net.fromCache ? " (не вдалася — збережена копія)" : "") : "ще не виконувалась"),
+    row("🎓", "Група", esc(DB.group || "—")),
+    row("📆", "Поточний тиждень", DB.currentWeek != null ? esc(DB.currentWeek) + (DB.weekSource ? " · джерело: " + esc(DB.weekSource) : "") : "—"),
+    row("🗂️", "Охоплення", DB.dates.length ? esc(fmtDate(DB.dates[0], { day: "numeric", month: "short" })) + " – " + esc(fmtDate(DB.dates[DB.dates.length - 1], { day: "numeric", month: "short" })) + (DB.scope ? " · режим: " + esc(DB.scope) : "") : "—")
+  ].join("") : row("⚠️", "Стан даних", esc(net.loading ? "Завантаження…" : (net.error || "Немає даних")));
+  $("settings-content").innerHTML = `
+    <h2 class="sheet-title">Налаштування</h2>
+    <p class="sheet-sub">Підгрупа та стан даних розкладу</p>
+    <div class="detail-section-label">Підгрупа</div>
+    ${segHtml()}
+    <p class="set-note">Лабораторні проходять по підгрупах. «Усі» показує обидві підгрупи одразу.</p>
+    <div class="detail-section-label">Дані</div>
+    <div class="detail-rows">${rows}</div>
+    <p class="set-note">Джерело: <a class="set-link" href="${esc(REPO_URL)}" target="_blank" rel="noopener noreferrer">${esc(GH_REPO)}/${esc(GH_FILE)}</a>. Перевіряється кожні ${Math.round(REFRESH_MS / 60000)} хв. Позначається як застарілий, якщо файлу понад ${Math.round(STALE_AFTER_MS / 3600000)} год.</p>
+    <div class="detail-section-label">Вставити JSON вручну</div>
+    <textarea class="manual" id="manual-json" placeholder="Встав сюди вміст schedule.json" spellcheck="false"></textarea>
+    <p class="set-note" id="manual-msg">${manualMode ? "Зараз використовуються дані, вставлені вручну (GitHub не опитується)." : "Дані збережуться в цьому браузері; GitHub після цього не опитується."}</p>
+    <div class="btn-row" style="margin-top:0;margin-bottom:18px">
+      <button class="btn ghost" data-act="manual-apply" type="button">Застосувати</button>
+      ${manualMode ? `<button class="btn danger" data-act="manual-clear" type="button">Назад до GitHub</button>` : ``}
+    </div>
+    <div class="btn-row">
+      <button class="btn primary" data-act="refresh" type="button">${net.loading ? "Оновлення…" : "Оновити зараз"}</button>
+      <button class="btn ghost" data-act="close-settings" type="button">Закрити</button>
+    </div>`;
+  if(keep) $("manual-json").value = keep;
+}
+function openSettings(){ renderSettings(); $("settings-overlay").classList.add("open"); }
+function closeSettings(){ $("settings-overlay").classList.remove("open"); }
+
+/* ============================================================
+   13. ЗАВАНТАЖЕННЯ З GITHUB
+   ============================================================ */
+function getJSON(url, opts){
+  const ctrl = new AbortController(), timer = setTimeout(() => ctrl.abort(), FETCH_TIMEOUT);
+  return fetch(url, Object.assign({ signal: ctrl.signal }, opts))
+    .then(r => { if(!r.ok) throw new Error("HTTP " + r.status); return r.json(); })
+    .finally(() => clearTimeout(timer));
+}
+let lastLoad = 0;
+function loadData(){
+  if(net.loading || manualMode) return;
+  net.loading = true; lastLoad = Date.now(); renderChrome(); if($("settings-overlay").classList.contains("open")) renderSettings();
+  getJSON(API_URL, { cache: "no-cache", headers: { Accept: "application/vnd.github.raw+json" } })
+    .catch(() => getJSON(RAW_URL + "?t=" + Date.now(), { cache: "no-store" }))
+    .then(j => {
+      DB = buildDB(j);
+      net.error = null; net.fromCache = false;
+      lsSet(K.cache, JSON.stringify(j));
+    })
+    .catch(e => { net.error = (e && e.name === "AbortError") ? "таймаут запиту" : (e && e.message) || "помилка мережі"; })
+    .finally(() => { net.loading = false; net.checkedMs = Date.now(); fullRender(); if($("settings-overlay").classList.contains("open")) renderSettings(); });
+}
+function loadCache(){
+  const raw = lsGet(K.cache); if(!raw) return;
+  try { DB = buildDB(JSON.parse(raw)); net.fromCache = true; } catch(e){}
+}
+
+/* ============================================================
+   14. ВКЛАДКИ, ТІКАННЯ ГОДИННИКА, ПОДІЇ
+   ============================================================ */
+const tabButtons = document.querySelectorAll(".tab-btn"), tabIndicator = $("tab-indicator");
+let activeTab = "now";
+function moveIndicator(btn){ tabIndicator.style.width = btn.offsetWidth + "px"; tabIndicator.style.transform = `translateX(${btn.offsetLeft - 5}px)`; }
+function setTab(tab){
+  activeTab = tab;
+  tabButtons.forEach(b => b.classList.toggle("active", b.dataset.tab === tab));
+  document.querySelectorAll(".panel").forEach(p => p.classList.toggle("active", p.id === "panel-" + tab));
+  moveIndicator(Array.from(tabButtons).find(b => b.dataset.tab === tab));
+}
+tabButtons.forEach(b => b.addEventListener("click", () => setTab(b.dataset.tab)));
+
+function tick(){
+  const p = kyivParts(nowMs()), st = computeNow(p);
+  const key = [DB.version, pref || "-", p.date, st.mode, st.si == null ? "" : st.si].join("|");
+  if(key !== lastNowKey){ lastNowKey = key; renderNow(st, p); } else patchNow(st);
+  const mk = p.date + "T" + p.h + ":" + p.mi;
+  if(mk !== lastMinKey){
+    lastMinKey = mk;
+    renderDay(p); renderWeek(p); renderChrome();
+    if($("modal-overlay").classList.contains("open")) renderModal(p);
+    if($("settings-overlay").classList.contains("open") && document.activeElement !== $("manual-json")) renderSettings();
+  }
+}
+function fullRender(){ lastNowKey = ""; lastMinKey = ""; tick(); }
+
+function handleAct(el){
+  switch(el.dataset.act){
+    case "refresh": loadData(); break;
+    case "sub": pref = el.dataset.v; lsSet(K.sub, pref); fullRender(); if($("settings-overlay").classList.contains("open")) renderSettings(); break;
+    case "day-prev": dayNav(-1); break;
+    case "day-next": dayNav(1); break;
+    case "day-today": viewDate = null; fullRender(); break;
+    case "week-prev": weekNav(-1); break;
+    case "week-next": weekNav(1); break;
+    case "manual-apply": {
+      const msg = $("manual-msg");
+      try {
+        const j = JSON.parse($("manual-json").value);
+        DB = buildDB(j);
+        lsSet(K.cache, JSON.stringify(j)); lsSet(K.manual, "1");
+        manualMode = true; net.error = null; net.fromCache = false; net.checkedMs = Date.now();
+        fullRender(); $("manual-json").value = ""; renderSettings();
+        $("manual-msg").textContent = "Готово: дані застосовано.";
+      } catch(e){ msg.textContent = "Помилка: " + (e && e.message || "некоректний JSON"); }
+      break; }
+    case "manual-clear": manualMode = false; lsSet(K.manual, "0"); renderSettings(); loadData(); break;
+    case "open-settings": openSettings(); break;
+    case "close-settings": closeSettings(); break;
+  }
+}
+document.addEventListener("click", e => {
+  const t = e.target;
+  if(!(t instanceof Element)) return;
+  if(t.closest("a")) return;                    // посилання відкриваються самі, шторку не чіпаємо
+  const act = t.closest("[data-act]");
+  if(act){ handleAct(act); return; }
+  const lesson = t.closest("[data-lid]");
+  if(lesson){ openLessonDetail(lesson.dataset.date, lesson.dataset.lid); return; }
+  const wk = t.closest(".week-row[data-day]");
+  if(wk) openDayModal(wk.dataset.day);
+});
+$("modal-overlay").addEventListener("click", e => { if(e.target.id === "modal-overlay") closeModal(); });
+$("detail-overlay").addEventListener("click", e => { if(e.target.id === "detail-overlay") closeDetail(); });
+$("settings-overlay").addEventListener("click", e => { if(e.target.id === "settings-overlay") closeSettings(); });
+document.addEventListener("keydown", e => {
+  if(e.key !== "Escape") return;
+  if($("debug-overlay").classList.contains("open")) $("debug-overlay").classList.remove("open");
+  else if($("detail-overlay").classList.contains("open")) closeDetail();
+  else if($("settings-overlay").classList.contains("open")) closeSettings();
+  else closeModal();
+});
+
+// свайп по вкладці "День": вліво = наступний день, вправо = попередній
+(function(){
+  let x0 = null, y0 = null;
+  const el = $("panel-day");
+  el.addEventListener("touchstart", e => { const t = e.touches[0]; x0 = t.clientX; y0 = t.clientY; }, { passive: true });
+  el.addEventListener("touchend", e => {
+    if(x0 == null) return;
+    const t = e.changedTouches[0], dx = t.clientX - x0, dy = t.clientY - y0; x0 = null;
+    if(Math.abs(dx) > 70 && Math.abs(dy) < 45 && DB.ok) dayNav(dx < 0 ? 1 : -1);
+  }, { passive: true });
+})();
+
+window.addEventListener("load", () => {
+  loadCache();
+  fullRender();
+  setTab("now");
+  loadData();
+  setInterval(tick, 1000);
+  setInterval(loadData, REFRESH_MS);
+  window.addEventListener("resize", () => { const b = Array.from(tabButtons).find(x => x.dataset.tab === activeTab); if(b) moveIndicator(b); });
+  window.addEventListener("online", loadData);
+  document.addEventListener("visibilitychange", () => { if(!document.hidden && Date.now() - lastLoad > 60000) loadData(); });
+  if(SHOW_DEBUG) initDebugPanel();
+});
+
+/* ============================================================
+   15. DEBUG: підміна поточного часу (відкрий сторінку з ?debug)
+   ============================================================ */
+function initDebugPanel(){
+  const fab = $("debug-fab"), overlay = $("debug-overlay"), pill = $("debug-pill"), status = $("debug-status");
+  fab.hidden = false;
+  const closeSheet = () => overlay.classList.remove("open");
+  fab.addEventListener("click", () => {
+    const p = kyivParts(nowMs());
+    $("dbg-date").value = p.date; $("dbg-h").value = p.h; $("dbg-m").value = p.mi; $("dbg-s").value = p.s;
+    if(DB.ok && DB.dates.length){ $("dbg-date").min = DB.dates[0]; $("dbg-date").max = DB.dates[DB.dates.length - 1]; }
+    overlay.classList.add("open");
+  });
+  overlay.addEventListener("click", e => { if(e.target.id === "debug-overlay") closeSheet(); });
+  $("dbg-close").addEventListener("click", closeSheet);
+  $("dbg-start").addEventListener("click", () => {
+    const date = $("dbg-date").value || kyivParts(Date.now()).date;
+    const h = clamp(parseInt($("dbg-h").value || "0", 10), 0, 23), m = clamp(parseInt($("dbg-m").value || "0", 10), 0, 59), s = clamp(parseInt($("dbg-s").value || "0", 10), 0, 59);
+    debugOffsetMs = kyivToEpoch(date, h, m, s) - Date.now();
+    fab.classList.add("on"); pill.style.display = "inline-block";
+    status.textContent = `Симуляція: ${fmtDate(date, { weekday: "long", day: "numeric", month: "long" })}, ${pad2(h)}:${pad2(m)}:${pad2(s)} — годинник тече від цього моменту.`;
+    viewDate = null; fullRender(); closeSheet();
+  });
+  $("dbg-reset").addEventListener("click", () => {
+    debugOffsetMs = null; fab.classList.remove("on"); pill.style.display = "none";
+    status.textContent = "Зараз показується реальний час.";
+    viewDate = null; fullRender(); closeSheet();
+  });
+}
+</script>
+</body>
+</html>
