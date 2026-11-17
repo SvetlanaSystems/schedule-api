@@ -86,8 +86,7 @@
               "label": "Освітній портал (Moodle): лабораторна робота №9",
               "url": "https://learn.ztu.edu.ua/course/view.php?id=4036"
             }
-          ],
-          "is_canceled": true
+          ]
         },
         {
           "id": 1659,
@@ -323,7 +322,8 @@
           "subgroup": null,
           "groups": "ІПЗ-26-3",
           "teacher": "Панченко Наталія Анатоліївна",
-          "links": []
+          "links": [],
+          "is_canceled": true
         }
       ]
     },
