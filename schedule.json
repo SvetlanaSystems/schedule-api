@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-17T11:25:01+00:00",
-  "scope": "today",
+  "generated_at": "2026-11-17T17:10:08+00:00",
+  "scope": "full",
   "group": "ІПЗ-26-3",
   "current_week": 11,
   "week_source": "site",
@@ -60,9 +60,9 @@
       "day": 2,
       "date": "2026-11-17",
       "count": 8,
-      "changed": false,
+      "changed": true,
       "error": null,
-      "fetched_at": "2026-11-17T11:25:01+00:00",
+      "fetched_at": "2026-11-17T17:09:56+00:00",
       "source_file": "schedule_cache/week_11/day_2.html",
       "lessons": [
         {
@@ -199,7 +199,12 @@
           "subgroup": 1,
           "groups": "ІПЗ-26-3 (підгр. 1)",
           "teacher": "Локтікова Тамара Миколаївна",
-          "links": []
+          "links": [
+            {
+              "label": "Moodle – лаб.роб.6",
+              "url": "https://learn.ztu.edu.ua/mod/folder/view.php?id=266792-до"
+            }
+          ]
         },
         {
           "id": 2056,
@@ -227,9 +232,9 @@
       "day": 3,
       "date": "2026-11-18",
       "count": 1,
-      "changed": false,
+      "changed": true,
       "error": null,
-      "fetched_at": "2026-11-17T10:09:46+00:00",
+      "fetched_at": "2026-11-17T17:09:57+00:00",
       "source_file": "schedule_cache/week_11/day_3.html",
       "lessons": [
         {
@@ -246,11 +251,7 @@
           "teacher": "Суховецька Світлана Володимирівна",
           "links": [
             {
-              "label": "Google Meet",
-              "url": "https://meet.google.com/pue-sewt-mdj"
-            },
-            {
-              "label": "Task",
+              "label": "pue-sewt-mdj Task",
               "url": "https://learn.ztu.edu.ua/mod/folder/view.php?id=253932"
             }
           ]
@@ -264,7 +265,7 @@
       "count": 4,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-17T10:09:47+00:00",
+      "fetched_at": "2026-11-17T17:09:58+00:00",
       "source_file": "schedule_cache/week_11/day_4.html",
       "lessons": [
         {
@@ -332,7 +333,7 @@
       "count": 3,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-17T10:09:48+00:00",
+      "fetched_at": "2026-11-17T17:09:59+00:00",
       "source_file": "schedule_cache/week_11/day_5.html",
       "lessons": [
         {
@@ -412,7 +413,7 @@
       "count": 4,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-17T10:09:49+00:00",
+      "fetched_at": "2026-11-17T17:10:00+00:00",
       "source_file": "schedule_cache/week_12/day_1.html",
       "lessons": [
         {
@@ -480,7 +481,7 @@
       "count": 3,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-17T10:09:50+00:00",
+      "fetched_at": "2026-11-17T17:10:01+00:00",
       "source_file": "schedule_cache/week_12/day_2.html",
       "lessons": [
         {
@@ -543,7 +544,7 @@
       "count": 4,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-17T10:09:51+00:00",
+      "fetched_at": "2026-11-17T17:10:01+00:00",
       "source_file": "schedule_cache/week_12/day_3.html",
       "lessons": [
         {
@@ -611,7 +612,7 @@
       "count": 2,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-17T10:09:51+00:00",
+      "fetched_at": "2026-11-17T17:10:02+00:00",
       "source_file": "schedule_cache/week_12/day_4.html",
       "lessons": [
         {
@@ -651,7 +652,7 @@
       "count": 3,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-17T10:09:52+00:00",
+      "fetched_at": "2026-11-17T17:10:03+00:00",
       "source_file": "schedule_cache/week_12/day_5.html",
       "lessons": [
         {
@@ -716,7 +717,7 @@
       "count": 2,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-17T10:09:53+00:00",
+      "fetched_at": "2026-11-17T17:10:04+00:00",
       "source_file": "schedule_cache/week_13/day_1.html",
       "lessons": [
         {
@@ -756,7 +757,7 @@
       "count": 8,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-17T10:09:55+00:00",
+      "fetched_at": "2026-11-17T17:10:05+00:00",
       "source_file": "schedule_cache/week_13/day_2.html",
       "lessons": [
         {
@@ -880,7 +881,7 @@
       "count": 1,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-17T10:09:56+00:00",
+      "fetched_at": "2026-11-17T17:10:06+00:00",
       "source_file": "schedule_cache/week_13/day_3.html",
       "lessons": [
         {
@@ -906,7 +907,7 @@
       "count": 4,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-17T10:09:57+00:00",
+      "fetched_at": "2026-11-17T17:10:07+00:00",
       "source_file": "schedule_cache/week_13/day_4.html",
       "lessons": [
         {
@@ -974,7 +975,7 @@
       "count": 3,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-17T10:09:57+00:00",
+      "fetched_at": "2026-11-17T17:10:08+00:00",
       "source_file": "schedule_cache/week_13/day_5.html",
       "lessons": [
         {
