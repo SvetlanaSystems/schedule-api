@@ -142,7 +142,7 @@ button{ font-family:inherit; }
 @keyframes pulseDot{ 50%{ opacity:0.3; } }
 .icon-btn{
   width:38px; height:38px; flex:none; border-radius:50%; background:var(--surface); border:1px solid var(--hairline);
-  color:var(--text-dim); display:flex; align-items:center; justify-content:center; cursor:pointer;
+  color:var(--text-dim); display:flex; align-items:center; justify-content:center; cursor:pointer; margin-left:auto;
 }
 .icon-btn svg{ width:19px; height:19px; }
 .icon-btn:active{ transform:scale(0.92); }
@@ -299,7 +299,15 @@ button{ font-family:inherit; }
   color: var(--lc,#0a84ff); background: color-mix(in srgb, var(--lc,#0a84ff) 20%, transparent);
   padding:4px 8px; border-radius:8px; flex-shrink:0; margin-top:1px;
 }
+.lesson-badge.cancel{ color:var(--red); background:color-mix(in srgb, var(--red) 16%, transparent); }
 .lesson-chevron{ color:var(--text-faint); font-size:17px; flex-shrink:0; margin-top:1px; }
+
+.lesson-row.canceled .lesson-name,
+.lesson-row.canceled .lesson-time .t1,
+.next-card.canceled .next-subject{ text-decoration:line-through; text-decoration-thickness:2px; text-decoration-color:var(--red); }
+.lesson-row.canceled .lesson-main,
+.next-card.canceled .next-info{ opacity:0.6; }
+.lesson-row.canceled.current{ animation:none; border-color:var(--hairline); background:var(--surface); }
 
 .break-row{ display:flex; align-items:center; gap:10px; padding: 6px 16px 6px 16px; font-size:12px; color:var(--text-faint); font-weight:600; }
 .break-line{ flex:1; height:1px; background:var(--hairline); }
@@ -457,6 +465,15 @@ mark.gm{ background:color-mix(in srgb, var(--green) 18%, transparent); color:var
 .sg{ font-size:11px; font-weight:700; padding:3px 8px; border-radius:999px; background:var(--surface-3); color:var(--text); white-space:nowrap; }
 .set-note{ font-size:12px; color:var(--text-faint); margin:8px 2px 18px; line-height:1.45; }
 .set-link{ color:var(--accent); text-decoration:none; font-weight:600; }
+.set-nav{
+  width:100%; display:flex; align-items:center; justify-content:space-between; gap:12px;
+  background:var(--surface-2); color:var(--text); border:none; border-radius:var(--radius-lg);
+  padding:15px 16px; font-size:15px; font-weight:700; cursor:pointer; text-align:left; margin:4px 0 18px;
+}
+.set-nav:active{ transform:scale(0.98); }
+.set-nav-r{ color:var(--text-dim); font-size:13px; font-weight:600; display:flex; align-items:center; gap:8px; }
+.set-nav-r i{ font-style:normal; font-size:20px; color:var(--text-faint); }
+.back-btn{ border:none; background:transparent; color:var(--accent); font-size:15px; font-weight:700; padding:0 0 10px; cursor:pointer; }
 
 /* ============================================================
    НИЖНЯ ПАНЕЛЬ ВКЛАДОК
@@ -514,7 +531,7 @@ input[type="date"].debug-time-input{ font-size:18px; }
 <div id="glow"></div>
 <div id="app">
   <div id="topbar">
-    <button class="status-pill" id="status-pill" data-l="load" data-act="open-settings" type="button">
+    <button class="status-pill" id="status-pill" data-l="load" data-act="open-settings" type="button" hidden>
       <span class="sd"></span><span class="st-text" id="status-text">Завантаження…</span>
     </button>
     <button class="icon-btn" data-act="open-settings" type="button" aria-label="Налаштування і дані">
@@ -625,7 +642,7 @@ const TZ = (function(){
 })();
 
 const K = { theme: "rozklad:theme", cache: "rozklad:cache:" + GH_REPO + "/" + GH_FILE, sub: "rozklad:subgroup", manual: "rozklad:manual:" + GH_REPO + "/" + GH_FILE };
-let manualMode = (function(){ try { return localStorage.getItem(K.manual) === "1"; } catch(e){ return false; } })();
+let manualMode = SHOW_DEBUG && (function(){ try { return localStorage.getItem(K.manual) === "1"; } catch(e){ return false; } })();
 
 /* ---------- тема: системна / світла / темна ---------- */
 let themePref = (function(){ try { const v = localStorage.getItem(K.theme); return v === "light" || v === "dark" ? v : "system"; } catch(e){ return "system"; } })();
@@ -739,6 +756,7 @@ function buildDB(j){
       o.subject = String(l.subject || "Без назви").trim();
       o.start = String(l.start || "00:00"); o.end = String(l.end || "00:00");
       o.links = Array.isArray(l.links) ? l.links : [];
+      o.canceled = l.is_canceled === true;
       names.add(o.subject);
       return o;
     });
@@ -966,6 +984,7 @@ function renderChrome(){
   const s = getStatus(), pill = $("status-pill");
   pill.dataset.l = s.level;
   $("status-text").textContent = s.pill;
+  pill.hidden = s.level === "ok" || s.level === "load";
 }
 
 /* ============================================================
@@ -999,9 +1018,9 @@ function computeNow(p){
    ============================================================ */
 function lessonRow(date, l, state){
   const c = colorOf(l.subject), t = typeInfo(l);
-  const meta = [t.label, l.room, l.subgroup != null ? "підгр. " + l.subgroup : ""].filter(Boolean).map(esc).join(" · ");
+  const meta = [l.canceled ? "Скасовано" : "", t.label, l.room, l.subgroup != null ? "підгр. " + l.subgroup : ""].filter(Boolean).map(esc).join(" · ");
   return `
-    <div class="lesson-row ${state === "past" ? "past" : ""} ${state === "current" ? "current" : ""}" style="--lc:${c}" data-date="${date}" data-lid="${esc(l._k)}">
+    <div class="lesson-row ${state === "past" ? "past" : ""} ${state === "current" ? "current" : ""} ${l.canceled ? "canceled" : ""}" style="--lc:${c}" data-date="${date}" data-lid="${esc(l._k)}">
       <div class="lesson-time"><span class="t1">${esc(l.start)}</span><span class="t2">${esc(l.end)}</span></div>
       <div class="lesson-type-chip">${esc(t.chip)}</div>
       <div class="lesson-main">
@@ -1010,7 +1029,7 @@ function lessonRow(date, l, state){
         ${l.teacher ? `<div class="lesson-teacher">${esc(shortTeacher(l.teacher))}</div>` : ``}
         ${quickLinksHtml(l)}
       </div>
-      ${state === "current" ? `<div class="lesson-badge">Зараз</div>` : ``}
+      ${l.canceled ? `<div class="lesson-badge cancel">Скасовано</div>` : state === "current" ? `<div class="lesson-badge">Зараз</div>` : ``}
       <div class="lesson-chevron">›</div>
     </div>`;
 }
@@ -1060,8 +1079,9 @@ function openLessonDetail(date, key){
 
   const fetched = day.fetched_at ? Date.parse(day.fetched_at) : NaN;
   $("detail-content").innerHTML = `
-    <div class="detail-head"><div class="detail-dot" style="background:${c}"></div><div class="detail-subject">${esc(l.subject)}</div></div>
+    <div class="detail-head"><div class="detail-dot" style="background:${c}"></div><div class="detail-subject"${l.canceled ? ` style="text-decoration:line-through;text-decoration-color:var(--red)"` : ``}>${esc(l.subject)}</div></div>
     <div class="detail-type-badge" style="color:color-mix(in srgb, ${c} var(--tp), #000); background:${hexToRgba(c, 0.15)};">${esc(t.label)}</div>
+    ${l.canceled ? `<div class="detail-type-badge" style="color:var(--red); background:color-mix(in srgb, var(--red) 16%, transparent);">Скасовано</div><div class="banners" style="margin:0 0 18px"><div class="banner err"><div class="banner-ic">🚫</div><div class="banner-tx"><b>Цю пару скасовано</b><span>Заняття не відбудеться.</span></div></div></div>` : ``}
     <div class="detail-rows">
       ${row("📅", "День", esc(cap(fmtDate(date, { weekday: "long", day: "numeric", month: "long" }))) + (day.week != null ? ` · тиждень ${esc(day.week)}` : ""))}
       ${row("🕐", "Час", `${esc(l.start)}–${esc(l.end)}` + (l.number != null ? ` · ${esc(l.number)}-та пара` : ""))}
@@ -1107,8 +1127,8 @@ function homeHtml(o){
 
 function nextCardHtml(date, l, label){
   const c = colorOf(l.subject), t = typeInfo(l);
-  const meta = [t.label, l.room, l.subgroup != null ? "підгр. " + l.subgroup : ""].filter(Boolean).map(esc).join(" · ");
-  return `<div class="next-card" data-date="${date}" data-lid="${esc(l._k)}">
+  const meta = [l.canceled ? "Скасовано" : "", t.label, l.room, l.subgroup != null ? "підгр. " + l.subgroup : ""].filter(Boolean).map(esc).join(" · ");
+  return `<div class="next-card${l.canceled ? " canceled" : ""}" data-date="${date}" data-lid="${esc(l._k)}">
       <div class="next-dot" style="background:${c}"></div>
       <div class="next-info">
         <div class="next-label">${label}</div>
@@ -1363,8 +1383,27 @@ function closeModal(){ $("modal-overlay").classList.remove("open"); }
 /* ============================================================
    12. НАЛАШТУВАННЯ І СТАН ДАНИХ
    ============================================================ */
-function renderSettings(){
-  const oldTa = $("manual-json"), keep = oldTa ? oldTa.value : "";
+let settingsView = "main";
+
+function settingsMainHtml(){
+  const s = getStatus();
+  return `
+    <h2 class="sheet-title">Налаштування</h2>
+    <p class="sheet-sub">Вигляд і підгрупа</p>
+    <div class="detail-section-label">Тема</div>
+    ${themeSegHtml()}
+    <p class="set-note">«Системна» підлаштовується під тему пристрою автоматично.</p>
+    <div class="detail-section-label">Підгрупа</div>
+    ${segHtml()}
+    <p class="set-note">Лабораторні проходять по підгрупах. «Усі» показує обидві підгрупи одразу.</p>
+    <button class="set-nav" data-act="settings-data" type="button">
+      <span>Розклад і дані</span>
+      <span class="set-nav-r">${esc(s.pill)}<i>›</i></span>
+    </button>
+    <div class="btn-row"><button class="btn ghost" data-act="close-settings" type="button">Закрити</button></div>`;
+}
+
+function settingsDataHtml(){
   const s = getStatus(), gen = DB.generatedMs, known = DB.ok && isFinite(gen);
   const row = (ic, lab, val) => `<div class="detail-row"><div class="detail-row-icon">${ic}</div><div class="detail-row-text"><div class="detail-row-label">${lab}</div><div class="detail-row-value">${val}</div></div></div>`;
   const stLabel = !DB.ok ? "Немає даних" : s.stale ? "Застарілі" : net.error ? "Офлайн" : "Актуальні";
@@ -1376,32 +1415,35 @@ function renderSettings(){
     row("📆", "Поточний тиждень", DB.currentWeek != null ? esc(DB.currentWeek) + (DB.weekSource ? " · джерело: " + esc(DB.weekSource) : "") : "—"),
     row("🗂️", "Охоплення", DB.dates.length ? esc(fmtDate(DB.dates[0], { day: "numeric", month: "short" })) + " – " + esc(fmtDate(DB.dates[DB.dates.length - 1], { day: "numeric", month: "short" })) + (DB.scope ? " · режим: " + esc(DB.scope) : "") : "—")
   ].join("") : row("⚠️", "Стан даних", esc(net.loading ? "Завантаження…" : (net.error || "Немає даних")));
-  $("settings-content").innerHTML = `
-    <h2 class="sheet-title">Налаштування</h2>
-    <p class="sheet-sub">Підгрупа та стан даних розкладу</p>
-    <div class="detail-section-label">Тема</div>
-    ${themeSegHtml()}
-    <p class="set-note">«Системна» підлаштовується під тему пристрою автоматично.</p>
-    <div class="detail-section-label">Підгрупа</div>
-    ${segHtml()}
-    <p class="set-note">Лабораторні проходять по підгрупах. «Усі» показує обидві підгрупи одразу.</p>
-    <div class="detail-section-label">Дані</div>
-    <div class="detail-rows">${rows}</div>
-    <p class="set-note">Джерело: <a class="set-link" href="${esc(REPO_URL)}" target="_blank" rel="noopener noreferrer">${esc(GH_REPO)}/${esc(GH_FILE)}</a>. Перевіряється кожні ${Math.round(REFRESH_MS / 60000)} хв. Позначається як застарілий, якщо файлу понад ${Math.round(STALE_AFTER_MS / 3600000)} год.</p>
+
+  const manual = SHOW_DEBUG ? `
     <div class="detail-section-label">Вставити JSON вручну</div>
     <textarea class="manual" id="manual-json" placeholder="Встав сюди вміст schedule.json" spellcheck="false"></textarea>
     <p class="set-note" id="manual-msg">${manualMode ? "Зараз використовуються дані, вставлені вручну (GitHub не опитується)." : "Дані збережуться в цьому браузері; GitHub після цього не опитується."}</p>
     <div class="btn-row" style="margin-top:0;margin-bottom:18px">
       <button class="btn ghost" data-act="manual-apply" type="button">Застосувати</button>
       ${manualMode ? `<button class="btn danger" data-act="manual-clear" type="button">Назад до GitHub</button>` : ``}
-    </div>
+    </div>` : ``;
+
+  return `
+    <button class="back-btn" data-act="settings-back" type="button">‹ Налаштування</button>
+    <h2 class="sheet-title">Розклад і дані</h2>
+    <p class="sheet-sub">Стан та оновлення розкладу</p>
+    <div class="detail-rows">${rows}</div>
+    <p class="set-note">Джерело: <a class="set-link" href="${esc(REPO_URL)}" target="_blank" rel="noopener noreferrer">${esc(GH_REPO)}/${esc(GH_FILE)}</a>. Перевіряється кожні ${Math.round(REFRESH_MS / 60000)} хв. Позначається як застарілий, якщо файлу понад ${Math.round(STALE_AFTER_MS / 3600000)} год.</p>
+    ${manual}
     <div class="btn-row">
       <button class="btn primary" data-act="refresh" type="button">${net.loading ? "Оновлення…" : "Оновити зараз"}</button>
       <button class="btn ghost" data-act="close-settings" type="button">Закрити</button>
     </div>`;
-  if(keep) $("manual-json").value = keep;
 }
-function openSettings(){ renderSettings(); $("settings-overlay").classList.add("open"); }
+
+function renderSettings(){
+  const oldTa = $("manual-json"), keep = oldTa ? oldTa.value : "";
+  $("settings-content").innerHTML = settingsView === "data" ? settingsDataHtml() : settingsMainHtml();
+  const ta = $("manual-json"); if(ta && keep) ta.value = keep;
+}
+function openSettings(){ settingsView = "main"; renderSettings(); $("settings-overlay").classList.add("open"); }
 function closeSettings(){ $("settings-overlay").classList.remove("open"); }
 
 /* ============================================================
@@ -1485,6 +1527,8 @@ function handleAct(el){
     case "close-sheet": { const ov = el.closest(".sheet-overlay"); if(ov) ov.classList.remove("open"); break; }
     case "open-settings": openSettings(); break;
     case "close-settings": closeSettings(); break;
+    case "settings-data": settingsView = "data"; renderSettings(); break;
+    case "settings-back": settingsView = "main"; renderSettings(); break;
   }
 }
 document.addEventListener("click", e => {
