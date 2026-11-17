@@ -1053,6 +1053,10 @@ function renderLessonList(date, isToday, nowMin){
 /* ============================================================
    7. РЕНДЕР: шторка деталей пари
    ============================================================ */
+function debugLessonJson(date, l){
+  const kv = (l.id != null) ? [["date", date], ["id", l.id]] : [["date", date], ["number", l.number != null ? l.number : null], ["subgroup", l.subgroup != null ? l.subgroup : null]];
+  return "{" + kv.map(([k, v]) => JSON.stringify(k) + ": " + JSON.stringify(v)).join(", ") + "}";
+}
 function openLessonDetail(date, key){
   const day = DB.byDate[date]; if(!day) return;
   const l = day.lessons.find(x => x._k === key); if(!l) return;
@@ -1090,6 +1094,7 @@ function openLessonDetail(date, key){
       ${l.teacher ? row("👤", "Викладач", esc(l.teacher)) : ``}
     </div>
     ${linksHtml}
+    ${SHOW_DEBUG ? `<div class="btn-row" style="margin:0 0 14px"><button class="btn ghost" type="button" data-act="debug-copy" data-json="${esc(debugLessonJson(date, l))}">🐞 Копіювати JSON пари</button></div>` : ``}
     <p class="foot" style="margin-top:0">${isFinite(fetched) ? "Дані дня оновлено " + fmtDT(fetched) + " · " + ago(Date.now() - fetched) : ""}</p>
   `;
   $("detail-overlay").classList.add("open");
@@ -1505,6 +1510,12 @@ function fullRender(){ lastNowKey = ""; lastMinKey = ""; tick(); }
 function handleAct(el){
   switch(el.dataset.act){
     case "refresh": loadData(); break;
+    case "debug-copy": {
+      const txt = el.dataset.json || "", done = () => { const old = el.textContent; el.textContent = "✓ Скопійовано"; setTimeout(() => { el.textContent = old; }, 1200); };
+      const fb = () => { const ta = document.createElement("textarea"); ta.value = txt; ta.style.cssText = "position:fixed;opacity:0"; document.body.appendChild(ta); ta.select(); try { document.execCommand("copy"); } catch(_){} ta.remove(); done(); };
+      if(navigator.clipboard && navigator.clipboard.writeText) navigator.clipboard.writeText(txt).then(done, fb); else fb();
+      break;
+    }
     case "sub": pref = el.dataset.v; lsSet(K.sub, pref); fullRender(); if($("settings-overlay").classList.contains("open")) renderSettings(); break;
     case "day-prev": dayNav(-1); break;
     case "day-next": dayNav(1); break;
