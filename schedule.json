@@ -1034,5 +1034,35 @@
       "source_file": null,
       "lessons": []
     }
+  ],
+  "next_updates": [
+    {
+      "at": "2026-11-18T16:25",
+      "scope": "today"
+    },
+    {
+      "at": "2026-11-19T03:00",
+      "scope": "full"
+    },
+    {
+      "at": "2026-11-19T06:30",
+      "scope": "near"
+    },
+    {
+      "at": "2026-11-19T09:55",
+      "scope": "today"
+    },
+    {
+      "at": "2026-11-19T11:35",
+      "scope": "today"
+    },
+    {
+      "at": "2026-11-19T13:25",
+      "scope": "today"
+    },
+    {
+      "at": "2026-11-19T14:55",
+      "scope": "today"
+    }
   ]
 }
