@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-18T21:49:57+00:00",
+  "generated_at": "2026-11-18T21:53:40+00:00",
   "scope": "full",
   "group": "ІПЗ-26-3",
   "current_week": 11,
@@ -234,7 +234,7 @@
       "count": 1,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-18T21:49:44+00:00",
+      "fetched_at": "2026-11-18T21:53:27+00:00",
       "source_file": "schedule_cache/week_11/day_3.html",
       "lessons": [
         {
@@ -265,7 +265,7 @@
       "count": 4,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-18T21:49:45+00:00",
+      "fetched_at": "2026-11-18T21:53:28+00:00",
       "source_file": "schedule_cache/week_11/day_4.html",
       "lessons": [
         {
@@ -334,7 +334,7 @@
       "count": 3,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-18T21:49:46+00:00",
+      "fetched_at": "2026-11-18T21:53:28+00:00",
       "source_file": "schedule_cache/week_11/day_5.html",
       "lessons": [
         {
@@ -414,7 +414,7 @@
       "count": 4,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-18T21:49:47+00:00",
+      "fetched_at": "2026-11-18T21:53:29+00:00",
       "source_file": "schedule_cache/week_12/day_1.html",
       "lessons": [
         {
@@ -482,7 +482,7 @@
       "count": 3,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-18T21:49:48+00:00",
+      "fetched_at": "2026-11-18T21:53:30+00:00",
       "source_file": "schedule_cache/week_12/day_2.html",
       "lessons": [
         {
@@ -545,7 +545,7 @@
       "count": 4,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-18T21:49:49+00:00",
+      "fetched_at": "2026-11-18T21:53:31+00:00",
       "source_file": "schedule_cache/week_12/day_3.html",
       "lessons": [
         {
@@ -613,7 +613,7 @@
       "count": 2,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-18T21:49:50+00:00",
+      "fetched_at": "2026-11-18T21:53:32+00:00",
       "source_file": "schedule_cache/week_12/day_4.html",
       "lessons": [
         {
@@ -653,7 +653,7 @@
       "count": 3,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-18T21:49:51+00:00",
+      "fetched_at": "2026-11-18T21:53:33+00:00",
       "source_file": "schedule_cache/week_12/day_5.html",
       "lessons": [
         {
@@ -718,7 +718,7 @@
       "count": 2,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-18T21:49:52+00:00",
+      "fetched_at": "2026-11-18T21:53:34+00:00",
       "source_file": "schedule_cache/week_13/day_1.html",
       "lessons": [
         {
@@ -758,7 +758,7 @@
       "count": 8,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-18T21:49:53+00:00",
+      "fetched_at": "2026-11-18T21:53:35+00:00",
       "source_file": "schedule_cache/week_13/day_2.html",
       "lessons": [
         {
@@ -882,7 +882,7 @@
       "count": 1,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-18T21:49:54+00:00",
+      "fetched_at": "2026-11-18T21:53:37+00:00",
       "source_file": "schedule_cache/week_13/day_3.html",
       "lessons": [
         {
@@ -908,7 +908,7 @@
       "count": 4,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-18T21:49:55+00:00",
+      "fetched_at": "2026-11-18T21:53:38+00:00",
       "source_file": "schedule_cache/week_13/day_4.html",
       "lessons": [
         {
@@ -976,7 +976,7 @@
       "count": 3,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-18T21:49:56+00:00",
+      "fetched_at": "2026-11-18T21:53:39+00:00",
       "source_file": "schedule_cache/week_13/day_5.html",
       "lessons": [
         {
@@ -1058,6 +1058,26 @@
     },
     {
       "at": "2026-11-19T14:55",
+      "scope": "today"
+    },
+    {
+      "at": "2026-11-20T03:00",
+      "scope": "full"
+    },
+    {
+      "at": "2026-11-20T06:30",
+      "scope": "near"
+    },
+    {
+      "at": "2026-11-20T13:25",
+      "scope": "today"
+    },
+    {
+      "at": "2026-11-20T14:55",
+      "scope": "today"
+    },
+    {
+      "at": "2026-11-20T16:25",
       "scope": "today"
     }
   ]
