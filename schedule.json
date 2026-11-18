@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-17T17:10:08+00:00",
+  "generated_at": "2026-11-18T01:00:29+00:00",
   "scope": "full",
   "group": "ІПЗ-26-3",
   "current_week": 11,
@@ -60,7 +60,7 @@
       "day": 2,
       "date": "2026-11-17",
       "count": 8,
-      "changed": true,
+      "changed": false,
       "error": null,
       "fetched_at": "2026-11-17T17:09:56+00:00",
       "source_file": "schedule_cache/week_11/day_2.html",
@@ -234,7 +234,7 @@
       "count": 1,
       "changed": true,
       "error": null,
-      "fetched_at": "2026-11-17T17:09:57+00:00",
+      "fetched_at": "2026-11-18T01:00:17+00:00",
       "source_file": "schedule_cache/week_11/day_3.html",
       "lessons": [
         {
@@ -245,7 +245,7 @@
           "subject": "Іноземна мова",
           "type": "practical",
           "type_label": "Практичне",
-          "room": "225",
+          "room": "225 / У15",
           "subgroup": null,
           "groups": "ІПЗ-26-3",
           "teacher": "Суховецька Світлана Володимирівна",
@@ -263,9 +263,9 @@
       "day": 4,
       "date": "2026-11-19",
       "count": 4,
-      "changed": false,
+      "changed": true,
       "error": null,
-      "fetched_at": "2026-11-17T17:09:58+00:00",
+      "fetched_at": "2026-11-18T01:00:18+00:00",
       "source_file": "schedule_cache/week_11/day_4.html",
       "lessons": [
         {
@@ -276,7 +276,7 @@
           "subject": "Архітектура комп'ютера",
           "type": "lab",
           "type_label": "Лабораторна",
-          "room": "ОЦ 107-а",
+          "room": "ОЦ 107-а / У13",
           "subgroup": 2,
           "groups": "ІПЗ-26-3 (підгр. 2)",
           "teacher": "Кушнір Надія Олександрівна",
@@ -290,7 +290,7 @@
           "subject": "Архітектура комп'ютера",
           "type": "lab",
           "type_label": "Лабораторна",
-          "room": "ОЦ 107-а",
+          "room": "ОЦ 107-а / У13",
           "subgroup": 2,
           "groups": "ІПЗ-26-3 (підгр. 2)",
           "teacher": "Кушнір Надія Олександрівна",
@@ -304,7 +304,7 @@
           "subject": "Фізичне виховання",
           "type": "practical",
           "type_label": "Практичне",
-          "room": "Спортзал (4)",
+          "room": "Спортзал (4) / У24",
           "subgroup": null,
           "groups": "ІПЗ-26-3",
           "teacher": "Скок Павло Павлович",
@@ -318,7 +318,7 @@
           "subject": "Українська мова, професійне та академічне письмо",
           "type": "practical",
           "type_label": "Практичне",
-          "room": "238",
+          "room": "238 / У24",
           "subgroup": null,
           "groups": "ІПЗ-26-3",
           "teacher": "Панченко Наталія Анатоліївна",
@@ -332,9 +332,9 @@
       "day": 5,
       "date": "2026-11-20",
       "count": 3,
-      "changed": false,
+      "changed": true,
       "error": null,
-      "fetched_at": "2026-11-17T17:09:59+00:00",
+      "fetched_at": "2026-11-18T01:00:19+00:00",
       "source_file": "schedule_cache/week_11/day_5.html",
       "lessons": [
         {
@@ -345,7 +345,7 @@
           "subject": "Математичний аналіз",
           "type": "practical",
           "type_label": "Практичне",
-          "room": "315",
+          "room": "315 / У24",
           "subgroup": null,
           "groups": "ІПЗ-26-3",
           "teacher": "Шпаківський Віталій Станіславович",
@@ -364,7 +364,7 @@
           "subject": "Основи програмування",
           "type": "lab",
           "type_label": "Лабораторна",
-          "room": "ОЦ 107",
+          "room": "ОЦ 107 / У5",
           "subgroup": 1,
           "groups": "ІПЗ-26-3 (підгр. 1)",
           "teacher": "Чижмотря Олексій Володимирович",
@@ -383,7 +383,7 @@
           "subject": "Основи програмування",
           "type": "lab",
           "type_label": "Лабораторна",
-          "room": "ОЦ 107",
+          "room": "ОЦ 107 / У5",
           "subgroup": 1,
           "groups": "ІПЗ-26-3 (підгр. 1)",
           "teacher": "Чижмотря Олексій Володимирович",
@@ -414,7 +414,7 @@
       "count": 4,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-17T17:10:00+00:00",
+      "fetched_at": "2026-11-18T01:00:20+00:00",
       "source_file": "schedule_cache/week_12/day_1.html",
       "lessons": [
         {
@@ -482,7 +482,7 @@
       "count": 3,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-17T17:10:01+00:00",
+      "fetched_at": "2026-11-18T01:00:21+00:00",
       "source_file": "schedule_cache/week_12/day_2.html",
       "lessons": [
         {
@@ -545,7 +545,7 @@
       "count": 4,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-17T17:10:01+00:00",
+      "fetched_at": "2026-11-18T01:00:22+00:00",
       "source_file": "schedule_cache/week_12/day_3.html",
       "lessons": [
         {
@@ -613,7 +613,7 @@
       "count": 2,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-17T17:10:02+00:00",
+      "fetched_at": "2026-11-18T01:00:23+00:00",
       "source_file": "schedule_cache/week_12/day_4.html",
       "lessons": [
         {
@@ -653,7 +653,7 @@
       "count": 3,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-17T17:10:03+00:00",
+      "fetched_at": "2026-11-18T01:00:24+00:00",
       "source_file": "schedule_cache/week_12/day_5.html",
       "lessons": [
         {
@@ -718,7 +718,7 @@
       "count": 2,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-17T17:10:04+00:00",
+      "fetched_at": "2026-11-18T01:00:25+00:00",
       "source_file": "schedule_cache/week_13/day_1.html",
       "lessons": [
         {
@@ -758,7 +758,7 @@
       "count": 8,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-17T17:10:05+00:00",
+      "fetched_at": "2026-11-18T01:00:26+00:00",
       "source_file": "schedule_cache/week_13/day_2.html",
       "lessons": [
         {
@@ -880,9 +880,9 @@
       "day": 3,
       "date": "2026-12-02",
       "count": 1,
-      "changed": false,
+      "changed": true,
       "error": null,
-      "fetched_at": "2026-11-17T17:10:06+00:00",
+      "fetched_at": "2026-11-18T01:00:27+00:00",
       "source_file": "schedule_cache/week_13/day_3.html",
       "lessons": [
         {
@@ -893,7 +893,7 @@
           "subject": "Іноземна мова",
           "type": "practical",
           "type_label": "Практичне",
-          "room": "225",
+          "room": "225 / У15",
           "subgroup": null,
           "groups": "ІПЗ-26-3",
           "teacher": "Суховецька Світлана Володимирівна",
@@ -906,9 +906,9 @@
       "day": 4,
       "date": "2026-12-03",
       "count": 4,
-      "changed": false,
+      "changed": true,
       "error": null,
-      "fetched_at": "2026-11-17T17:10:07+00:00",
+      "fetched_at": "2026-11-18T01:00:28+00:00",
       "source_file": "schedule_cache/week_13/day_4.html",
       "lessons": [
         {
@@ -919,7 +919,7 @@
           "subject": "Архітектура комп'ютера",
           "type": "lab",
           "type_label": "Лабораторна",
-          "room": "ОЦ 107-а",
+          "room": "ОЦ 107-а / У13",
           "subgroup": 2,
           "groups": "ІПЗ-26-3 (підгр. 2)",
           "teacher": "Кушнір Надія Олександрівна",
@@ -933,7 +933,7 @@
           "subject": "Архітектура комп'ютера",
           "type": "lab",
           "type_label": "Лабораторна",
-          "room": "ОЦ 107-а",
+          "room": "ОЦ 107-а / У13",
           "subgroup": 2,
           "groups": "ІПЗ-26-3 (підгр. 2)",
           "teacher": "Кушнір Надія Олександрівна",
@@ -947,7 +947,7 @@
           "subject": "Фізичне виховання",
           "type": "practical",
           "type_label": "Практичне",
-          "room": "Спортзал (4)",
+          "room": "Спортзал (4) / У24",
           "subgroup": null,
           "groups": "ІПЗ-26-3",
           "teacher": "Скок Павло Павлович",
@@ -961,7 +961,7 @@
           "subject": "Українська мова, професійне та академічне письмо",
           "type": "practical",
           "type_label": "Практичне",
-          "room": "238",
+          "room": "238 / У24",
           "subgroup": null,
           "groups": "ІПЗ-26-3",
           "teacher": "Панченко Наталія Анатоліївна",
@@ -974,9 +974,9 @@
       "day": 5,
       "date": "2026-12-04",
       "count": 3,
-      "changed": false,
+      "changed": true,
       "error": null,
-      "fetched_at": "2026-11-17T17:10:08+00:00",
+      "fetched_at": "2026-11-18T01:00:29+00:00",
       "source_file": "schedule_cache/week_13/day_5.html",
       "lessons": [
         {
@@ -987,7 +987,7 @@
           "subject": "Математичний аналіз",
           "type": "practical",
           "type_label": "Практичне",
-          "room": "315",
+          "room": "315 / У24",
           "subgroup": null,
           "groups": "ІПЗ-26-3",
           "teacher": "Шпаківський Віталій Станіславович",
@@ -1001,7 +1001,7 @@
           "subject": "Основи програмування",
           "type": "lab",
           "type_label": "Лабораторна",
-          "room": "ОЦ 107",
+          "room": "ОЦ 107 / У5",
           "subgroup": 1,
           "groups": "ІПЗ-26-3 (підгр. 1)",
           "teacher": "Чижмотря Олексій Володимирович",
@@ -1015,7 +1015,7 @@
           "subject": "Основи програмування",
           "type": "lab",
           "type_label": "Лабораторна",
-          "room": "ОЦ 107",
+          "room": "ОЦ 107 / У5",
           "subgroup": 1,
           "groups": "ІПЗ-26-3 (підгр. 1)",
           "teacher": "Чижмотря Олексій Володимирович",
