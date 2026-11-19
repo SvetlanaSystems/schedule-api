@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-19T15:06:50+00:00",
+  "generated_at": "2026-11-19T23:13:16+00:00",
   "scope": "full",
   "group": "ІПЗ-26-3",
   "current_week": 11,
@@ -12,7 +12,7 @@
       "count": 2,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-16T21:35:53+00:00",
+      "fetched_at": "2026-11-16T11:24:08+00:00",
       "source_file": "schedule_cache/week_11/day_1.html",
       "lessons": [
         {
@@ -23,7 +23,7 @@
           "subject": "Основи програмування",
           "type": "lab",
           "type_label": "Лабораторна",
-          "room": "ОЦ 102 / У6",
+          "room": "ОЦ 101-с / У6",
           "subgroup": 2,
           "groups": "ІПЗ-26-3 (підгр. 2)",
           "teacher": "Чижмотря Олексій Володимирович",
@@ -42,7 +42,7 @@
           "subject": "Основи програмування",
           "type": "lab",
           "type_label": "Лабораторна",
-          "room": "ОЦ 102 / У12",
+          "room": "ОЦ 101-с / У12",
           "subgroup": 2,
           "groups": "ІПЗ-26-3 (підгр. 2)",
           "teacher": "Чижмотря Олексій Володимирович",
@@ -62,7 +62,7 @@
       "count": 8,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-17T17:09:56+00:00",
+      "fetched_at": "2026-11-17T09:27:53+00:00",
       "source_file": "schedule_cache/week_11/day_2.html",
       "lessons": [
         {
@@ -86,7 +86,8 @@
               "label": "Освітній портал (Moodle): лабораторна робота №9",
               "url": "https://learn.ztu.edu.ua/course/view.php?id=4036"
             }
-          ]
+          ],
+          "is_canceled": true
         },
         {
           "id": 1659,
@@ -161,12 +162,7 @@
           "subgroup": 1,
           "groups": "ІПЗ-26-3 (підгр. 1)",
           "teacher": "Локтікова Тамара Миколаївна",
-          "links": [
-            {
-              "label": "Moodle – лаб.роб.6",
-              "url": "https://learn.ztu.edu.ua/mod/folder/view.php?id=266792-до"
-            }
-          ]
+          "links": []
         },
         {
           "id": 2176,
@@ -199,12 +195,7 @@
           "subgroup": 1,
           "groups": "ІПЗ-26-3 (підгр. 1)",
           "teacher": "Локтікова Тамара Миколаївна",
-          "links": [
-            {
-              "label": "Moodle – лаб.роб.6",
-              "url": "https://learn.ztu.edu.ua/mod/folder/view.php?id=266792-до"
-            }
-          ]
+          "links": []
         },
         {
           "id": 2056,
@@ -234,7 +225,7 @@
       "count": 1,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-18T21:53:27+00:00",
+      "fetched_at": "2026-11-17T09:27:54+00:00",
       "source_file": "schedule_cache/week_11/day_3.html",
       "lessons": [
         {
@@ -245,11 +236,15 @@
           "subject": "Іноземна мова",
           "type": "practical",
           "type_label": "Практичне",
-          "room": "225 / У15",
+          "room": "225",
           "subgroup": null,
           "groups": "ІПЗ-26-3",
           "teacher": "Суховецька Світлана Володимирівна",
           "links": [
+            {
+              "label": "Google Meet",
+              "url": "https://meet.google.com/pue-sewt-mdj"
+            },
             {
               "label": "Task",
               "url": "https://learn.ztu.edu.ua/mod/folder/view.php?id=253932"
@@ -265,7 +260,7 @@
       "count": 4,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-19T15:06:38+00:00",
+      "fetched_at": "2026-11-17T09:27:55+00:00",
       "source_file": "schedule_cache/week_11/day_4.html",
       "lessons": [
         {
@@ -276,7 +271,7 @@
           "subject": "Архітектура комп'ютера",
           "type": "lab",
           "type_label": "Лабораторна",
-          "room": "ОЦ 107-а / У13",
+          "room": "ОЦ 107-а",
           "subgroup": 2,
           "groups": "ІПЗ-26-3 (підгр. 2)",
           "teacher": "Кушнір Надія Олександрівна",
@@ -290,7 +285,7 @@
           "subject": "Архітектура комп'ютера",
           "type": "lab",
           "type_label": "Лабораторна",
-          "room": "ОЦ 107-а / У13",
+          "room": "ОЦ 107-а",
           "subgroup": 2,
           "groups": "ІПЗ-26-3 (підгр. 2)",
           "teacher": "Кушнір Надія Олександрівна",
@@ -304,7 +299,7 @@
           "subject": "Фізичне виховання",
           "type": "practical",
           "type_label": "Практичне",
-          "room": "Спортзал (4) / У24",
+          "room": "Спортзал (4)",
           "subgroup": null,
           "groups": "ІПЗ-26-3",
           "teacher": "Скок Павло Павлович",
@@ -318,12 +313,11 @@
           "subject": "Українська мова, професійне та академічне письмо",
           "type": "practical",
           "type_label": "Практичне",
-          "room": "238 / У24",
+          "room": "238",
           "subgroup": null,
           "groups": "ІПЗ-26-3",
           "teacher": "Панченко Наталія Анатоліївна",
-          "links": [],
-          "is_canceled": true
+          "links": []
         }
       ]
     },
@@ -332,9 +326,9 @@
       "day": 5,
       "date": "2026-11-20",
       "count": 3,
-      "changed": false,
+      "changed": true,
       "error": null,
-      "fetched_at": "2026-11-19T15:06:39+00:00",
+      "fetched_at": "2026-11-19T23:13:06+00:00",
       "source_file": "schedule_cache/week_11/day_5.html",
       "lessons": [
         {
@@ -354,8 +348,7 @@
               "label": "Moodle",
               "url": "https://learn.ztu.edu.ua/pluginfile.php/497945/mod_resource/content/2/%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D1%87%D0%BD%D0%B5_%D0%B7%D0%B0%D0%BD%D1%8F%D1%82%D1%82%D1%8F_5.pdf"
             }
-          ],
-          "is_canceled": true
+          ]
         },
         {
           "id": 3448,
@@ -374,8 +367,7 @@
               "label": "Освітній портал (Moodle) - лабораторна робота № 17",
               "url": "https://learn.ztu.edu.ua/course/view.php?id=8112"
             }
-          ],
-          "is_canceled": true
+          ]
         },
         {
           "id": 3552,
@@ -394,8 +386,7 @@
               "label": "Освітній портал (Moodle) - лабораторна робота № 17",
               "url": "https://learn.ztu.edu.ua/course/view.php?id=8112"
             }
-          ],
-          "is_canceled": true
+          ]
         }
       ]
     },
@@ -417,7 +408,7 @@
       "count": 4,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-19T15:06:40+00:00",
+      "fetched_at": "2026-11-19T23:13:07+00:00",
       "source_file": "schedule_cache/week_12/day_1.html",
       "lessons": [
         {
@@ -485,7 +476,7 @@
       "count": 3,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-19T15:06:41+00:00",
+      "fetched_at": "2026-11-19T23:13:08+00:00",
       "source_file": "schedule_cache/week_12/day_2.html",
       "lessons": [
         {
@@ -548,7 +539,7 @@
       "count": 4,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-19T15:06:42+00:00",
+      "fetched_at": "2026-11-19T23:13:09+00:00",
       "source_file": "schedule_cache/week_12/day_3.html",
       "lessons": [
         {
@@ -616,7 +607,7 @@
       "count": 2,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-19T15:06:43+00:00",
+      "fetched_at": "2026-11-19T23:13:10+00:00",
       "source_file": "schedule_cache/week_12/day_4.html",
       "lessons": [
         {
@@ -656,7 +647,7 @@
       "count": 3,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-19T15:06:44+00:00",
+      "fetched_at": "2026-11-19T23:13:11+00:00",
       "source_file": "schedule_cache/week_12/day_5.html",
       "lessons": [
         {
@@ -721,7 +712,7 @@
       "count": 2,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-19T15:06:45+00:00",
+      "fetched_at": "2026-11-19T23:13:12+00:00",
       "source_file": "schedule_cache/week_13/day_1.html",
       "lessons": [
         {
@@ -761,7 +752,7 @@
       "count": 8,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-19T15:06:46+00:00",
+      "fetched_at": "2026-11-19T23:13:13+00:00",
       "source_file": "schedule_cache/week_13/day_2.html",
       "lessons": [
         {
@@ -883,9 +874,9 @@
       "day": 3,
       "date": "2026-12-02",
       "count": 1,
-      "changed": false,
+      "changed": true,
       "error": null,
-      "fetched_at": "2026-11-19T15:06:47+00:00",
+      "fetched_at": "2026-11-19T23:13:14+00:00",
       "source_file": "schedule_cache/week_13/day_3.html",
       "lessons": [
         {
@@ -909,9 +900,9 @@
       "day": 4,
       "date": "2026-12-03",
       "count": 4,
-      "changed": false,
+      "changed": true,
       "error": null,
-      "fetched_at": "2026-11-19T15:06:48+00:00",
+      "fetched_at": "2026-11-19T23:13:15+00:00",
       "source_file": "schedule_cache/week_13/day_4.html",
       "lessons": [
         {
@@ -977,9 +968,9 @@
       "day": 5,
       "date": "2026-12-04",
       "count": 3,
-      "changed": false,
+      "changed": true,
       "error": null,
-      "fetched_at": "2026-11-19T15:06:49+00:00",
+      "fetched_at": "2026-11-19T23:13:16+00:00",
       "source_file": "schedule_cache/week_13/day_5.html",
       "lessons": [
         {
@@ -1040,14 +1031,6 @@
   ],
   "next_updates": [
     {
-      "at": "2026-11-20T03:00",
-      "scope": "full"
-    },
-    {
-      "at": "2026-11-20T06:30",
-      "scope": "near"
-    },
-    {
       "at": "2026-11-20T13:25",
       "scope": "today"
     },
@@ -1058,6 +1041,14 @@
     {
       "at": "2026-11-20T16:25",
       "scope": "today"
+    },
+    {
+      "at": "2026-11-21T03:00",
+      "scope": "full"
+    },
+    {
+      "at": "2026-11-21T06:30",
+      "scope": "near"
     }
   ]
 }
