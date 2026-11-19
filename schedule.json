@@ -354,7 +354,8 @@
               "label": "Moodle",
               "url": "https://learn.ztu.edu.ua/pluginfile.php/497945/mod_resource/content/2/%D0%9F%D1%80%D0%B0%D0%BA%D1%82%D0%B8%D1%87%D0%BD%D0%B5_%D0%B7%D0%B0%D0%BD%D1%8F%D1%82%D1%82%D1%8F_5.pdf"
             }
-          ]
+          ],
+          "is_canceled": true
         },
         {
           "id": 3448,
@@ -373,7 +374,8 @@
               "label": "Освітній портал (Moodle) - лабораторна робота № 17",
               "url": "https://learn.ztu.edu.ua/course/view.php?id=8112"
             }
-          ]
+          ],
+          "is_canceled": true
         },
         {
           "id": 3552,
@@ -392,7 +394,8 @@
               "label": "Освітній портал (Moodle) - лабораторна робота № 17",
               "url": "https://learn.ztu.edu.ua/course/view.php?id=8112"
             }
-          ]
+          ],
+          "is_canceled": true
         }
       ]
     },
