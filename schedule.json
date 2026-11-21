@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-20T14:25:16+00:00",
-  "scope": "today",
+  "generated_at": "2026-11-21T01:00:12+00:00",
+  "scope": "full",
   "group": "ІПЗ-26-3",
   "current_week": 11,
   "week_source": "site",
@@ -404,10 +404,10 @@
       "day": 6,
       "date": "2026-11-21",
       "count": 0,
-      "changed": false,
+      "changed": true,
       "error": null,
-      "fetched_at": null,
-      "source_file": null,
+      "fetched_at": "2026-11-21T01:00:01+00:00",
+      "source_file": "schedule_cache/week_11/day_6.html",
       "lessons": []
     },
     {
@@ -415,9 +415,9 @@
       "day": 1,
       "date": "2026-11-23",
       "count": 4,
-      "changed": false,
+      "changed": true,
       "error": null,
-      "fetched_at": "2026-11-20T01:00:16+00:00",
+      "fetched_at": "2026-11-21T01:00:03+00:00",
       "source_file": "schedule_cache/week_12/day_1.html",
       "lessons": [
         {
@@ -428,7 +428,7 @@
           "subject": "Фізичне виховання",
           "type": "practical",
           "type_label": "Практичне",
-          "room": "Спортзал (3)",
+          "room": "Дистанційно 42",
           "subgroup": null,
           "groups": "ІПЗ-26-3",
           "teacher": "Скок Павло Павлович",
@@ -442,7 +442,7 @@
           "subject": "Основи програмування",
           "type": "lecture",
           "type_label": "Лекція",
-          "room": "316",
+          "room": "Дистанційно 18",
           "subgroup": null,
           "groups": "ВТ-26-1, ІПЗ-26-1, ІПЗ-26-2, ІПЗ-26-3, ІПЗ-26-4",
           "teacher": "Вакалюк Тетяна Анатоліївна",
@@ -456,7 +456,7 @@
           "subject": "Хмарні офісні пакети",
           "type": "lecture",
           "type_label": "Лекція",
-          "room": "316",
+          "room": "Дистанційно 22",
           "subgroup": null,
           "groups": "ВТ-26-1, ІПЗ-26-1, ІПЗ-26-2, ІПЗ-26-3, ІПЗ-26-4",
           "teacher": "Вакалюк Тетяна Анатоліївна",
@@ -470,7 +470,7 @@
           "subject": "Математичний аналіз",
           "type": "lecture",
           "type_label": "Лекція",
-          "room": "316",
+          "room": "Дистанційно 37",
           "subgroup": null,
           "groups": "ВТ-26-1, ІПЗ-26-1, ІПЗ-26-2, ІПЗ-26-3, ІПЗ-26-4",
           "teacher": "Шпаківський Віталій Станіславович",
@@ -482,12 +482,40 @@
       "week": 12,
       "day": 2,
       "date": "2026-11-24",
-      "count": 3,
-      "changed": false,
+      "count": 4,
+      "changed": true,
       "error": null,
-      "fetched_at": "2026-11-20T01:00:17+00:00",
+      "fetched_at": "2026-11-21T01:00:04+00:00",
       "source_file": "schedule_cache/week_12/day_2.html",
       "lessons": [
+        {
+          "id": 3706,
+          "number": 3,
+          "start": "11:40",
+          "end": "13:00",
+          "subject": "Математичний аналіз",
+          "type": "lecture",
+          "type_label": "Лекція",
+          "room": "Дистанційно 13",
+          "subgroup": null,
+          "groups": "ВТ-26-1, ІПЗ-26-1, ІПЗ-26-2, ІПЗ-26-3, ІПЗ-26-4",
+          "teacher": "Шпаківський Віталій Станіславович",
+          "links": []
+        },
+        {
+          "id": 3195,
+          "number": 4,
+          "start": "13:30",
+          "end": "14:50",
+          "subject": "Лінійна алгебра та аналітична геометрія",
+          "type": "lecture",
+          "type_label": "Лекція",
+          "room": "Дистанційно 9",
+          "subgroup": null,
+          "groups": "ВТ-26-1, ІПЗ-26-1, ІПЗ-26-2, ІПЗ-26-3, ІПЗ-26-4",
+          "teacher": "Шпаківський Віталій Станіславович",
+          "links": []
+        },
         {
           "id": 2780,
           "number": 5,
@@ -496,7 +524,7 @@
           "subject": "Іноземна мова",
           "type": "practical",
           "type_label": "Практичне",
-          "room": "414",
+          "room": "Дистанційно 5",
           "subgroup": null,
           "groups": "ІПЗ-26-3",
           "teacher": "Суховецька Світлана Володимирівна",
@@ -519,24 +547,10 @@
           "subject": "Лінійна алгебра та аналітична геометрія",
           "type": "practical",
           "type_label": "Практичне",
-          "room": "4001",
+          "room": "Дистанційно 36",
           "subgroup": null,
           "groups": "ІПЗ-26-3",
           "teacher": "Шпаківський Віталій Станіславович",
-          "links": []
-        },
-        {
-          "id": 5440,
-          "number": 7,
-          "start": "18:00",
-          "end": "19:20",
-          "subject": "Розвиток комунікаційних навичок та групова динаміка",
-          "type": "practical",
-          "type_label": "Практичне",
-          "room": "426",
-          "subgroup": null,
-          "groups": "ІПЗ-26-3",
-          "teacher": "Венгловська Юлія Володимирівна",
           "links": []
         }
       ]
@@ -545,24 +559,38 @@
       "week": 12,
       "day": 3,
       "date": "2026-11-25",
-      "count": 4,
-      "changed": false,
+      "count": 3,
+      "changed": true,
       "error": null,
-      "fetched_at": "2026-11-20T01:00:18+00:00",
+      "fetched_at": "2026-11-21T01:00:05+00:00",
       "source_file": "schedule_cache/week_12/day_3.html",
       "lessons": [
         {
-          "id": 7207,
+          "id": 1191,
+          "number": 3,
+          "start": "11:40",
+          "end": "13:00",
+          "subject": "Основи програмування",
+          "type": "lecture",
+          "type_label": "Лекція",
+          "room": "Дистанційно 3",
+          "subgroup": null,
+          "groups": "ВТ-26-1, ІПЗ-26-1, ІПЗ-26-2, ІПЗ-26-3, ІПЗ-26-4",
+          "teacher": "Вакалюк Тетяна Анатоліївна",
+          "links": []
+        },
+        {
+          "id": 1099,
           "number": 4,
           "start": "13:30",
           "end": "14:50",
-          "subject": "Українська мова, професійне та академічне письмо",
-          "type": "practical",
-          "type_label": "Практичне",
-          "room": "428",
+          "subject": "Основи програмування",
+          "type": "lecture",
+          "type_label": "Лекція",
+          "room": "Дистанційно 3",
           "subgroup": null,
-          "groups": "ІПЗ-26-3",
-          "teacher": "Панченко Наталія Анатоліївна",
+          "groups": "ВТ-26-1, ІПЗ-26-1, ІПЗ-26-2, ІПЗ-26-3, ІПЗ-26-4",
+          "teacher": "Вакалюк Тетяна Анатоліївна",
           "links": []
         },
         {
@@ -573,38 +601,10 @@
           "subject": "Архітектура комп'ютера",
           "type": "lecture",
           "type_label": "Лекція",
-          "room": "401",
+          "room": "Дистанційно 18",
           "subgroup": null,
           "groups": "ВТ-26-1, ІПЗ-26-1, ІПЗ-26-2, ІПЗ-26-3, ІПЗ-26-4",
           "teacher": "Локтікова Тамара Миколаївна",
-          "links": []
-        },
-        {
-          "id": 5483,
-          "number": 6,
-          "start": "16:30",
-          "end": "17:50",
-          "subject": "Основи програмування",
-          "type": "lab",
-          "type_label": "Лабораторна",
-          "room": "ОЦ 101-с",
-          "subgroup": 2,
-          "groups": "ІПЗ-26-3 (підгр. 2)",
-          "teacher": "Чижмотря Олексій Володимирович",
-          "links": []
-        },
-        {
-          "id": 5602,
-          "number": 7,
-          "start": "18:00",
-          "end": "19:20",
-          "subject": "Основи програмування",
-          "type": "lab",
-          "type_label": "Лабораторна",
-          "room": "ОЦ 101-с",
-          "subgroup": 2,
-          "groups": "ІПЗ-26-3 (підгр. 2)",
-          "teacher": "Чижмотря Олексій Володимирович",
           "links": []
         }
       ]
@@ -613,12 +613,54 @@
       "week": 12,
       "day": 4,
       "date": "2026-11-26",
-      "count": 2,
-      "changed": false,
+      "count": 4,
+      "changed": true,
       "error": null,
-      "fetched_at": "2026-11-20T01:00:19+00:00",
+      "fetched_at": "2026-11-21T01:00:06+00:00",
       "source_file": "schedule_cache/week_12/day_4.html",
       "lessons": [
+        {
+          "id": 2476,
+          "number": 3,
+          "start": "11:40",
+          "end": "13:00",
+          "subject": "Розвиток комунікаційних навичок та групова динаміка",
+          "type": "lecture",
+          "type_label": "Лекція",
+          "room": "Дистанційно 6",
+          "subgroup": null,
+          "groups": "ВТ-26-1, ІПЗ-26-1, ІПЗ-26-2, ІПЗ-26-3, ІПЗ-26-4",
+          "teacher": "Свінцицька Олександра Миколаївна",
+          "links": []
+        },
+        {
+          "id": 7207,
+          "number": 4,
+          "start": "13:30",
+          "end": "14:50",
+          "subject": "Українська мова, професійне та академічне письмо",
+          "type": "practical",
+          "type_label": "Практичне",
+          "room": "Дистанційно 97",
+          "subgroup": null,
+          "groups": "ІПЗ-26-3",
+          "teacher": "Панченко Наталія Анатоліївна",
+          "links": []
+        },
+        {
+          "id": 6738,
+          "number": 5,
+          "start": "15:00",
+          "end": "16:20",
+          "subject": "Розвиток комунікаційних навичок та групова динаміка",
+          "type": "practical",
+          "type_label": "Практичне",
+          "room": "Дистанційно 68",
+          "subgroup": null,
+          "groups": "ІПЗ-26-3",
+          "teacher": "Венгловська Юлія Володимирівна",
+          "links": []
+        },
         {
           "id": 6706,
           "number": 6,
@@ -627,24 +669,10 @@
           "subject": "Лінійна алгебра та аналітична геометрія",
           "type": "practical",
           "type_label": "Практичне",
-          "room": "432",
+          "room": "Дистанційно 37",
           "subgroup": null,
           "groups": "ІПЗ-26-3",
           "teacher": "Шпаківський Віталій Станіславович",
-          "links": []
-        },
-        {
-          "id": 6738,
-          "number": 7,
-          "start": "18:00",
-          "end": "19:20",
-          "subject": "Розвиток комунікаційних навичок та групова динаміка",
-          "type": "practical",
-          "type_label": "Практичне",
-          "room": "3001",
-          "subgroup": null,
-          "groups": "ІПЗ-26-3",
-          "teacher": "Венгловська Юлія Володимирівна",
           "links": []
         }
       ]
@@ -653,10 +681,10 @@
       "week": 12,
       "day": 5,
       "date": "2026-11-27",
-      "count": 3,
-      "changed": false,
+      "count": 4,
+      "changed": true,
       "error": null,
-      "fetched_at": "2026-11-20T01:00:19+00:00",
+      "fetched_at": "2026-11-21T01:00:07+00:00",
       "source_file": "schedule_cache/week_12/day_5.html",
       "lessons": [
         {
@@ -667,7 +695,7 @@
           "subject": "Основи програмування",
           "type": "lab",
           "type_label": "Лабораторна",
-          "room": "2003",
+          "room": "Дистанційно 15",
           "subgroup": 1,
           "groups": "ІПЗ-26-3 (підгр. 1)",
           "teacher": "Чижмотря Олексій Володимирович",
@@ -681,7 +709,7 @@
           "subject": "Основи програмування",
           "type": "lab",
           "type_label": "Лабораторна",
-          "room": "2003",
+          "room": "Дистанційно 47",
           "subgroup": 1,
           "groups": "ІПЗ-26-3 (підгр. 1)",
           "teacher": "Чижмотря Олексій Володимирович",
@@ -695,10 +723,24 @@
           "subject": "Українська мова, професійне та академічне письмо",
           "type": "practical",
           "type_label": "Практичне",
-          "room": "315",
+          "room": "Дистанційно 23",
           "subgroup": null,
           "groups": "ІПЗ-26-3",
           "teacher": "Панченко Наталія Анатоліївна",
+          "links": []
+        },
+        {
+          "id": 5440,
+          "number": 4,
+          "start": "13:30",
+          "end": "14:50",
+          "subject": "Розвиток комунікаційних навичок та групова динаміка",
+          "type": "practical",
+          "type_label": "Практичне",
+          "room": "Дистанційно 41",
+          "subgroup": null,
+          "groups": "ІПЗ-26-3",
+          "teacher": "Венгловська Юлія Володимирівна",
           "links": []
         }
       ]
@@ -721,7 +763,7 @@
       "count": 2,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-20T01:00:20+00:00",
+      "fetched_at": "2026-11-21T01:00:08+00:00",
       "source_file": "schedule_cache/week_13/day_1.html",
       "lessons": [
         {
@@ -761,7 +803,7 @@
       "count": 8,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-20T01:00:21+00:00",
+      "fetched_at": "2026-11-21T01:00:09+00:00",
       "source_file": "schedule_cache/week_13/day_2.html",
       "lessons": [
         {
@@ -885,7 +927,7 @@
       "count": 1,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-20T01:00:22+00:00",
+      "fetched_at": "2026-11-21T01:00:09+00:00",
       "source_file": "schedule_cache/week_13/day_3.html",
       "lessons": [
         {
@@ -911,7 +953,7 @@
       "count": 4,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-20T01:00:23+00:00",
+      "fetched_at": "2026-11-21T01:00:10+00:00",
       "source_file": "schedule_cache/week_13/day_4.html",
       "lessons": [
         {
@@ -979,7 +1021,7 @@
       "count": 3,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-20T01:00:24+00:00",
+      "fetched_at": "2026-11-21T01:00:11+00:00",
       "source_file": "schedule_cache/week_13/day_5.html",
       "lessons": [
         {
@@ -1040,11 +1082,15 @@
   ],
   "next_updates": [
     {
-      "at": "2026-11-21T03:00",
+      "at": "2026-11-21T06:30",
+      "scope": "near"
+    },
+    {
+      "at": "2026-11-22T03:00",
       "scope": "full"
     },
     {
-      "at": "2026-11-21T06:30",
+      "at": "2026-11-22T06:30",
       "scope": "near"
     }
   ]
