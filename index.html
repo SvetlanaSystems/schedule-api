@@ -628,7 +628,7 @@ const RAW_URL  = `https://raw.githubusercontent.com/${GH_REPO}/${GH_BRANCH}/${GH
 const REPO_URL = `https://github.com/${GH_REPO}/blob/${GH_BRANCH}/${GH_FILE}`;
 
 const REFRESH_MS     = 5 * 60 * 1000;          // як часто перевіряти репозиторій
-const STALE_AFTER_MS = 12 * 60 * 60 * 1000;    // файл старший за це — "застарів"
+const STALE_AFTER_MS = 20 * 60 * 60 * 1000;    // файл старший за це — "застарів"
 const STATUS_URL     = "https://romashkaa.github.io/status/#services";   // сторінка стану сервісів
 const FETCH_TIMEOUT  = 10000;                  // таймаут запиту, мс
 const BREAK_SHOW_MIN  = 20;                     // коротші перерви в списках не показуємо
