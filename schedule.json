@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-23T01:00:28+00:00",
-  "scope": "full",
+  "generated_at": "2026-11-23T04:30:13+00:00",
+  "scope": "near",
   "group": "ІПЗ-26-3",
   "current_week": 12,
   "week_source": "site",
@@ -10,9 +10,9 @@
       "day": 1,
       "date": "2026-11-23",
       "count": 4,
-      "changed": true,
+      "changed": false,
       "error": null,
-      "fetched_at": "2026-11-23T01:00:13+00:00",
+      "fetched_at": "2026-11-23T04:30:11+00:00",
       "source_file": "schedule_cache/week_12/day_1.html",
       "lessons": [
         {
@@ -119,9 +119,9 @@
       "day": 2,
       "date": "2026-11-24",
       "count": 4,
-      "changed": true,
+      "changed": false,
       "error": null,
-      "fetched_at": "2026-11-23T01:00:14+00:00",
+      "fetched_at": "2026-11-23T04:30:12+00:00",
       "source_file": "schedule_cache/week_12/day_2.html",
       "lessons": [
         {
@@ -223,7 +223,7 @@
       "day": 3,
       "date": "2026-11-25",
       "count": 3,
-      "changed": true,
+      "changed": false,
       "error": null,
       "fetched_at": "2026-11-23T01:00:15+00:00",
       "source_file": "schedule_cache/week_12/day_3.html",
@@ -286,7 +286,7 @@
       "day": 4,
       "date": "2026-11-26",
       "count": 4,
-      "changed": true,
+      "changed": false,
       "error": null,
       "fetched_at": "2026-11-23T01:00:15+00:00",
       "source_file": "schedule_cache/week_12/day_4.html",
@@ -381,7 +381,7 @@
       "day": 5,
       "date": "2026-11-27",
       "count": 4,
-      "changed": true,
+      "changed": false,
       "error": null,
       "fetched_at": "2026-11-23T01:00:16+00:00",
       "source_file": "schedule_cache/week_12/day_5.html",
@@ -810,7 +810,7 @@
       "day": 1,
       "date": "2026-12-07",
       "count": 4,
-      "changed": true,
+      "changed": false,
       "error": null,
       "fetched_at": "2026-11-23T01:00:23+00:00",
       "source_file": "schedule_cache/week_14/day_1.html",
@@ -878,7 +878,7 @@
       "day": 2,
       "date": "2026-12-08",
       "count": 4,
-      "changed": true,
+      "changed": false,
       "error": null,
       "fetched_at": "2026-11-23T01:00:24+00:00",
       "source_file": "schedule_cache/week_14/day_2.html",
@@ -946,7 +946,7 @@
       "day": 3,
       "date": "2026-12-09",
       "count": 3,
-      "changed": true,
+      "changed": false,
       "error": null,
       "fetched_at": "2026-11-23T01:00:25+00:00",
       "source_file": "schedule_cache/week_14/day_3.html",
@@ -1000,7 +1000,7 @@
       "day": 4,
       "date": "2026-12-10",
       "count": 4,
-      "changed": true,
+      "changed": false,
       "error": null,
       "fetched_at": "2026-11-23T01:00:26+00:00",
       "source_file": "schedule_cache/week_14/day_4.html",
@@ -1068,7 +1068,7 @@
       "day": 5,
       "date": "2026-12-11",
       "count": 4,
-      "changed": true,
+      "changed": false,
       "error": null,
       "fetched_at": "2026-11-23T01:00:27+00:00",
       "source_file": "schedule_cache/week_14/day_5.html",
@@ -1144,10 +1144,6 @@
     }
   ],
   "next_updates": [
-    {
-      "at": "2026-11-23T06:30",
-      "scope": "near"
-    },
     {
       "at": "2026-11-23T08:25",
       "scope": "today"
