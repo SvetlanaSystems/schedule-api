@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-23T11:25:20+00:00",
-  "scope": "today",
+  "generated_at": "2026-11-24T01:00:19+00:00",
+  "scope": "full",
   "group": "ІПЗ-26-3",
   "current_week": 12,
   "week_source": "site",
@@ -121,7 +121,7 @@
       "count": 4,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-23T04:30:12+00:00",
+      "fetched_at": "2026-11-24T01:00:07+00:00",
       "source_file": "schedule_cache/week_12/day_2.html",
       "lessons": [
         {
@@ -223,9 +223,9 @@
       "day": 3,
       "date": "2026-11-25",
       "count": 3,
-      "changed": false,
+      "changed": true,
       "error": null,
-      "fetched_at": "2026-11-23T01:00:15+00:00",
+      "fetched_at": "2026-11-24T01:00:07+00:00",
       "source_file": "schedule_cache/week_12/day_3.html",
       "lessons": [
         {
@@ -240,7 +240,21 @@
           "subgroup": null,
           "groups": "ВТ-26-1, ІПЗ-26-1, ІПЗ-26-2, ІПЗ-26-3, ІПЗ-26-4",
           "teacher": "Вакалюк Тетяна Анатоліївна",
-          "links": []
+          "links": [
+            {
+              "label": "групи ВТ-26-1, ІПЗ-26-1, ІПЗ-26-2 підключаються за посиланням",
+              "url": "https://meet.google.com/dhx-gbcx-ytg"
+            },
+            {
+              "label": "групи ІПЗ-26-3, ІПЗ-26-4 - за посиланням",
+              "url": "https://meet.google.com/vmp-xtfa-opo"
+            },
+            {
+              "label": "Матеріал",
+              "url": "https://learn.ztu.edu.ua/course/view.php?id=8112",
+              "note": "Теми по Покажчикам, рядкам"
+            }
+          ]
         },
         {
           "id": 1099,
@@ -254,7 +268,21 @@
           "subgroup": null,
           "groups": "ВТ-26-1, ІПЗ-26-1, ІПЗ-26-2, ІПЗ-26-3, ІПЗ-26-4",
           "teacher": "Вакалюк Тетяна Анатоліївна",
-          "links": []
+          "links": [
+            {
+              "label": "групи ВТ-26-1, ІПЗ-26-1, ІПЗ-26-2 підключаються за посиланням",
+              "url": "https://meet.google.com/dhx-gbcx-ytg"
+            },
+            {
+              "label": "групи ІПЗ-26-3, ІПЗ-26-4 - за посиланням",
+              "url": "https://meet.google.com/vmp-xtfa-opo"
+            },
+            {
+              "label": "Матеріал",
+              "url": "https://learn.ztu.edu.ua/course/view.php?id=8112",
+              "note": "Теми по Покажчикам, рядкам"
+            }
+          ]
         },
         {
           "id": 5295,
@@ -288,7 +316,7 @@
       "count": 4,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-23T01:00:15+00:00",
+      "fetched_at": "2026-11-24T01:00:08+00:00",
       "source_file": "schedule_cache/week_12/day_4.html",
       "lessons": [
         {
@@ -383,7 +411,7 @@
       "count": 4,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-23T01:00:16+00:00",
+      "fetched_at": "2026-11-24T01:00:09+00:00",
       "source_file": "schedule_cache/week_12/day_5.html",
       "lessons": [
         {
@@ -489,7 +517,7 @@
       "count": 2,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-23T01:00:17+00:00",
+      "fetched_at": "2026-11-24T01:00:10+00:00",
       "source_file": "schedule_cache/week_13/day_1.html",
       "lessons": [
         {
@@ -529,7 +557,7 @@
       "count": 8,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-23T01:00:19+00:00",
+      "fetched_at": "2026-11-24T01:00:11+00:00",
       "source_file": "schedule_cache/week_13/day_2.html",
       "lessons": [
         {
@@ -651,9 +679,9 @@
       "day": 3,
       "date": "2026-12-02",
       "count": 1,
-      "changed": false,
+      "changed": true,
       "error": null,
-      "fetched_at": "2026-11-23T01:00:19+00:00",
+      "fetched_at": "2026-11-24T01:00:12+00:00",
       "source_file": "schedule_cache/week_13/day_3.html",
       "lessons": [
         {
@@ -668,7 +696,16 @@
           "subgroup": null,
           "groups": "ІПЗ-26-3",
           "teacher": "Суховецька Світлана Володимирівна",
-          "links": []
+          "links": [
+            {
+              "label": "Google Meet",
+              "url": "https://meet.google.com/meet/pue-sewt-mdj"
+            },
+            {
+              "label": "Task",
+              "url": "https://learn.ztu.edu.ua/mod/folder/view.php?id=253932"
+            }
+          ]
         }
       ]
     },
@@ -679,7 +716,7 @@
       "count": 4,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-23T01:00:20+00:00",
+      "fetched_at": "2026-11-24T01:00:13+00:00",
       "source_file": "schedule_cache/week_13/day_4.html",
       "lessons": [
         {
@@ -747,7 +784,7 @@
       "count": 3,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-23T01:00:21+00:00",
+      "fetched_at": "2026-11-24T01:00:14+00:00",
       "source_file": "schedule_cache/week_13/day_5.html",
       "lessons": [
         {
@@ -812,7 +849,7 @@
       "count": 4,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-23T01:00:23+00:00",
+      "fetched_at": "2026-11-24T01:00:15+00:00",
       "source_file": "schedule_cache/week_14/day_1.html",
       "lessons": [
         {
@@ -880,7 +917,7 @@
       "count": 4,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-23T01:00:24+00:00",
+      "fetched_at": "2026-11-24T01:00:16+00:00",
       "source_file": "schedule_cache/week_14/day_2.html",
       "lessons": [
         {
@@ -948,7 +985,7 @@
       "count": 3,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-23T01:00:25+00:00",
+      "fetched_at": "2026-11-24T01:00:17+00:00",
       "source_file": "schedule_cache/week_14/day_3.html",
       "lessons": [
         {
@@ -1002,7 +1039,7 @@
       "count": 4,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-23T01:00:26+00:00",
+      "fetched_at": "2026-11-24T01:00:17+00:00",
       "source_file": "schedule_cache/week_14/day_4.html",
       "lessons": [
         {
@@ -1070,7 +1107,7 @@
       "count": 4,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-23T01:00:27+00:00",
+      "fetched_at": "2026-11-24T01:00:18+00:00",
       "source_file": "schedule_cache/week_14/day_5.html",
       "lessons": [
         {
@@ -1145,10 +1182,6 @@
   ],
   "next_updates": [
     {
-      "at": "2026-11-24T03:00",
-      "scope": "full"
-    },
-    {
       "at": "2026-11-24T06:30",
       "scope": "near"
     },
@@ -1166,6 +1199,26 @@
     },
     {
       "at": "2026-11-24T16:25",
+      "scope": "today"
+    },
+    {
+      "at": "2026-11-25T03:00",
+      "scope": "full"
+    },
+    {
+      "at": "2026-11-25T06:30",
+      "scope": "near"
+    },
+    {
+      "at": "2026-11-25T11:35",
+      "scope": "today"
+    },
+    {
+      "at": "2026-11-25T13:25",
+      "scope": "today"
+    },
+    {
+      "at": "2026-11-25T14:55",
       "scope": "today"
     }
   ]
