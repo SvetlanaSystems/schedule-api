@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-24T14:25:17+00:00",
-  "scope": "today",
+  "generated_at": "2026-11-24T15:11:54+00:00",
+  "scope": "full",
   "group": "ІПЗ-26-3",
   "current_week": 12,
   "week_source": "site",
@@ -121,7 +121,7 @@
       "count": 4,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-24T14:25:17+00:00",
+      "fetched_at": "2026-11-24T15:11:40+00:00",
       "source_file": "schedule_cache/week_12/day_2.html",
       "lessons": [
         {
@@ -225,7 +225,7 @@
       "count": 3,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-24T04:30:04+00:00",
+      "fetched_at": "2026-11-24T15:11:41+00:00",
       "source_file": "schedule_cache/week_12/day_3.html",
       "lessons": [
         {
@@ -314,9 +314,9 @@
       "day": 4,
       "date": "2026-11-26",
       "count": 4,
-      "changed": false,
+      "changed": true,
       "error": null,
-      "fetched_at": "2026-11-24T01:00:08+00:00",
+      "fetched_at": "2026-11-24T15:11:42+00:00",
       "source_file": "schedule_cache/week_12/day_4.html",
       "lessons": [
         {
@@ -354,7 +354,16 @@
           "subgroup": null,
           "groups": "ІПЗ-26-3",
           "teacher": "Панченко Наталія Анатоліївна",
-          "links": []
+          "links": [
+            {
+              "label": "Google Meet",
+              "url": "https://meet.google.com/qiu-vskj-jmm"
+            },
+            {
+              "label": "матеріали практичного заняття",
+              "url": "https://learn.ztu.edu.ua/course/view.php?id=8359"
+            }
+          ]
         },
         {
           "id": 6738,
@@ -409,9 +418,9 @@
       "day": 5,
       "date": "2026-11-27",
       "count": 4,
-      "changed": false,
+      "changed": true,
       "error": null,
-      "fetched_at": "2026-11-24T01:00:09+00:00",
+      "fetched_at": "2026-11-24T15:11:43+00:00",
       "source_file": "schedule_cache/week_12/day_5.html",
       "lessons": [
         {
@@ -472,7 +481,16 @@
           "subgroup": null,
           "groups": "ІПЗ-26-3",
           "teacher": "Панченко Наталія Анатоліївна",
-          "links": []
+          "links": [
+            {
+              "label": "Google Meet",
+              "url": "https://meet.google.com/xme-riuq-hgh"
+            },
+            {
+              "label": "матеріали практичного заняття",
+              "url": "https://learn.ztu.edu.ua/course/view.php?id=8359"
+            }
+          ]
         },
         {
           "id": 5440,
@@ -517,7 +535,7 @@
       "count": 2,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-24T01:00:10+00:00",
+      "fetched_at": "2026-11-24T15:11:44+00:00",
       "source_file": "schedule_cache/week_13/day_1.html",
       "lessons": [
         {
@@ -557,7 +575,7 @@
       "count": 8,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-24T01:00:11+00:00",
+      "fetched_at": "2026-11-24T15:11:45+00:00",
       "source_file": "schedule_cache/week_13/day_2.html",
       "lessons": [
         {
@@ -681,7 +699,7 @@
       "count": 1,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-24T01:00:12+00:00",
+      "fetched_at": "2026-11-24T15:11:46+00:00",
       "source_file": "schedule_cache/week_13/day_3.html",
       "lessons": [
         {
@@ -716,7 +734,7 @@
       "count": 4,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-24T01:00:13+00:00",
+      "fetched_at": "2026-11-24T15:11:47+00:00",
       "source_file": "schedule_cache/week_13/day_4.html",
       "lessons": [
         {
@@ -784,7 +802,7 @@
       "count": 3,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-24T01:00:14+00:00",
+      "fetched_at": "2026-11-24T15:11:48+00:00",
       "source_file": "schedule_cache/week_13/day_5.html",
       "lessons": [
         {
@@ -849,7 +867,7 @@
       "count": 4,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-24T01:00:15+00:00",
+      "fetched_at": "2026-11-24T15:11:49+00:00",
       "source_file": "schedule_cache/week_14/day_1.html",
       "lessons": [
         {
@@ -917,7 +935,7 @@
       "count": 4,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-24T01:00:16+00:00",
+      "fetched_at": "2026-11-24T15:11:50+00:00",
       "source_file": "schedule_cache/week_14/day_2.html",
       "lessons": [
         {
@@ -985,7 +1003,7 @@
       "count": 3,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-24T01:00:17+00:00",
+      "fetched_at": "2026-11-24T15:11:51+00:00",
       "source_file": "schedule_cache/week_14/day_3.html",
       "lessons": [
         {
@@ -1039,7 +1057,7 @@
       "count": 4,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-24T01:00:17+00:00",
+      "fetched_at": "2026-11-24T15:11:53+00:00",
       "source_file": "schedule_cache/week_14/day_4.html",
       "lessons": [
         {
@@ -1107,7 +1125,7 @@
       "count": 4,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-24T01:00:18+00:00",
+      "fetched_at": "2026-11-24T15:11:54+00:00",
       "source_file": "schedule_cache/week_14/day_5.html",
       "lessons": [
         {
