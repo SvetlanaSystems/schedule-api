@@ -1,6 +1,6 @@
 {
-  "generated_at": "2026-11-27T04:30:19+00:00",
-  "scope": "near",
+  "generated_at": "2026-11-27T06:25:03+00:00",
+  "scope": "today",
   "group": "ІПЗ-26-3",
   "current_week": 12,
   "week_source": "site",
@@ -420,7 +420,7 @@
       "count": 4,
       "changed": false,
       "error": null,
-      "fetched_at": "2026-11-27T04:30:19+00:00",
+      "fetched_at": "2026-11-27T06:25:02+00:00",
       "source_file": "schedule_cache/week_12/day_5.html",
       "lessons": [
         {
@@ -1199,10 +1199,6 @@
     }
   ],
   "next_updates": [
-    {
-      "at": "2026-11-27T08:25",
-      "scope": "today"
-    },
     {
       "at": "2026-11-27T09:55",
       "scope": "today"
